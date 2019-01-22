@@ -1,6 +1,6 @@
 # IndividualCylinder
 
-_(Individual === You; Cylinder === Tube)
+_(Individual === You; Cylinder === Tube)_
 
 ## Info
 
