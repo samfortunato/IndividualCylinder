@@ -1,24 +1,7 @@
-# README
+# IndividualCylinder
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+_(Individual === You; Cylinder === Tube)
 
-Things you may want to cover:
+## Info
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+IndividualCylinder is a clone of YouTube. This was created as Sam Fortunato's fullstack final project for App Academy.
