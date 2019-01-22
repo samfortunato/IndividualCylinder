@@ -19,9 +19,16 @@
 
 /node_modules
 /yarn-error.log
+/app/assets/javascripts/bundle.js
+/app/assets/javascripts/bundle.js.map
 
 /public/assets
 .byebug_history
 
+npm-debug.log
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Misc.
+.DS_Store
