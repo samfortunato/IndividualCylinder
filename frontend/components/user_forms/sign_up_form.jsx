@@ -6,7 +6,8 @@ class SignUpForm extends React.Component {
     super(props);
 
     this.state = {
-      username: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: ''
     };
@@ -33,45 +34,52 @@ class SignUpForm extends React.Component {
         <section className="user-form">
           <form className="sign-up-form" onSubmit={this.handleSubmit}>
             <img className="form-logo" src="https://placeimg.com/74/37/tech" alt="IndividualCylinder logo" />
+            
             <h1>Create your Account</h1>
             <h2>to continue to IndividualCylinder</h2>
 
-            <div className="label-input-group">
-              <label htmlFor="username">Username</label>
+            <div className="sign-up-full-name">
+              <label htmlFor="first-name">Username</label>
               <input
-                id="username"
+                id="first-name"
                 type="text"
-                value={this.state.username}
+                value={this.state.firstName}
                 required
-                placeholder="Username"
-                onChange={this.updateValue('username')}
+                placeholder="First name"
+                onChange={this.updateValue('firstName')}
+              />
+              
+              <label htmlFor="last-name">Last name</label>
+              <input
+                id="last-name"
+                type="text"
+                value={this.state.lastName}
+                required
+                placeholder="Last name"
+                onChange={this.updateValue('lastName')}
               />
             </div>
 
-            <div className="label-input-group">
-              <label htmlFor="email">Your email address</label>
-              <input
-                id="email"
-                type="email"
-                value={this.state.email}
-                required
-                placeholder="Your email address"
-                onChange={this.updateValue('email')}
-              />
-            </div>
+            <label htmlFor="email">Your email address</label>
+            <input
+              id="email"
+              type="email"
+              value={this.state.email}
+              required
+              placeholder="Your email address"
+              onChange={this.updateValue('email')}
+            />
 
-            <div className="label-input-group">
-              <label htmlFor="password">Password</label>
-              <input
-                id="password"
-                type="password"
-                value={this.state.password}
-                required
-                placeholder="Password"
-                onChange={this.updateValue('password')}
-              />
-              <span className="helper-text">Use 8 or more characters with a mix of letters, numbers &amp; symbols</span>
-            </div>
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={this.state.password}
+              required
+              placeholder="Password"
+              onChange={this.updateValue('password')}
+            />
+            <span className="helper-text">Use 8 or more characters with a mix of letters, numbers &amp; symbols</span>
 
             <div className="user-form-bottom-options">
               <input type="submit" value="Sign Up"/>
