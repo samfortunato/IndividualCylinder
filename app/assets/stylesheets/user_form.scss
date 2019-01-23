@@ -71,3 +71,12 @@
 .form-logo {
   margin-bottom: 1rem;
 }
+
+.sign-up-full-name {
+  display: flex;
+  justify-content: space-between;
+
+  input:first-of-type {
+    margin-right: 1rem;
+  }
+}
