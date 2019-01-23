@@ -1,12 +1,12 @@
 class Api::SessionsController < ApplicationController
   def create
     @user = User.find_by_credentials(
-      params[:user][:username],
+      params[:user][:email],
       params[:user][:password]
     )
 
     if @user
-      login(@user)
+      log_in(@user)
       render :json
     else
       flash.now[:errors] = ['Invalid username or password']
@@ -16,8 +16,5 @@ class Api::SessionsController < ApplicationController
 
   def destroy
     log_out
-
-    # ???
-    redirect_to new_session_url
   end
 end
