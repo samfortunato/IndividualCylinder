@@ -1,0 +1,32 @@
+.sign-in-form-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  
+  box-sizing: border-box;
+  min-height: (500 / 16 * 1rem);
+  padding-top: 3rem;
+
+  input[type="email"],
+  input[type="password"] {
+    padding: (13 / 16 * 1rem) (15 / 16 * 1rem);
+
+    font-size: 1rem;
+    line-height: 28px;
+
+    &:focus {
+      padding: (12 / 16 * 1rem) (14 / 16 * 1rem);
+    }
+  }
+
+  .helper-text {
+    font-size: (14 / 16 * 1rem);
+    color: #5f6368;
+  }
+
+  .form-secondary-btn {
+    left: -.5rem;
+    padding: .5rem;
+  }
+}

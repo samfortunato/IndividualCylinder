@@ -1,5 +1,3 @@
-@import 'colors';
-
 form {
   label {
     visibility: hidden;
@@ -34,7 +32,7 @@ form {
       width: 100%;
       
       &:focus {
-        border: 2px solid $form-highlight-color;
+        border: 2px solid $action-color;
         padding: (7 / 16 * 1rem) (10 / 16 * 1rem);
 
         transition: border-color .1s;
@@ -47,7 +45,7 @@ form {
       padding: (11 / 16 * 1rem) (28.5 / 16 * 1rem);
       
       font-weight: 700;
-      background-color: $form-highlight-color;
+      background-color: $action-color;
       color: #fff;
 
       transition: box-shadow .3s;
@@ -81,7 +79,7 @@ form {
   font-weight: 700;
   
   text-decoration: none;
-  color: $form-highlight-color;
+  color: $action-color;
 
   transition: background-color .12s;
 
