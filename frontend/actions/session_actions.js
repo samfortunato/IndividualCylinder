@@ -5,9 +5,9 @@ export const LOG_OUT_USER = 'LOG_OUT_USER';
 
 export const logInUser = (user) => (dispatch) => {
   return SessionAPIUtil.logInUser(user)
-    .then(user => dispatch({
+    .then(currentUser => dispatch({
       type: LOG_IN_USER,
-      user
+      currentUser
     }));
 };
 

@@ -7,10 +7,10 @@ class Api::SessionsController < ApplicationController
 
     if @user
       log_in(@user)
-      render :json
+      render :create
     else
       flash.now[:errors] = ['Invalid username or password']
-      render :json
+      render :errors
     end
   end
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SignInForm extends React.Component {
   constructor(props) {
@@ -28,8 +29,11 @@ class SignInForm extends React.Component {
   render() {
     return (
       <main className="user-form-page">
-        <section className="user-form">
-          <h2>Sign In</h2>
+        <section className="user-form sign-in-form-section">
+          <img className="form-logo" src="https://placeimg.com/74/37/tech" alt="IndividualCylinder logo" />
+        
+          <h1>Sign In</h1>
+          <h2>to continue to IndividualCylinder</h2>
 
           <form className="sign-in-form" onSubmit={this.handleSubmit}>
             <label htmlFor="email">email</label>
@@ -37,6 +41,8 @@ class SignInForm extends React.Component {
               id="email"
               type="email"
               value={this.state.username}
+              required
+              placeholder="Email"
               onChange={this.updateValue('email')}
             />
 
@@ -45,10 +51,18 @@ class SignInForm extends React.Component {
               id="password"
               type="password"
               value={this.state.password}
+              required
+              placeholder="Password"
               onChange={this.updateValue('password')}
             />
 
-            <input type="submit" value="Sign In" />
+            <span className="helper-text">You can sign in with a demo account to try out the app.</span>
+            <a href="#">Sign in as demo user</a>
+
+            <div className="user-form-bottom-options">
+              <input type="submit" value="Sign In" />
+              <Link className="form-secondary-btn" to="/signup">Create account</Link>
+            </div>
           </form>
         </section>
       </main>

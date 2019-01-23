@@ -79,7 +79,7 @@ class SignUpForm extends React.Component {
               placeholder="Password"
               onChange={this.updateValue('password')}
             />
-            <span className="helper-text">Use 8 or more characters with a mix of letters, numbers &amp; symbols</span>
+            <span className="helper-text">Use 8 or more characters in your password</span>
 
             <div className="user-form-bottom-options">
               <input type="submit" value="Sign Up"/>
