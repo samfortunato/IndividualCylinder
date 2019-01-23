@@ -6,8 +6,8 @@ class SignUpForm extends React.Component {
     super(props);
 
     this.state = {
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: ''
     };
@@ -34,7 +34,7 @@ class SignUpForm extends React.Component {
         <section className="user-form">
           <form className="sign-up-form" onSubmit={this.handleSubmit}>
             <img className="form-logo" src="https://placeimg.com/74/37/tech" alt="IndividualCylinder logo" />
-            
+
             <h1>Create your Account</h1>
             <h2>to continue to IndividualCylinder</h2>
 
@@ -43,20 +43,20 @@ class SignUpForm extends React.Component {
               <input
                 id="first-name"
                 type="text"
-                value={this.state.firstName}
+                value={this.state.first_name}
                 required
                 placeholder="First name"
-                onChange={this.updateValue('firstName')}
+                onChange={this.updateValue('first_name')}
               />
               
               <label htmlFor="last-name">Last name</label>
               <input
                 id="last-name"
                 type="text"
-                value={this.state.lastName}
+                value={this.state.last_name}
                 required
                 placeholder="Last name"
-                onChange={this.updateValue('lastName')}
+                onChange={this.updateValue('last_name')}
               />
             </div>
 

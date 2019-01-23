@@ -5,7 +5,6 @@ class SignInForm extends React.Component {
     super(props);
 
     this.state = {
-      username: '',
       email: '',
       password: ''
     };
@@ -33,25 +32,21 @@ class SignInForm extends React.Component {
           <h2>Sign In</h2>
 
           <form className="sign-in-form" onSubmit={this.handleSubmit}>
-            <div className="label-input-group">
-              <label htmlFor="username">Username</label>
-              <input
-                id="username"
-                type="text"
-                value={this.state.username}
-                onChange={this.updateValue('username')}
-              />
-            </div>
+            <label htmlFor="email">email</label>
+            <input
+              id="email"
+              type="email"
+              value={this.state.username}
+              onChange={this.updateValue('email')}
+            />
 
-            <div className="label-input-group">
-              <label htmlFor="password">Password</label>
-              <input
-                id="password"
-                type="password"
-                value={this.state.password}
-                onChange={this.updateValue('password')}
-              />
-            </div>
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.updateValue('password')}
+            />
 
             <input type="submit" value="Sign In" />
           </form>

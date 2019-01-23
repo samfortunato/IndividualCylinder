@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
     @user = User.new(
       first_name: params[:user][:first_name],
       last_name: params[:user][:last_name],
-      username: params[:user][:email]
+      email: params[:user][:email]
     )
     @user.password = params[:user][:password]
 
