@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -22,47 +23,68 @@ class SignUpForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.props.createUser(this.state);
+    this.props.createUser(this.state)
+      .then(() => this.props.history.push('/'));
   }
 
   render() {
     return (
       <main className="user-form-page">
-        <section class="user-form">
-          <h2>Create your Account</h2>
-          <h3>to continue to IndividualCylinder</h3>
-
+        <section className="user-form">
           <form className="sign-up-form" onSubmit={this.handleSubmit}>
-            <label htmlFor="username">Username
+            <img className="form-logo" src="https://placeimg.com/74/37/tech" alt="IndividualCylinder logo" />
+            <h1>Create your Account</h1>
+            <h2>to continue to IndividualCylinder</h2>
+
+            <div className="label-input-group">
+              <label htmlFor="username">Username</label>
               <input
                 id="username"
                 type="text"
                 value={this.state.username}
+                required
+                placeholder="Username"
                 onChange={this.updateValue('username')}
               />
-            </label>
+            </div>
 
-            <label htmlFor="email">Your email address
+            <div className="label-input-group">
+              <label htmlFor="email">Your email address</label>
               <input
                 id="email"
                 type="email"
                 value={this.state.email}
+                required
+                placeholder="Your email address"
                 onChange={this.updateValue('email')}
               />
-            </label>
+            </div>
 
-            <label htmlFor="password">Password
+            <div className="label-input-group">
+              <label htmlFor="password">Password</label>
               <input
                 id="password"
                 type="password"
                 value={this.state.password}
+                required
+                placeholder="Password"
                 onChange={this.updateValue('password')}
               />
-            </label>
-            <span>Use 6 or more characters with a mix of letters, numbers &amp; symbols</span>
+              <span className="helper-text">Use 8 or more characters with a mix of letters, numbers &amp; symbols</span>
+            </div>
 
-            <input type="submit" value="Sign Up"/>
+            <div className="user-form-bottom-options">
+              <input type="submit" value="Sign Up"/>
+              <Link className="form-secondary-btn" to="/signin">Sign in instead</Link>
+            </div>
           </form>
+
+          <aside className="user-form-badge">
+            <figure>
+              <img src="https://placeimg.com/244/244/tech" alt="IndividualCylinder sign up badge"/>
+              <figcaption>One account. All of IndividualCylinder working for you.</figcaption>
+            </figure>
+          </aside>
         </section>
       </main>
     );

@@ -1,0 +1,93 @@
+@import 'colors';
+
+form {
+  label {
+    visibility: hidden;
+    position: absolute;
+    width: 0;
+    height: 0;
+    
+    // top: .4rem;
+    // left: (10 / 16 * 1rem);
+
+    // padding: .1rem;
+
+    // background-color: #fff;
+    // color: $form-label-color;
+
+    // transition: transform .1s,;
+  }
+
+  input {
+    outline: none;
+    
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: (23 / 16 * 1rem);
+    border: 1px solid $form-border-color;
+    border-radius: 4px;
+    padding: (8 / 16 * 1rem) (11 / 16 * 1rem);
+
+    &[type="text"],
+    &[type="email"],
+    &[type="password"] {
+      width: 100%;
+      
+      &:focus {
+        border: 2px solid $form-highlight-color;
+        padding: (7 / 16 * 1rem) (10 / 16 * 1rem);
+
+        transition: border-color .1s;
+      }
+    }
+
+    &[type="submit"] {
+      box-sizing: border-box;
+      border: 0;
+      padding: (11 / 16 * 1rem) (28.5 / 16 * 1rem);
+      
+      font-weight: 700;
+      background-color: $form-highlight-color;
+      color: #fff;
+
+      transition: box-shadow .3s;
+
+      &:hover, &:focus {
+        background-color: $form-highlight-hover-color;
+        box-shadow: 0 1px 5px rgba(66, 133, 244, 0.45),
+                    0 1px 3px rgba(148, 184, 246, 0.6);
+      }
+    }
+  }
+
+  .helper-text {
+    display: block;
+
+    font-size: (12 / 16 * 1rem);
+  }
+}
+
+.label-input-group {
+  position: relative;
+}
+
+.form-secondary-btn {
+  position: relative;
+  left: -1rem;
+  order: -1;
+  
+  padding: (10 / 16 * 1rem) 1rem;
+  
+  font-weight: 700;
+  
+  text-decoration: none;
+  color: $form-highlight-color;
+
+  transition: background-color .12s;
+
+  &:hover, &:focus {
+    outline: none;
+
+    background-color: $form-secondary-hover-color;
+  }
+}

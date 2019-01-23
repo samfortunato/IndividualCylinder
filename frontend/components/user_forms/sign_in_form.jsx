@@ -22,35 +22,40 @@ class SignInForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.props.logInUser(this.state);
+    this.props.logInUser(this.state)
+      .then(() => this.props.history.push('/'));
   }
 
   render() {
     return (
       <main className="user-form-page">
-        <h2>Sign In</h2>
+        <section className="user-form">
+          <h2>Sign In</h2>
 
-        <form className="user-form" onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username
-            <input
-              id="username"
-              type="text"
-              value={this.state.username}
-              onChange={this.updateValue('username')}
-            />
-          </label>
+          <form className="sign-in-form" onSubmit={this.handleSubmit}>
+            <div className="label-input-group">
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                type="text"
+                value={this.state.username}
+                onChange={this.updateValue('username')}
+              />
+            </div>
 
-          <label htmlFor="password">Password
-            <input
-              id="password"
-              type="password"
-              value={this.state.password}
-              onChange={this.updateValue('password')}
-            />
-          </label>
+            <div className="label-input-group">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                value={this.state.password}
+                onChange={this.updateValue('password')}
+              />
+            </div>
 
-          <input type="submit" value="Sign In" />
-        </form>
+            <input type="submit" value="Sign In" />
+          </form>
+        </section>
       </main>
     );
   }

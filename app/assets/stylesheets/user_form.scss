@@ -1,0 +1,73 @@
+@import 'colors';
+
+.user-form-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  h1, h2 {
+    font-weight: 400;
+  }
+
+  h1 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+    
+    font-size: (24 / 16 * 1rem);
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    
+    font-size: 1rem;
+  }
+}
+
+.user-form {
+  display: flex;
+  border: 1px solid $form-border-color;
+  border-radius: 8px;
+  padding: 2.5rem;
+
+  font-size: .875rem;
+}
+
+.user-form-bottom-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 2rem;
+
+  input[type="submit"] {
+    margin-bottom: 0;
+  }
+}
+
+.user-form-badge {
+  display: flex;
+  align-items: center;
+  max-width: (244 / 16 * 1rem);
+
+  text-align: center;
+  font-size: 1rem;
+
+  figure {
+    margin: 0;
+
+    figcaption {
+      font-weight: 300;
+    }
+  }
+}
+
+.sign-up-form {
+  margin-right: 4.5rem;
+}
+
+.form-logo {
+  margin-bottom: 1rem;
+}
