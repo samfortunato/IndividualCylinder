@@ -36,25 +36,27 @@ class SignInForm extends React.Component {
           <h2>to continue to IndividualCylinder</h2>
 
           <form className="sign-in-form" onSubmit={this.handleSubmit}>
-            <label htmlFor="email">email</label>
-            <input
-              id="email"
-              type="email"
-              value={this.state.username}
-              required
-              placeholder="Email"
-              onChange={this.updateValue('email')}
-            />
+            <div className="label-input-group">
+              <input
+                id="email"
+                type="email"
+                value={this.state.email}
+                required
+                onChange={this.updateValue('email')}
+              />
+              <label htmlFor="email">Email</label>
+            </div>
 
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              value={this.state.password}
-              required
-              placeholder="Password"
-              onChange={this.updateValue('password')}
-            />
+            <div className="label-input-group">
+              <input
+                id="password"
+                type="password"
+                value={this.state.password}
+                required
+                onChange={this.updateValue('password')}
+              />
+              <label htmlFor="password">Password</label>
+            </div>
 
             <span className="helper-text">You can sign in with a demo account to try out the app.</span>
             <a href="#">Sign in as demo user</a>

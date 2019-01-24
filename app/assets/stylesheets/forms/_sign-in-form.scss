@@ -8,6 +8,13 @@
   min-height: (500 / 16 * 1rem);
   padding-top: 3rem;
 
+  label {
+    top: 1rem;
+    left: .75rem;
+    
+    font-size: 1rem;
+  }
+
   input[type="email"],
   input[type="password"] {
     padding: (13 / 16 * 1rem) (15 / 16 * 1rem);
@@ -17,6 +24,30 @@
 
     &:focus {
       padding: (12 / 16 * 1rem) (14 / 16 * 1rem);
+    }
+  }
+  
+  input[type="email"] {
+    &:focus + label {
+      transform: translate(-10px, -28px)
+      scale(.75);
+    }
+    
+    &:not([value=""]) + label {
+      transform: translate(-10px, -28px)
+      scale(.75);
+    }
+  }
+
+  input[type="password"] {
+    &:focus + label {
+      transform: translate(-13px, -28px)
+                 scale(.75);
+    }
+
+    &:valid + label {
+      transform: translate(-13px, -28px)
+                 scale(.75);
     }
   }
 
