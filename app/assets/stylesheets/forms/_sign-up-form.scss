@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
 
-  input:first-of-type {
+  .label-input-group:first-child {
     margin-right: 1rem;
   }
 }

@@ -39,46 +39,50 @@ class SignUpForm extends React.Component {
             <h2>to continue to IndividualCylinder</h2>
 
             <div className="sign-up-full-name">
-              <label htmlFor="first-name">Username</label>
-              <input
-                id="first-name"
-                type="text"
-                value={this.state.first_name}
-                required
-                placeholder="First name"
-                onChange={this.updateValue('first_name')}
-              />
+              <div className="label-input-group">
+                <input
+                  id="first-name"
+                  type="text"
+                  value={this.state.first_name}
+                  required
+                  onChange={this.updateValue('first_name')}
+                />
+                <label htmlFor="first-name">First name</label>
+              </div>
               
-              <label htmlFor="last-name">Last name</label>
-              <input
-                id="last-name"
-                type="text"
-                value={this.state.last_name}
-                required
-                placeholder="Last name"
-                onChange={this.updateValue('last_name')}
-              />
+              <div className="label-input-group">
+                <input
+                  id="last-name"
+                  type="text"
+                  value={this.state.last_name}
+                  required
+                  onChange={this.updateValue('last_name')}
+                />
+                <label htmlFor="last-name">Last name</label>
+              </div>
             </div>
 
-            <label htmlFor="email">Your email address</label>
-            <input
-              id="email"
-              type="email"
-              value={this.state.email}
-              required
-              placeholder="Your email address"
-              onChange={this.updateValue('email')}
-            />
+            <div className="label-input-group">
+              <input
+                id="email"
+                type="email"
+                value={this.state.email}
+                required
+                onChange={this.updateValue('email')}
+              />
+              <label htmlFor="email">Your email address</label>
+            </div>
 
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              value={this.state.password}
-              required
-              placeholder="Password"
-              onChange={this.updateValue('password')}
-            />
+            <div className="label-input-group">
+              <input
+                id="password"
+                type="password"
+                value={this.state.password}
+                required
+                onChange={this.updateValue('password')}
+              />
+              <label htmlFor="password">Password</label>
+            </div>
             <span className="helper-text">Use 8 or more characters in your password</span>
 
             <div className="user-form-bottom-options">

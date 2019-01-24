@@ -1,19 +1,25 @@
 form {
+  .label-input-group {
+    position: relative;
+  }
+
   label {
-    visibility: hidden;
+    // visibility: hidden;
+    // position: absolute;
+    // width: 0;
+    // height: 0;
+
     position: absolute;
-    width: 0;
-    height: 0;
-    
-    // top: .4rem;
-    // left: (10 / 16 * 1rem);
+    top: .45rem;
+    left: .5rem;
 
-    // padding: .1rem;
+    padding: .1rem .3rem;
 
-    // background-color: #fff;
-    // color: $form-label-color;
+    background-color: #fff;
+    color: grey;
 
-    // transition: transform .1s,;
+    transition: color .1s,
+                transform .1s;
   }
 
   input {
@@ -35,10 +41,29 @@ form {
         border: 2px solid $action-color;
         padding: (7 / 16 * 1rem) (10 / 16 * 1rem);
 
-        transition: border-color .1s;
+        transition: border-color .1s,
+                    color .1s;
+
+        & + label {
+          color: $action-color;
+          transform: translate(-13px, -18px)
+                     scale(.7);
+        }
+      }
+
+      &:valid + label {
+        transform: translate(-13px, -18px)
+                     scale(.7);
       }
     }
 
+    &[type="email"] {
+      &:focus + label, &:not([value=""]) + label {
+        transform: translate(-21px, -18px)
+                   scale(.7);
+      }
+    }
+    
     &[type="submit"] {
       box-sizing: border-box;
       border: 0;
@@ -47,27 +72,24 @@ form {
       font-weight: 700;
       background-color: $action-color;
       color: #fff;
-
+      
       transition: box-shadow .3s;
-
+      
       &:hover, &:focus {
         background-color: $form-highlight-hover-color;
         box-shadow: 0 1px 5px rgba(66, 133, 244, 0.45),
-                    0 1px 3px rgba(148, 184, 246, 0.6);
+        0 1px 3px rgba(148, 184, 246, 0.6);
       }
     }
   }
-
-  .helper-text {
-    display: block;
-
-    font-size: (12 / 16 * 1rem);
-  }
 }
 
-.label-input-group {
-  position: relative;
+.helper-text {
+  display: block;
+
+  font-size: (12 / 16 * 1rem);
 }
+
 
 .form-secondary-btn {
   position: relative;
