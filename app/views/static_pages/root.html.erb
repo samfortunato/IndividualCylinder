@@ -1,10 +1,10 @@
-<script>
-  <% if current_user %>
+<% if current_user %>
+  <script id="bootstrap-current-user">
     window.currentUser = <%= render(
-      'api/users/show.json.jbuilder',
+      'api/users/user.json.jbuilder',
       user: current_user
     ).html_safe %>
-  <% end %>
-</script>
+  </script>
+<% end %>
 
 <div id="root"></div>
