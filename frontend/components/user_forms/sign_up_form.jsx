@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import merge from 'lodash/merge';
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -24,11 +25,16 @@ class SignUpForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.props.createUser(this.state)
+    const user = merge({}, this.state);
+    this.props.createUser(user)
       .then(() => this.props.history.push('/'));
   }
 
   render() {
+    const errorLis = this.props.errors.map((error) => {
+      return <li>{error}</li>;
+    }) || [];
+    
     return (
       <main className="user-form-page">
         <section className="user-form">
@@ -39,47 +45,51 @@ class SignUpForm extends React.Component {
             <h2>to continue to IndividualCylinder</h2>
 
             <div className="sign-up-full-name">
-              <label htmlFor="first-name">Username</label>
-              <input
-                id="first-name"
-                type="text"
-                value={this.state.first_name}
-                required
-                placeholder="First name"
-                onChange={this.updateValue('first_name')}
-              />
+              <div className="label-input-group">
+                <input
+                  id="first-name"
+                  type="text"
+                  value={this.state.first_name}
+                  required
+                  onChange={this.updateValue('first_name')}
+                />
+                <label htmlFor="first-name">First name</label>
+              </div>
               
-              <label htmlFor="last-name">Last name</label>
-              <input
-                id="last-name"
-                type="text"
-                value={this.state.last_name}
-                required
-                placeholder="Last name"
-                onChange={this.updateValue('last_name')}
-              />
+              <div className="label-input-group">
+                <input
+                  id="last-name"
+                  type="text"
+                  value={this.state.last_name}
+                  required
+                  onChange={this.updateValue('last_name')}
+                />
+                <label htmlFor="last-name">Last name</label>
+              </div>
             </div>
 
-            <label htmlFor="email">Your email address</label>
-            <input
-              id="email"
-              type="email"
-              value={this.state.email}
-              required
-              placeholder="Your email address"
-              onChange={this.updateValue('email')}
-            />
+            <div className="label-input-group">
+              <input
+                id="email"
+                type="email"
+                value={this.state.email}
+                required
+                onChange={this.updateValue('email')}
+              />
+              <label htmlFor="email">Your email address</label>
+            </div>
 
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              value={this.state.password}
-              required
-              placeholder="Password"
-              onChange={this.updateValue('password')}
-            />
-            <span className="helper-text">Use 8 or more characters with a mix of letters, numbers &amp; symbols</span>
+            <div className="label-input-group">
+              <input
+                id="password"
+                type="password"
+                value={this.state.password}
+                required
+                onChange={this.updateValue('password')}
+              />
+              <label htmlFor="password">Password</label>
+            </div>
+            <span className="helper-text">Use 8 or more characters in your password</span>
 
             <div className="user-form-bottom-options">
               <input type="submit" value="Sign Up"/>
@@ -94,6 +104,8 @@ class SignUpForm extends React.Component {
             </figure>
           </aside>
         </section>
+
+        <ul>{errorLis}</ul>
       </main>
     );
   }

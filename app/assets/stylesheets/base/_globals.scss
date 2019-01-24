@@ -1,0 +1,15 @@
+body {
+  line-height: 1.4;
+  font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+a {
+  font-weight: 700;
+  text-decoration: none;
+  
+  color: $action-color;
+}
+
+a, span, p {
+  line-height: 1.5;
+}

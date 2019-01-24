@@ -1,0 +1,12 @@
+.sign-up-form {
+  margin-right: 4.5rem;
+}
+
+.sign-up-full-name {
+  display: flex;
+  justify-content: space-between;
+
+  .label-input-group:first-child {
+    margin-right: 1rem;
+  }
+}

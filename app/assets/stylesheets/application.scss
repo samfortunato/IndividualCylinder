@@ -11,11 +11,10 @@
  * It is generally better to create a new file per style scope.
  *
  *= require normalize.css
- *= require_tree .
  *= require_self
  */
 
- body {
-   line-height: 1.4;
-   font-family: 'Roboto', Helvetica, sans-serif;
- }
+@import 'variables';
+@import 'base';
+@import 'forms';
+@import 'main_components';
