@@ -1,17 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import UserActionsMenuButtonContainer from './user_actions_menu_button_container';
 
 class NavHeader extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const signInLink = <Link to="/signin">Sign In</Link>;
-    const signedInButton = (
-      <button onClick={this.props.logOut} >Sign Out</button>
-    );
-    
     return (
       <header className="main-header">
         <nav className="global-nav">
@@ -29,7 +21,7 @@ class NavHeader extends React.Component {
             <li>IndividualCylinder Apps</li>
             <li>Messages</li>
             <li>Settings</li>
-            <li>{this.props.currentUser === null ? signInLink : signedInButton}</li>
+            <li><UserActionsMenuButtonContainer /></li>
           </ul>
         </nav>
       </header>

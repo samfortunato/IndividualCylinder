@@ -25,10 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
   
-  // TEST -- REMOVE LATER
-  window.getState = store.getState;
-  // TEST -- REMOVE LATER
-  
   const root = document.querySelector('#root');
   ReactDOM.render(<Root store={store}/>, root);
 });

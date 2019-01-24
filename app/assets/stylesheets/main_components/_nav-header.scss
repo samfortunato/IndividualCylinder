@@ -1,10 +1,18 @@
 .main-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
-  padding: 1rem;
+  padding: (12 / 16 * 1rem) 2rem;
+
+  font-size: (14 / 16 * 1rem);
+  
+  background-color: #fff;
+  box-shadow: 1px 4px 2px rgba(0, 0, 0, .02);
 
   ul {
+    display: flex;
+    align-items: center;
     margin: 0;
     padding: 0;
 
@@ -12,6 +20,7 @@
       display: inline-block;
       margin-right: 1rem;
       
+      line-height: 0;
       list-style: none;
 
       &:last-child {
