@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import merge from 'lodash/merge';
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -24,11 +25,16 @@ class SignUpForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.props.createUser(this.state)
+    const user = merge({}, this.state);
+    this.props.createUser(user)
       .then(() => this.props.history.push('/'));
   }
 
   render() {
+    const errorLis = this.props.errors.map((error) => {
+      return <li>{error}</li>;
+    }) || [];
+    
     return (
       <main className="user-form-page">
         <section className="user-form">
@@ -98,6 +104,8 @@ class SignUpForm extends React.Component {
             </figure>
           </aside>
         </section>
+
+        <ul>{errorLis}</ul>
       </main>
     );
   }
