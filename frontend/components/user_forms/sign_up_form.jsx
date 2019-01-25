@@ -30,10 +30,14 @@ class SignUpForm extends React.Component {
       .then(() => this.props.history.push('/'));
   }
 
+  componentDidMount() {
+    this.props.clearErrors();
+  }
+
   render() {
-    const errorLis = this.props.errors.map((error) => {
-      return <li>{error}</li>;
-    }) || [];
+    const errorLis = this.props.errors.map((error, i) => {
+      return <li key={i}>{error}</li>;
+    }) || null;
     
     return (
       <main className="user-form-page">
@@ -50,7 +54,7 @@ class SignUpForm extends React.Component {
                   id="first-name"
                   type="text"
                   value={this.state.first_name}
-                  required
+                  autoFocus
                   onChange={this.updateValue('first_name')}
                 />
                 <label htmlFor="first-name">First name</label>
@@ -61,7 +65,6 @@ class SignUpForm extends React.Component {
                   id="last-name"
                   type="text"
                   value={this.state.last_name}
-                  required
                   onChange={this.updateValue('last_name')}
                 />
                 <label htmlFor="last-name">Last name</label>
@@ -73,7 +76,6 @@ class SignUpForm extends React.Component {
                 id="email"
                 type="email"
                 value={this.state.email}
-                required
                 onChange={this.updateValue('email')}
               />
               <label htmlFor="email">Your email address</label>
@@ -84,7 +86,6 @@ class SignUpForm extends React.Component {
                 id="password"
                 type="password"
                 value={this.state.password}
-                required
                 onChange={this.updateValue('password')}
               />
               <label htmlFor="password">Password</label>
@@ -105,7 +106,7 @@ class SignUpForm extends React.Component {
           </aside>
         </section>
 
-        <ul>{errorLis}</ul>
+        <ul className="form-error-messages">{errorLis}</ul>
       </main>
     );
   }

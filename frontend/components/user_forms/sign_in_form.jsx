@@ -26,7 +26,15 @@ class SignInForm extends React.Component {
       .then(() => this.props.history.push('/'));
   }
 
+  componentDidMount() {
+    this.props.clearErrors();
+  }
+
   render() {
+    const errorLis = this.props.errors.map((error, i) => {
+      return <li key={i}>{error}</li>;
+    }) || null;
+    
     return (
       <main className="user-form-page">
         <section className="user-form sign-in-form-section">
@@ -41,10 +49,11 @@ class SignInForm extends React.Component {
                 id="email"
                 type="email"
                 value={this.state.email}
-                required
+                autoFocus
                 onChange={this.updateValue('email')}
               />
               <label htmlFor="email">Email</label>
+              {/* <span className="sign-in-error error-hidden">Enter a valid email</span> */}
             </div>
 
             <div className="label-input-group">
@@ -52,10 +61,10 @@ class SignInForm extends React.Component {
                 id="password"
                 type="password"
                 value={this.state.password}
-                required
                 onChange={this.updateValue('password')}
               />
               <label htmlFor="password">Password</label>
+              {/* <span className="sign-in-error error-hidden">Wrong password. Try again.</span> */}
             </div>
 
             <span className="helper-text">You can sign in with a demo account to try out the app.</span>
@@ -67,6 +76,8 @@ class SignInForm extends React.Component {
             </div>
           </form>
         </section>
+
+        <ul className="form-error-messages">{errorLis}</ul>
       </main>
     );
   }

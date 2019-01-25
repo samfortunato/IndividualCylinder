@@ -17,17 +17,21 @@
 
   input[type="email"],
   input[type="password"] {
+    margin-bottom: 0;
+    margin-top: (23 / 16 * 1rem);
     padding: (13 / 16 * 1rem) (15 / 16 * 1rem);
 
     font-size: 1rem;
     line-height: 28px;
-
+    
     &:focus {
       padding: (12 / 16 * 1rem) (14 / 16 * 1rem);
     }
   }
   
   input[type="email"] {
+    margin-top: 0;
+    
     &:focus + label {
       transform: translate(-10px, -28px)
       scale(.75);
@@ -45,13 +49,15 @@
                  scale(.75);
     }
 
-    &:valid + label {
+    &:not([value=""]) + label {
       transform: translate(-13px, -28px)
                  scale(.75);
     }
   }
 
   .helper-text {
+    margin-top: (23 / 16 * 1rem);
+    
     font-size: (14 / 16 * 1rem);
     color: #5f6368;
   }
@@ -60,4 +66,19 @@
     left: -.5rem;
     padding: .5rem;
   }
+
+  // can implement errors later
+  // errors should display under each relevant input field
+  
+  // .sign-in-error {
+  //   display: inline-block;
+  //   margin-top: (6 / 16 * 1rem);
+    
+  //   font-size: (12 / 16 * 1rem);
+  //   color: rgb(234, 0, 0);
+  // }
+  
+  // .error-hidden {
+  //   display: none;
+  // }
 }

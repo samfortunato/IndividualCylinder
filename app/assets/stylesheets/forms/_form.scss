@@ -51,7 +51,7 @@ form {
         }
       }
 
-      &:valid + label {
+      &:not([value=""]) + label {
         transform: translate(-13px, -18px)
                      scale(.7);
       }
@@ -110,4 +110,11 @@ form {
 
     background-color: $form-secondary-hover-color;
   }
+}
+
+.form-error-messages {
+  padding-left: 0;
+  list-style: none;
+
+  color: rgb(234, 0, 0);
 }
