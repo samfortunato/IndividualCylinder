@@ -10,3 +10,25 @@
     margin-right: 1rem;
   }
 }
+
+.user-form-sign-up-badge {
+  display: flex;
+  align-items: center;
+  max-width: (244 / 16 * 1rem);
+
+  text-align: center;
+  font-size: 1rem;
+
+  figure {
+    margin: 0;
+
+    img {
+      width: 75%;
+      margin-bottom: 1rem;
+    }
+
+    figcaption {
+      font-weight: 300;
+    }
+  }
+}

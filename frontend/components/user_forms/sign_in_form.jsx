@@ -11,6 +11,7 @@ class SignInForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.signInAsDemoUser = this.signInAsDemoUser.bind(this);
   }
 
   updateValue(value) {
@@ -26,6 +27,17 @@ class SignInForm extends React.Component {
       .then(() => this.props.history.push('/'));
   }
 
+  signInAsDemoUser(e) {
+    e.preventDefault();
+    
+    const demoUser = {
+      email: 'demo-user@mail.com',
+      password: '12345678'
+    };
+    
+    this.props.logInUser(demoUser);
+  }
+
   componentDidMount() {
     this.props.clearErrors();
   }
@@ -38,7 +50,7 @@ class SignInForm extends React.Component {
     return (
       <main className="user-form-page">
         <section className="user-form sign-in-form-section">
-          <img className="form-logo" src="https://placeimg.com/74/37/tech" alt="IndividualCylinder logo" />
+          <img className="form-logo" src="https://i.imgur.com/k5ZfpMM.png" alt="IndividualCylinder logo" />
         
           <h1>Sign In</h1>
           <h2>to continue to IndividualCylinder</h2>
@@ -68,7 +80,7 @@ class SignInForm extends React.Component {
             </div>
 
             <span className="helper-text">You can sign in with a demo account to try out the app.</span>
-            <a href="#">Sign in as demo user</a>
+            <a href="#" onClick={this.signInAsDemoUser}>Sign in as demo user</a>
 
             <div className="user-form-bottom-options">
               <input type="submit" value="Sign In" />

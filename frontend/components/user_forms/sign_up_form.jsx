@@ -43,7 +43,7 @@ class SignUpForm extends React.Component {
       <main className="user-form-page">
         <section className="user-form">
           <form className="sign-up-form" onSubmit={this.handleSubmit}>
-            <img className="form-logo" src="https://placeimg.com/74/37/tech" alt="IndividualCylinder logo" />
+            <img className="form-logo" src="https://i.imgur.com/k5ZfpMM.png" alt="IndividualCylinder logo" />
 
             <h1>Create your Account</h1>
             <h2>to continue to IndividualCylinder</h2>
@@ -98,9 +98,9 @@ class SignUpForm extends React.Component {
             </div>
           </form>
 
-          <aside className="user-form-badge">
+          <aside className="user-form-sign-up-badge">
             <figure>
-              <img src="https://placeimg.com/244/244/tech" alt="IndividualCylinder sign up badge"/>
+              <img src="https://i.imgur.com/blRkZpA.png" alt="IndividualCylinder sign up badge"/>
               <figcaption>One account. All of IndividualCylinder working for you.</figcaption>
             </figure>
           </aside>

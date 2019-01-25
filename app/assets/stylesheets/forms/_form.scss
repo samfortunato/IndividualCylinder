@@ -105,16 +105,18 @@ form {
 
   transition: background-color .12s;
 
-  &:hover, &:focus {
-    outline: none;
-
+  &:hover {
     background-color: $form-secondary-hover-color;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: $form-secondary-focus-color;
   }
 }
 
 .form-error-messages {
-  padding-left: 0;
-  list-style: none;
+  padding-left: 1rem;
 
   color: rgb(234, 0, 0);
 }
