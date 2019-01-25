@@ -9,7 +9,9 @@ class User < ApplicationRecord
     length: { minimum: 8 },
     allow_nil: true
 
-  has_many :videos
+  has_many :videos,
+    class_name: 'Video',
+    foreign_key: :uploader_id
 
   attr_reader :password
 
