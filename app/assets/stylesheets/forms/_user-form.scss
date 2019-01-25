@@ -45,23 +45,6 @@
   }
 }
 
-.user-form-badge {
-  display: flex;
-  align-items: center;
-  max-width: (244 / 16 * 1rem);
-
-  text-align: center;
-  font-size: 1rem;
-
-  figure {
-    margin: 0;
-
-    figcaption {
-      font-weight: 300;
-    }
-  }
-}
-
 .form-logo {
   width: (120 / 16 * 1rem);
   margin-bottom: 1rem;
