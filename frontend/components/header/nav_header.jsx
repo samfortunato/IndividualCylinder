@@ -9,7 +9,9 @@ class NavHeader extends React.Component {
         <nav className="global-nav">
           <ul>
             <li><img className="menu-icon" src="https://placeimg.com/24/24/tech" alt="Menu icon" /></li>
-            <li><img src="https://placeimg.com/80/24/tech" alt="InvidivualCylinder logo" /></li>
+            <li>
+              <img className="main-header-logo" src="https://i.imgur.com/k5ZfpMM.png" alt="InvidivualCylinder logo" />
+            </li>
           </ul>
         </nav>
 
