@@ -9,6 +9,8 @@ class User < ApplicationRecord
     length: { minimum: 8 },
     allow_nil: true
 
+  has_many :videos
+
   attr_reader :password
 
   def self.generate_session_token
