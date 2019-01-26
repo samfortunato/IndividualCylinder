@@ -6,14 +6,20 @@ export const RECEIVE_VIDEO_ERRORS = 'RECEIVE_VIDEO_ERRORS';
 export const fetchVideo = (id) => (dispatch) => {
   return VideosAPIUtil.fetchVideo(id)
     .then(
-      (video) => dispatch(receiveVideo(video)),
-      (errors) => dispatch(receiveVideoErrors(errors))
+      video => dispatch(receiveVideo(video)),
+      errors => dispatch(receiveVideoErrors(errors))
+    );
+};
+
+export const uploadVideo = (video) => (dispatch) => {
+  return VideosAPIUtil.uploadVideo(video)
+    .then(
+      video => dispatch(receiveVideo(video)),
+      errors => dispatch(receiveVideoErrors(errors))
     );
 };
 
 export const receiveVideo = (video) => {
-  debugger;
-  
   return {
     type: RECEIVE_VIDEO,
     video

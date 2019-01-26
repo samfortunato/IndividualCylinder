@@ -2,12 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 
-const AuthComponent = ({ component: Component, exact, path, loggedIn }) => {
+const LoggedInAuthComponent = ({ component: Component, exact, path, loggedIn }) => {
   return <Route exact={exact} path={path} render={(props) => (
     !loggedIn ? (
       <Component {...props} />
     ) : (
       <Redirect to="/" />
+    )
+  )} />
+};
+
+const LogInAuthComponent = ({ component: Component, exact, path, loggedIn }) => {
+  return <Route exact={exact} path={path} render={(props) => (
+    loggedIn ? (
+      <Component {...props} />
+    ) : (
+      <Redirect to="/signin" />
     )
   )} />
 };
@@ -18,6 +28,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export const AuthRoute = withRouter(connect(
+export const LoggedInAuthRoute = withRouter(connect(
   mapStateToProps
-)(AuthComponent));
+)(LoggedInAuthComponent));
+
+export const LogInAuthRoute = withRouter(connect(
+  mapStateToProps
+)(LogInAuthComponent));

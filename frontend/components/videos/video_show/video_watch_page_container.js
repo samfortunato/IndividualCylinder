@@ -2,7 +2,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import VideoWatchPage from './video_watch_page';
-import { fetchVideo } from '../../actions/videos_actions';
+import { fetchVideo } from '../../../actions/videos_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const _nullVideo = {
@@ -11,8 +11,6 @@ const mapStateToProps = (state, ownProps) => {
     description: '',
     videoUrl: ''
   };
-
-  debugger;
 
   const videoId = ownProps.match.params.id;
 

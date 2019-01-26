@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NavHeader from '../header/nav_header';
+import NavHeader from '../../header/nav_header';
 import VideoPlayer from './video_player';
 import VideoInfo from './video_info';
 
@@ -12,8 +12,6 @@ class VideoWatchPage extends React.Component {
   }
   
   componentDidMount() {
-    debugger;
-
     const { id: videoId } = this.props.match.params;
     const { fetchVideo } = this.props;
 
@@ -28,7 +26,7 @@ class VideoWatchPage extends React.Component {
       <>
         <NavHeader />
 
-        <main class="video-watch-page">
+        <main className="video-watch-page">
           <VideoPlayer videoUrl={videoUrl} />
           <VideoInfo title={title} description={description} />
         </main>

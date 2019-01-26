@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import UserActionsMenuButtonContainer from './user_actions_menu_button_container';
 
@@ -19,7 +20,9 @@ class NavHeader extends React.Component {
 
         <nav className="user-actions">
           <ul>
-            <li>Upload</li>
+            <li>
+              <Link to="/upload">Upload</Link>
+            </li>
             <li>IndividualCylinder Apps</li>
             <li>Messages</li>
             <li>Settings</li>
