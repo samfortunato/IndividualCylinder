@@ -3,25 +3,18 @@ import React from 'react';
 class VideoPlayer extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = this.props.video;
-  }
-
-  componentDidMount() {
-    const { videoId, fetchVideo } = this.props;
-    
-    fetchVideo(videoId)
-      .then(() => this.setState(this.props.video));
   }
   
   render() {
+    const { videoUrl } = this.props
+    
     let videoPlayer;
     
-    if (this.state.videoUrl) {
+    if (videoUrl) {
       videoPlayer = (
         <video controls>
           <source
-            src={this.state.videoUrl}
+            src={videoUrl}
             type="video/mp4"
           />
 
