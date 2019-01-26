@@ -6,10 +6,17 @@ import UserActionsMenuContainer from './user_actions_menu_container';
 class UserActionsMenuButton extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      menuOpen: false
+    };
+
+    this.displayMenu = this.displayMenu.bind(this);
   }
   
   displayMenu() {
-
+    this.setState({ menuOpen: !this.state.menuOpen });
+    console.log(this.state.menuOpen);
   }
   
   render () {
@@ -17,7 +24,12 @@ class UserActionsMenuButton extends React.Component {
     
     const signInButton = <Link className="sign-in-button" to="/signin">Sign In</Link>;
     const userIcon = currentUser ? (
-      <img className="user-actions-menu-button" src="https://placeimg.com/32/32/people" alt={`${currentUser.first_name}'s profile picture`}/>
+      <img
+        className="user-actions-menu-button"
+        src="https://placeimg.com/32/32/people"
+        alt={`${currentUser.first_name}'s profile picture`}
+        onClick={this.displayMenu}
+      />
     ) : '';
     
     if (!currentUser) {
@@ -30,7 +42,10 @@ class UserActionsMenuButton extends React.Component {
       return (
         <>
           {userIcon}
-          <UserActionsMenuContainer currentUser={this.props.currentUser} />
+          <UserActionsMenuContainer
+            currentUser={this.props.currentUser}
+            open={this.state.menuOpen}
+          />
         </>
       )
     }

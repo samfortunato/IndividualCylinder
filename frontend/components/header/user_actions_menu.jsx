@@ -3,17 +3,17 @@ import React from 'react';
 class UserActionsMenu extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      open: false
-    };
   }
 
   render() {
-    const { currentUser } = this.props;
+    const { currentUser, open } = this.props;
+    
+    const userActionsMenuClasses = (
+      open ? 'user-actions-menu' : 'user-actions-menu hidden'
+    );
     
     return (
-      <div className="user-actions-menu">
+      <div className={userActionsMenuClasses}>
         <header className="user-actions-menu-header">
           <img className="user-profile-picture" src="https://placeimg.com/40/40/people" alt={`${currentUser.first_name}'s profile picture`}/>
           
