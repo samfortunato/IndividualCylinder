@@ -24,6 +24,13 @@ class VideoUploadForm extends React.Component {
 
   handleVideoFile(e) {
     this.setState({ videoFile: e.currentTarget.files[0] });
+
+    const videoFileNameContainer = document.querySelector('.video-file-name');
+    const videoFileSplitPath = e.target.value
+      .split(/(\\|\/)/g);
+    const fileNameIndex = videoFileSplitPath.length - 1;
+
+    videoFileNameContainer.textContent = videoFileSplitPath[fileNameIndex];
   }
 
   handleSubmit(e) {
@@ -45,16 +52,19 @@ class VideoUploadForm extends React.Component {
   
   render() {
     return (
-      <>
+      <section className="video-upload-container">
         <h1>Select files to upload</h1>
 
         <form className="video-upload-form" onSubmit={this.handleSubmit}>
-          <label htmlFor="video-file">Video File</label>
+          <label htmlFor="video-file">
+            <span>Video File</span>
+          </label>
           <input
             id="video-file"
             type="file"
             onChange={this.handleVideoFile}
           />
+          <span className="video-file-name">No file selected</span>
 
           <label htmlFor="title">Title</label>
           <input
@@ -77,7 +87,7 @@ class VideoUploadForm extends React.Component {
             disabled={this.state.submitDisabled}
           />
         </form>
-      </>
+      </section>
     );
   }
 }
