@@ -7,6 +7,11 @@ class VideoPlayer extends React.Component {
     this.initiateVideoControls = this.initiateVideoControls.bind(this);
   }
 
+  handlePlayPause(video) {
+    if (video.paused || video.ended) video.play();
+    else video.pause();
+  }
+
   alterVolume(video, action) {
     const currentVolume = (Math.floor(video.volume * 10) / 10);
 
@@ -21,7 +26,7 @@ class VideoPlayer extends React.Component {
   }
 
   isFullScreen() {
-    return !!document.fullScreen;
+    return !!document.fullscreenElement;
   }
 
   setFullScreenData(videoContainer, state) {
@@ -33,7 +38,10 @@ class VideoPlayer extends React.Component {
     
     if (this.isFullScreen()) {
       document.exitFullscreen();
-      setFullscreenData(videoContainer, false);
+      setFullScreenData(videoContainer, false);
+    } else {
+      videoContainer.requestFullscreen();
+      setFullScreenData(videoContainer, true);
     }
   }
   
@@ -43,8 +51,6 @@ class VideoPlayer extends React.Component {
     // Video controls
     const playPause = document.querySelector('#play-pause');
     const mute = document.querySelector('#mute');
-    const volInc = document.querySelector('#volume-increase');
-    const volDec = document.querySelector('#volume-decrease');
     const volumeSlider = document.querySelector('#volume-slider');
     const progress = document.querySelector('#video-progress');
     const fullScreen = document.querySelector('#full-screen');
@@ -54,25 +60,18 @@ class VideoPlayer extends React.Component {
       e.preventDefault();
     });
 
-    // -- Video button functionality
+    // -- Video player/button functionality
+    video.addEventListener('click', () => {
+      this.handlePlayPause(video);
+    });
+    
     playPause.addEventListener('click', () => {
-      if (video.paused || video.ended) video.play();
-      else video.pause();
+      this.handlePlayPause(video);
     });
 
     mute.addEventListener('click', () => {
       video.muted = !video.muted;
     });
-
-    // volInc.addEventListener('click', () => {
-    //   this.alterVolume(video, '+');
-    //   console.log(video.volume);
-    // });
-    
-    // volDec.addEventListener('click', () => {
-    //   this.alterVolume(video, '-');
-    //   console.log(video.volume);
-    // });
 
     // -- Volume slider
 
@@ -122,16 +121,17 @@ class VideoPlayer extends React.Component {
       
       switch (e.key) {
         case 'k':
-          if (video.paused || video.ended) video.play();
-          else video.pause();
+          this.handlePlayPause(video);
           break;
+          
         case '':
-          if (video.paused || video.ended) video.play();
-          else video.pause();
+          this.handlePlayPause(video);
           break;
+          
         case 'm':
           video.muted = !video.muted;
           break;
+          
         case 'j':
           if (video.currentTime >= 10) {
             video.currentTime -= 10;
@@ -140,12 +140,20 @@ class VideoPlayer extends React.Component {
           }
 
           break;
+          
         case 'l':
           if (video.currentTime < video.duration) {
             video.currentTime += 10;
           } else {
             video.currentTIme = video.duration;
           }
+          
+          break;
+          
+        case 'f':
+          this.handleFullScreen();
+          break;
+          
         default:
           break;
       }
