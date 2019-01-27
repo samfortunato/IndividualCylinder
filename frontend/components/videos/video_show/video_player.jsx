@@ -3,6 +3,8 @@ import React from 'react';
 class VideoPlayer extends React.Component {
   constructor(props) {
     super(props);
+
+    this.initiateVideoControls = this.initiateVideoControls.bind(this);
   }
 
   alterVolume(video, action) {
@@ -34,8 +36,8 @@ class VideoPlayer extends React.Component {
       setFullscreenData(videoContainer, false);
     }
   }
-
-  componentDidMount() {
+  
+  initiateVideoControls() {
     const video = document.querySelector('#video');
 
     // Video controls
@@ -43,9 +45,10 @@ class VideoPlayer extends React.Component {
     const mute = document.querySelector('#mute');
     const volInc = document.querySelector('#volume-increase');
     const volDec = document.querySelector('#volume-decrease');
-    const progress = document.querySelector('#progress');
+    const progress = document.querySelector('#video-progress');
     const fullScreen = document.querySelector('#full-screen');
 
+    // -- Video button functionality
     playPause.addEventListener('click', () => {
       if (video.paused || video.ended) video.play();
       else video.pause();
@@ -63,7 +66,7 @@ class VideoPlayer extends React.Component {
       this.alterVolume(video, '-');
     });
 
-    // -- Progress bar
+    // -- -- Progress bar
 
     video.addEventListener('loadedmetadata', () => {
       progress.setAttribute('max', video.duration);
@@ -73,7 +76,7 @@ class VideoPlayer extends React.Component {
       progress.value = video.currentTime;
     });
 
-    progress.addEventListener('click', function(e) {
+    progress.addEventListener('click', function (e) {
       const position = (e.pageX - this.offsetLeft) / this.offsetWidth;
 
       video.currentTime = position * video.duration;
@@ -83,11 +86,53 @@ class VideoPlayer extends React.Component {
       // }
     });
 
-    // --
+    // -- --
 
     fullScreen.addEventListener('click', () => {
       this.handleFullScreen();
     });
+
+    // --
+
+    // Keyboard shortcuts
+
+    document.addEventListener('keydown', (e) => {
+      // console.log(e.key);
+      
+      switch (e.key) {
+        case 'k':
+          if (video.paused || video.ended) video.play();
+          else video.pause();
+          break;
+        case '':
+          if (video.paused || video.ended) video.play();
+          else video.pause();
+          break;
+        case 'm':
+          video.muted = !video.muted;
+          break;
+        case 'j':
+          if (video.currentTime >= 10) {
+            video.currentTime -= 10;
+          } else {
+            video.currentTime = 0;
+          }
+
+          break;
+        case 'l':
+          if (video.currentTime < video.duration) {
+            video.currentTime += 10;
+          } else {
+            video.currentTIme = video.duration;
+          }
+        default:
+          break;
+      }
+    });
+  }
+
+  componentDidMount() {
+    this.initiateVideoControls();
   }
   
   render() {
@@ -95,7 +140,11 @@ class VideoPlayer extends React.Component {
     
     const videoPlayer = (
       <figure id="video-container">
-        <video id="video" src={videoUrl} preload="metadata">
+        <video
+          id="video"
+          src={videoUrl}
+          preload="metadata">
+          
           {/* <source
             src={videoUrl}
             type="video/mp4"
@@ -104,14 +153,17 @@ class VideoPlayer extends React.Component {
           Your browser does not support video playback. Upgrade to a browser that supports video playback to view this video.
         </video>
 
-        <ul id="video-controls">
-          <li><button id="play-pause" type="button">Play/Pause</button></li>
-          <li><progress id="progress" value="0" min="0"></progress></li>
-          <li><button id="mute" type="button">Mute/Unmute</button></li>
-          <li><button id="volume-increase" type="button">Vol +</button></li>
-          <li><button id="volume-decrease" type="button">Vol -</button></li>
-          <li><button id="full-screen" type="button">Full screen</button></li>
-        </ul>
+        <div id="video-controls">
+          <progress id="video-progress" value="0" min="0"></progress>
+
+          <ul className="main-video-controls">
+            <li><button id="play-pause" type="button"><i className="fas fa-play"></i></button></li>
+            <li><button id="mute" type="button"><i className="fas fa-volume-up"></i></button></li>
+            <li><button id="volume-increase" type="button">Vol +</button></li>
+            <li><button id="volume-decrease" type="button">Vol -</button></li>
+            <li><button id="full-screen" type="button"><i className="far fa-square"></i></button></li>
+          </ul>
+        </div>
       </figure>
     );
     
