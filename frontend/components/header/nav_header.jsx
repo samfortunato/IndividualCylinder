@@ -11,7 +11,9 @@ class NavHeader extends React.Component {
           <ul>
             <li><img className="menu-icon" src="https://placeimg.com/24/24/tech" alt="Menu icon" /></li>
             <li>
-              <img className="main-header-logo" src="https://i.imgur.com/k5ZfpMM.png" alt="InvidivualCylinder logo" />
+              <Link className="main-header-logo-home-link" to="/">
+                <img className="main-header-logo" src="https://i.imgur.com/k5ZfpMM.png" alt="InvidivualCylinder logo" />
+              </Link>
             </li>
           </ul>
         </nav>
