@@ -112,6 +112,10 @@ class VideoPlayer extends React.Component {
       this.handleFullScreen();
     });
 
+    video.addEventListener('dblclick', () => {
+      this.handleFullScreen();
+    });
+
     // --
 
     // Keyboard shortcuts
