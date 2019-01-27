@@ -12,7 +12,7 @@
     cursor: pointer;
 
     position: absolute;
-    bottom: 3rem;
+    bottom: 2.3rem;
     left: 0;
     
     box-sizing: border-box;
@@ -34,26 +34,28 @@
     &::-webkit-progress-value {
       background-color: #ff0000;
 
-      &::before {
-        content: 'x';
-        position: absolute;
-        right: 0;
-        bottom: 0;
-      }
+      // Time scrubber handle
       
-      &::after {
-        content: '';
+      // &::before {
+      //   content: 'x';
+      //   position: absolute;
+      //   right: 0;
+      //   bottom: 0;
+      // }
+      
+      // &::after {
+      //   content: '';
 
-        position: absolute;
-        right: 7px;
-        top: 7px;
+      //   position: absolute;
+      //   right: 7px;
+      //   top: 7px;
         
-        width: 1px;
-        height: 1px;
-        border-radius: 100%;
+      //   width: 1px;
+      //   height: 1px;
+      //   border-radius: 100%;
         
-        background-color: white;
-      }
+      //   background-color: white;
+      // }
     }
   }
 
@@ -81,17 +83,74 @@
       
       list-style: none;
       
+      // Full screen button list item container
+      li:last-child {
+        margin-left: auto;
+        padding-right: (10 / 16 * 1rem);
+      }
+      
       button {
         outline: none;
+        cursor: pointer;
         border: 0;
         
+        line-height: 0;
+
+        opacity: .93;
         background-color: transparent;
         color: #fff;
+        transition: opacity .1s;
+        
+        &:hover {
+          opacity: 1;
+        }
+
+        &#mute, &#full-screen {
+          font-size: 1.2rem;
+        }
 
         i::before {
           text-shadow: 0 0 2px rgba(0, 0, 0, 1);
         }
       }
+
+      button {
+        padding: 0 0 0 (20 / 16 * 1rem);
+      }
     }
+  }
+}
+
+#volume-slider {
+  -webkit-appearance: none;
+
+  position: relative;
+  bottom: 1px;
+
+  width: (52 / 16 * 1rem);
+  padding-left: (10 / 16 * 1rem);
+
+  background: transparent;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+
+    position: relative;
+    bottom: .25rem;
+    width: .75rem;
+    height: .75rem;
+    border-radius: 50%;
+
+    background-color: white;
+  }
+
+  &::-webkit-slider-runnable-track {
+    height: 3px;
+    background-color: #fff;
+  }
+  
+  &:focus {
+    outline: none;
   }
 }

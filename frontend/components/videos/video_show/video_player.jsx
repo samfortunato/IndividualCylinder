@@ -45,8 +45,14 @@ class VideoPlayer extends React.Component {
     const mute = document.querySelector('#mute');
     const volInc = document.querySelector('#volume-increase');
     const volDec = document.querySelector('#volume-decrease');
+    const volumeSlider = document.querySelector('#volume-slider');
     const progress = document.querySelector('#video-progress');
     const fullScreen = document.querySelector('#full-screen');
+    
+    // Disable right click on video
+    video.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
 
     // -- Video button functionality
     playPause.addEventListener('click', () => {
@@ -58,13 +64,28 @@ class VideoPlayer extends React.Component {
       video.muted = !video.muted;
     });
 
-    volInc.addEventListener('click', () => {
-      this.alterVolume(video, '+');
+    // volInc.addEventListener('click', () => {
+    //   this.alterVolume(video, '+');
+    //   console.log(video.volume);
+    // });
+    
+    // volDec.addEventListener('click', () => {
+    //   this.alterVolume(video, '-');
+    //   console.log(video.volume);
+    // });
+
+    // -- Volume slider
+
+    video.addEventListener('volumechange', () => {
+      volumeSlider.value = video.volume;
+      console.log(video.volume);
     });
 
-    volDec.addEventListener('click', () => {
-      this.alterVolume(video, '-');
+    volumeSlider.addEventListener('input', (e) => {
+      video.volume = e.target.value;
     });
+    
+    // --
 
     // -- -- Progress bar
 
@@ -76,7 +97,7 @@ class VideoPlayer extends React.Component {
       progress.value = video.currentTime;
     });
 
-    progress.addEventListener('click', function (e) {
+    progress.addEventListener('click', function(e) {
       const position = (e.pageX - this.offsetLeft) / this.offsetWidth;
 
       video.currentTime = position * video.duration;
@@ -139,32 +160,31 @@ class VideoPlayer extends React.Component {
     const { videoUrl } = this.props;
     
     const videoPlayer = (
-      <figure id="video-container">
-        <video
-          id="video"
-          src={videoUrl}
-          preload="metadata">
-          
-          {/* <source
+        <figure id="video-container">
+          <video
+            id="video"
             src={videoUrl}
-            type="video/mp4"
-          /> */}
+            preload="metadata">
+            
+            {/* <source
+              src={videoUrl}
+              type="video/mp4"
+            /> */}
 
-          Your browser does not support video playback. Upgrade to a browser that supports video playback to view this video.
-        </video>
+            Your browser does not support video playback. Upgrade to a browser that supports video playback to view this video.
+          </video>
 
-        <div id="video-controls">
-          <progress id="video-progress" value="0" min="0"></progress>
+          <div id="video-controls">
+            <progress id="video-progress" value="0" min="0"></progress>
 
-          <ul className="main-video-controls">
-            <li><button id="play-pause" type="button"><i className="fas fa-play"></i></button></li>
-            <li><button id="mute" type="button"><i className="fas fa-volume-up"></i></button></li>
-            <li><button id="volume-increase" type="button">Vol +</button></li>
-            <li><button id="volume-decrease" type="button">Vol -</button></li>
-            <li><button id="full-screen" type="button"><i className="far fa-square"></i></button></li>
-          </ul>
-        </div>
-      </figure>
+            <ul className="main-video-controls">
+              <li><button id="play-pause" type="button"><i className="fas fa-play"></i></button></li>
+              <li><button id="mute" type="button"><i className="fas fa-volume-up"></i></button></li>
+              <li><input id="volume-slider" type="range" min="0" max="1" step="0.01" /></li>
+              <li><button id="full-screen" type="button"><i className="far fa-square"></i></button></li>
+            </ul>
+          </div>
+        </figure>
     );
     
     return (
