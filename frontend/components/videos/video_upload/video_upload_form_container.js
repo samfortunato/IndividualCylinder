@@ -5,7 +5,8 @@ import { uploadVideo } from '../../../actions/videos_actions';
 
 const mapStateToProps = (state) => {
   return {
-    currentUserId: state.session.id
+    currentUserId: state.session.id,
+    errors: state.errors.videos
   };
 };
 

@@ -14,6 +14,7 @@ const usersReducer = (currentState = {}, action) => {
       );
 
       return newState;
+      
     default:
       return currentState;
   }

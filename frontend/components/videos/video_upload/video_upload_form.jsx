@@ -8,7 +8,6 @@ class VideoUploadForm extends React.Component {
       title: '',
       description: '',
       videoFile: null,
-      uploaderId: this.props.currentUserId,
       submitDisabled: false
     };
 
@@ -23,7 +22,6 @@ class VideoUploadForm extends React.Component {
   }
 
   updateVideoFileName(e) {
-    const videoFileNameContainer = document.querySelector('.video-file-name');
     const videoFileSplitPath = e.target.value
       .split(/(\\|\/)/g);
     const fileNameIndex = videoFileSplitPath.length - 1;
@@ -59,20 +57,27 @@ class VideoUploadForm extends React.Component {
     e.preventDefault();
 
     this.setState({ submitDisabled: true });
-
+    
     const formData = new FormData();
-    formData.append('video[title]', this.state.title);
-    formData.append('video[description]', this.state.description);
-    formData.append('video[uploader_id]', this.state.uploaderId);
+    formData.set('video[title]', this.state.title);
+    formData.set('video[description]', this.state.description);
 
     if (this.state.videoFile) {
-      formData.append('video[video_file]', this.state.videoFile);
+      formData.set('video[video_file]', this.state.videoFile);
     }
 
-    this.props.uploadVideo(formData);
+    this.props.uploadVideo(formData)
+      .then(
+        () => console.log('Video uploaded successfully'),
+        () => this.setState({ submitDisabled: false })
+      );
   }
   
   render() {
+    const errorLis = this.props.errors.map((error, i) => {
+      return <li key={i}>{error}</li>;
+    }) || null;
+    
     return (
       <section className="video-upload-container">
         <h1>Select file to upload</h1>
@@ -112,6 +117,8 @@ class VideoUploadForm extends React.Component {
             />
           </fieldset>
         </form>
+
+        <ul className="upload-form-errors">{errorLis}</ul>
       </section>
     );
   }

@@ -2,6 +2,7 @@ import * as VideosAPIUtil from '../util/videos_api_util';
 
 export const RECEIVE_VIDEO = 'RECEIVE_VIDEO';
 export const RECEIVE_VIDEO_ERRORS = 'RECEIVE_VIDEO_ERRORS';
+export const CLEAR_VIDEO_ERRORS = 'CLEAR_VIDEO_ERRORS';
 
 export const fetchVideo = (id) => (dispatch) => {
   return VideosAPIUtil.fetchVideo(id)
@@ -30,5 +31,11 @@ export const receiveVideoErrors = (errors) => {
   return {
     type: RECEIVE_VIDEO_ERRORS,
     errors
+  };
+};
+
+export const clearVideoErrors = () => {
+  return {
+    type: CLEAR_VIDEO_ERRORS
   };
 };

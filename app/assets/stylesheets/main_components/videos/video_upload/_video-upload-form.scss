@@ -6,7 +6,7 @@
   padding: 1rem;
 
   h1 {
-    order: 2;
+    order: 1;
     
     font-size: (20 / 16 * 1rem);
     font-weight: 400;
@@ -84,5 +84,9 @@
         height: (60 / 16 * 1rem);
       }
     }
+  }
+
+  .upload-form-errors {
+    order: 2;
   }
 }
