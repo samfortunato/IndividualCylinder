@@ -16,7 +16,6 @@ class UserActionsMenuButton extends React.Component {
   
   displayMenu() {
     this.setState({ menuOpen: !this.state.menuOpen });
-    console.log(this.state.menuOpen);
   }
   
   render () {
