@@ -1,15 +1,30 @@
 import React from 'react';
 
+import { toMMSSTimeString } from '../../../util/date_util';
+
 class VideoPlayer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.initiateVideoControls = this.initiateVideoControls.bind(this);
+    this.initiateVideoInterface = this.initiateVideoInterface.bind(this);
   }
 
-  handlePlayPause(video) {
+  handlePlayPause() {
     if (video.paused || video.ended) video.play();
     else video.pause();
+  }
+
+  handleMute() {
+    const video = document.querySelector('#video');
+    video.muted = !video.muted;
+
+    const muteIcon = document.querySelector('#mute i');
+    
+    if (video.muted) {
+      muteIcon.classList.replace('fa-volume-up', 'fa-volume-mute');
+    } else {
+      muteIcon.classList.replace('fa-volume-mute', 'fa-volume-up');
+    }
   }
 
   alterVolume(video, action) {
@@ -38,21 +53,23 @@ class VideoPlayer extends React.Component {
     
     if (this.isFullScreen()) {
       document.exitFullscreen();
-      setFullScreenData(videoContainer, false);
+      this.setFullScreenData(videoContainer, false);
     } else {
       videoContainer.requestFullscreen();
-      setFullScreenData(videoContainer, true);
+      this.setFullScreenData(videoContainer, true);
     }
   }
   
-  initiateVideoControls() {
+  initiateVideoInterface() {
     const video = document.querySelector('#video');
 
     // Video controls
+    const progress = document.querySelector('#video-progress');
     const playPause = document.querySelector('#play-pause');
     const mute = document.querySelector('#mute');
     const volumeSlider = document.querySelector('#volume-slider');
-    const progress = document.querySelector('#video-progress');
+    const currentVideoTime = document.querySelector('.current-video-time');
+    const videoDuration = document.querySelector('.video-duration');
     const fullScreen = document.querySelector('#full-screen');
     
     // Disable right click on video
@@ -61,31 +78,6 @@ class VideoPlayer extends React.Component {
     });
 
     // -- Video player/button functionality
-    video.addEventListener('click', () => {
-      this.handlePlayPause(video);
-    });
-    
-    playPause.addEventListener('click', () => {
-      this.handlePlayPause(video);
-    });
-
-    mute.addEventListener('click', () => {
-      video.muted = !video.muted;
-    });
-
-    // -- Volume slider
-
-    video.addEventListener('volumechange', () => {
-      volumeSlider.value = video.volume;
-      console.log(video.volume);
-    });
-
-    volumeSlider.addEventListener('input', (e) => {
-      video.volume = e.target.value;
-    });
-    
-    // --
-
     // -- -- Progress bar
 
     video.addEventListener('loadedmetadata', () => {
@@ -108,13 +100,43 @@ class VideoPlayer extends React.Component {
 
     // -- --
 
-    fullScreen.addEventListener('click', () => {
-      this.handleFullScreen();
+    video.addEventListener('click', () => {
+      this.handlePlayPause();
+    });
+    
+    playPause.addEventListener('click', () => {
+      this.handlePlayPause();
     });
 
-    video.addEventListener('dblclick', () => {
-      this.handleFullScreen();
+    mute.addEventListener('click', this.handleMute);
+
+    // -- -- Volume slider
+
+    video.addEventListener('volumechange', () => {
+      volumeSlider.value = video.volume;
     });
+
+    volumeSlider.addEventListener('input', (e) => {
+      video.volume = e.target.value;
+    });
+
+    // -- --
+
+    // -- -- Display video time and duration
+
+    video.addEventListener('loadedmetadata', () => {
+      videoDuration.textContent = toMMSSTimeString(video.duration);
+    });
+
+    video.addEventListener('timeupdate', () => {
+      currentVideoTime.textContent = toMMSSTimeString(video.currentTime);
+    });
+    
+    // -- --
+
+    fullScreen.addEventListener('click', this.handleFullScreen.bind(this));
+
+    video.addEventListener('dblclick', this.handleFullScreen.bind(this));
 
     // --
 
@@ -125,15 +147,15 @@ class VideoPlayer extends React.Component {
       
       switch (e.key) {
         case 'k':
-          this.handlePlayPause(video);
+          this.handlePlayPause();
           break;
           
         case '':
-          this.handlePlayPause(video);
+          this.handlePlayPause();
           break;
           
         case 'm':
-          video.muted = !video.muted;
+          this.handleMute();
           break;
           
         case 'j':
@@ -164,8 +186,26 @@ class VideoPlayer extends React.Component {
     });
   }
 
+  enablePlayPauseIconUpdate() {
+    const video = document.querySelector('#video');
+    const playPauseIcon = document.querySelector('#play-pause i');
+
+    video.addEventListener('play', () => {
+      if (playPauseIcon.classList.contains('fa-play')) {
+        playPauseIcon.classList.replace('fa-play', 'fa-pause');
+      }
+    });
+
+    video.addEventListener('pause', () => {
+      if (playPauseIcon.classList.contains('fa-pause')) {
+        playPauseIcon.classList.replace('fa-pause', 'fa-play');
+      }
+    });
+  }
+
   componentDidMount() {
-    this.initiateVideoControls();
+    this.initiateVideoInterface();
+    this.enablePlayPauseIconUpdate();
   }
   
   render() {
@@ -186,13 +226,17 @@ class VideoPlayer extends React.Component {
             Your browser does not support video playback. Upgrade to a browser that supports video playback to view this video.
           </video>
 
-          <div id="video-controls">
+          <div id="video-interface">
             <progress id="video-progress" value="0" min="0"></progress>
 
-            <ul className="main-video-controls">
+            <ul className="main-video-interface">
               <li><button id="play-pause" type="button"><i className="fas fa-play"></i></button></li>
               <li><button id="mute" type="button"><i className="fas fa-volume-up"></i></button></li>
               <li><input id="volume-slider" type="range" min="0" max="1" step="0.01" /></li>
+              <li>
+                <span class="current-video-time">00:00</span>
+                <span class="video-duration">00:00</span>
+              </li>
               <li><button id="full-screen" type="button"><i className="far fa-square"></i></button></li>
             </ul>
           </div>

@@ -59,7 +59,7 @@
     }
   }
 
-  #video-controls {
+  #video-interface {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -67,7 +67,7 @@
 
     background: linear-gradient(transparent, rgba(0, 0, 0, .7));
     
-    .main-video-controls {
+    .main-video-interface {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -116,41 +116,58 @@
 
       button {
         padding: 0 0 0 (20 / 16 * 1rem);
+
+        .fa-volume-mute {
+          margin-right: 3px;
+        }
+      }
+
+      #volume-slider {
+        -webkit-appearance: none;
+      
+        position: relative;
+        bottom: 1px;
+      
+        width: (52 / 16 * 1rem);
+        padding-left: (10 / 16 * 1rem);
+        margin-right: (8 / 16 * 1rem);
+      
+        background: transparent;
+        cursor: pointer;
+      
+        &::-webkit-slider-thumb {
+          -webkit-appearance: none;
+      
+          position: relative;
+          bottom: .25rem;
+          width: .75rem;
+          height: .75rem;
+          border-radius: 50%;
+      
+          background-color: white;
+        }
+      
+        &::-webkit-slider-runnable-track {
+          height: 3px;
+          background-color: #fff;
+        }
+        
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .current-video-time, .video-duration {
+        position: relative;
+        bottom: 1px;
+        
+        line-height: 0;
+        font-size: (13.0691 / 16 * 1rem);
+      }
+
+      .current-video-time::after {
+        content: ' / ';
       }
     }
-  }
-}
-
-#volume-slider {
-  -webkit-appearance: none;
-
-  position: relative;
-  bottom: 1px;
-
-  width: (52 / 16 * 1rem);
-  padding-left: (10 / 16 * 1rem);
-
-  background: transparent;
-  cursor: pointer;
-
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-
-    position: relative;
-    bottom: .25rem;
-    width: .75rem;
-    height: .75rem;
-    border-radius: 50%;
-
-    background-color: white;
-  }
-
-  &::-webkit-slider-runnable-track {
-    height: 3px;
-    background-color: #fff;
-  }
-  
-  &:focus {
-    outline: none;
   }
 }
