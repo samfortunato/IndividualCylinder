@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+// import { thumbnailGenerator } from '../../../util/video_thumbnail_util';
 
 class VideoUploadForm extends React.Component {
   constructor(props) {
@@ -46,11 +49,17 @@ class VideoUploadForm extends React.Component {
     videoInfoFormFields.classList.remove('hidden');
   }
   
+  // displayVideoThumbnail() {
+  //   thumbnailGenerator(this.state.videoFile);
+  // }
+  
   handleVideoFile(e) {
     this.setState({ videoFile: e.currentTarget.files[0] });
 
     this.updateVideoFileName(e);
     this.updateUploadForm();
+
+    // this.displayVideoThumbnail();
   }
 
   handleSubmit(e) {
@@ -92,7 +101,7 @@ class VideoUploadForm extends React.Component {
             onChange={this.handleVideoFile}
           />
 
-          <fieldset className="video-info-form-fields hidden">
+          <div className="video-info-form-fields hidden">
             <label htmlFor="title">Title</label>
             <input
               id="title"
@@ -115,10 +124,15 @@ class VideoUploadForm extends React.Component {
               value="Upload Video"
               disabled={this.state.submitDisabled}
             />
-          </fieldset>
+          </div>
         </form>
 
         <ul className="upload-form-errors">{errorLis}</ul>
+
+        <div className="video-watch-link hidden">
+          <span>Your video will be live at:</span>
+          <Link to={`/watch/${''}`}>https://individualcylinder.herokuapp.com/watch/{``}</Link>
+        </div>
       </section>
     );
   }

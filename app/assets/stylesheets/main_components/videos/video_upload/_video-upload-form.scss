@@ -3,7 +3,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+
+  box-sizing: border-box;
+  width: 743px;
+  height: 385px;
+  margin: (10 / 16 * 1rem) auto 0;
+  padding: 1rem 10rem;
+
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
 
   h1 {
     order: 1;
@@ -59,7 +66,11 @@
     &.file-true {
       font-size: (13 / 16 * 1rem);
       
-      fieldset {
+      .video-info-form-fields {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
         width: 100%;
         margin: 0;
         border: 0;
@@ -82,10 +93,31 @@
 
       textarea {
         height: (60 / 16 * 1rem);
+        max-width: 100%;
+        max-height: 200px;
+      }
+    }
+
+    input[type="submit"] {
+      width: 117px;
+      height: 28px;
+      padding-top: 7px;
+      border: 0;
+      border-radius: 2px;
+      
+      font-size: (11 / 16 * 1rem);
+      font-weight: 500;
+      
+      background-color: rgb(0, 117, 204);
+      color: #fff;
+
+      &:disabled {
+        background-color: grey;
+        opacity: .5;
       }
     }
   }
-
+  
   .upload-form-errors {
     order: 2;
   }
