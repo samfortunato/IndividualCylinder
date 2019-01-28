@@ -1,7 +1,25 @@
 .video-upload-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 1rem;
 
-  form {
+  h1 {
+    order: 2;
+    
+    font-size: (20 / 16 * 1rem);
+    font-weight: 400;
+    color: #444;
+  }
+
+  .video-upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    
     label, input {
       display: block;
     }
@@ -28,7 +46,43 @@
     input#video-file {
       width: 0;
       height: 0;
+      margin: 0;
+      border: 0;
+      padding: 0;
       overflow: hidden;
+    }
+
+    &.file-false {
+
+    }
+
+    &.file-true {
+      font-size: (13 / 16 * 1rem);
+      
+      fieldset {
+        width: 100%;
+        margin: 0;
+        border: 0;
+        padding: 0;
+      }
+
+      label {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+      }
+
+      input, textarea {
+        box-sizing: border-box;
+        width: 100%;
+        margin-bottom: (15 / 16 * 1rem);
+        border: 1px solid rgb(211, 211, 211);
+        padding: 5px 10px 6px;
+      }
+
+      textarea {
+        height: (60 / 16 * 1rem);
+      }
     }
   }
 }

@@ -22,15 +22,37 @@ class VideoUploadForm extends React.Component {
     };
   }
 
-  handleVideoFile(e) {
-    this.setState({ videoFile: e.currentTarget.files[0] });
-
+  updateVideoFileName(e) {
     const videoFileNameContainer = document.querySelector('.video-file-name');
     const videoFileSplitPath = e.target.value
       .split(/(\\|\/)/g);
     const fileNameIndex = videoFileSplitPath.length - 1;
+    const fileNameNoExtension = videoFileSplitPath[fileNameIndex]
+      .replace(/\.[^/.]+$/, '');
 
-    videoFileNameContainer.textContent = videoFileSplitPath[fileNameIndex];
+    this.setState({ title: fileNameNoExtension });
+  }
+
+  updateUploadForm() {
+    const videoUploadHeading = document.querySelector('h1');
+    videoUploadHeading.classList.add('hidden');
+    
+    const videoUploadButton = document.querySelector('label[for="video-file"]');
+    videoUploadButton.style.display = 'none';
+
+    const videoUploadForm = document.querySelector('.video-upload-form');
+    videoUploadForm.classList.remove('file-false');
+    videoUploadForm.classList.add('file-true');
+    
+    const videoInfoFormFields = document.querySelector('.video-info-form-fields');
+    videoInfoFormFields.classList.remove('hidden');
+  }
+  
+  handleVideoFile(e) {
+    this.setState({ videoFile: e.currentTarget.files[0] });
+
+    this.updateVideoFileName(e);
+    this.updateUploadForm();
   }
 
   handleSubmit(e) {
@@ -53,9 +75,9 @@ class VideoUploadForm extends React.Component {
   render() {
     return (
       <section className="video-upload-container">
-        <h1>Select files to upload</h1>
+        <h1>Select file to upload</h1>
 
-        <form className="video-upload-form" onSubmit={this.handleSubmit}>
+        <form className="video-upload-form file-false" onSubmit={this.handleSubmit}>
           <label htmlFor="video-file">
             <span>Video File</span>
           </label>
@@ -64,28 +86,31 @@ class VideoUploadForm extends React.Component {
             type="file"
             onChange={this.handleVideoFile}
           />
-          <span className="video-file-name">No file selected</span>
 
-          <label htmlFor="title">Title</label>
-          <input
-            id="title"
-            type="text"
-            value={this.state.title}
-            onChange={this.handleChange('title')}
-          />
+          <fieldset className="video-info-form-fields hidden">
+            <label htmlFor="title">Title</label>
+            <input
+              id="title"
+              type="text"
+              value={this.state.title}
+              placeholder="Title"
+              onChange={this.handleChange('title')}
+            />
 
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            value={this.state.description}
-            onChange={this.handleChange('description')}
-          />
+            <label htmlFor="description">Description</label>
+            <textarea
+              id="description"
+              value={this.state.description}
+              placeholder="Description"
+              onChange={this.handleChange('description')}
+            />
 
-          <input
-            type="submit"
-            value="Upload Video"
-            disabled={this.state.submitDisabled}
-          />
+            <input
+              type="submit"
+              value="Upload Video"
+              disabled={this.state.submitDisabled}
+            />
+          </fieldset>
         </form>
       </section>
     );
