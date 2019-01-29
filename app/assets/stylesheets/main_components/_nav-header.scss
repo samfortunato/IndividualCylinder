@@ -9,31 +9,51 @@
   
   background-color: #fff;
   box-shadow: 1px 4px 2px rgba(0, 0, 0, .02);
-
-  .main-header-logo-home-link {
-    line-height: inherit;
-  }
-  
-  .main-header-logo {
-    width: (120 / 16 * 1rem);
-  }
   
   ul {
     display: flex;
     align-items: center;
     margin: 0;
     padding: 0;
-
+    
     li {
       display: inline-block;
-      margin-right: 1rem;
       
       line-height: 0;
       list-style: none;
-
+      
       &:last-child {
         margin-right: 0;
       }
+    }
+  }
+
+  a {
+    color: rgb(160, 160, 160);
+
+    .fa-upload {
+      font-size: 1rem;
+    }
+  }
+
+  .global-nav {
+    li {
+      margin-right: (27 / 16 * 1rem);
+    }
+    
+    .main-header-logo-home-link {
+      line-height: inherit;
+    }
+    
+    .main-header-logo {
+      width: (120 / 16 * 1rem);
+    }
+  }
+  
+
+  .user-actions {
+    li {
+      margin-right: (34 / 16 * 1rem);
     }
   }
 }

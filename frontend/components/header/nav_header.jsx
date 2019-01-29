@@ -23,7 +23,7 @@ class NavHeader extends React.Component {
         <nav className="user-actions">
           <ul>
             <li>
-              <Link to="/upload">Upload</Link>
+              <Link to="/upload"><i className="fas fa-upload"></i></Link>
             </li>
             <li><UserActionsMenuContainer /></li>
           </ul>
