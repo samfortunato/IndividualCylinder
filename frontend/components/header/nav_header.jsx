@@ -25,9 +25,6 @@ class NavHeader extends React.Component {
             <li>
               <Link to="/upload">Upload</Link>
             </li>
-            <li>IndividualCylinder Apps</li>
-            <li>Messages</li>
-            <li>Settings</li>
             <li><UserActionsMenuButtonContainer /></li>
           </ul>
         </nav>
