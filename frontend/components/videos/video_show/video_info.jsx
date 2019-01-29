@@ -9,12 +9,11 @@ class VideoInfo extends React.Component {
     const {
       title, description, uploader, uploadDate
     } = this.props;
-
-    debugger;
     
     return (
       <article className="video-info">
         <h1>{title}</h1>
+        <h4>1,000,000 views</h4>
 
         <header className="video-details">
           <img

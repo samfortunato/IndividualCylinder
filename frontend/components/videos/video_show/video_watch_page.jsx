@@ -27,8 +27,6 @@ class VideoWatchPage extends React.Component {
   }
   
   render() {
-    debugger;
-    
     const { title, description, videoURL, uploadDate } = this.state;
     const { uploader } = this.state;
     
