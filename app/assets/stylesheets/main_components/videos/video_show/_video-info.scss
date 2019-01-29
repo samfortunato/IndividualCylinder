@@ -1,12 +1,26 @@
 .video-info {
-  margin-top: (25 / 16 * 1rem);
+  margin-top: (20 / 16 * 1rem);
   
-  h1 {
+  .video-title {
     border-bottom: 1px solid rgb(229, 229, 229);
     padding-bottom: (23 / 16 * 1rem);
+    line-height: 1;
     
-    font-size: (18 / 16 * 1rem);
-    font-weight: 400;
+    h1, h4 {
+      margin: 0;
+      padding: 0;
+      font-weight: 400;
+    }
+
+    h1 {
+      margin-bottom: (20 / 16 * 1rem);
+      font-size: (18 / 16 * 1rem);
+    }
+
+    h4 {
+      font-size: 1rem;
+      color: rgb(96, 96, 96);
+    }
   }
 
   .video-details {

@@ -7,15 +7,20 @@ class VideoInfo extends React.Component {
 
   render() {
     const {
-      title, description, uploader, uploadDate
+      title, description, uploader, uploadDate,
+      views
     } = this.props;
     
     return (
       <article className="video-info">
-        <h1>{title}</h1>
-        <h4>1,000,000 views</h4>
+        <header className="video-title">
+          <h1>{title}</h1>
+          <h4>{(
+            views === 1 ? `${views} view` : `${views} views`
+          )}</h4>
+        </header>
 
-        <header className="video-details">
+        <section className="video-details">
           <img
             className="uploader-profile-picture"
             src="https://placeimg.com/48/48/people"
@@ -28,7 +33,7 @@ class VideoInfo extends React.Component {
           </section>
 
           <button className="subscribe-button" type="button">Subscribe</button>
-        </header>
+        </section>
 
         <p className="video-description">{description}</p>
       </article>

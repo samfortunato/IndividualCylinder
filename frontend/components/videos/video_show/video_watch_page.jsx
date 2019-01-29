@@ -27,7 +27,9 @@ class VideoWatchPage extends React.Component {
   }
   
   render() {
-    const { title, description, videoURL, uploadDate } = this.state;
+    const {
+      title, description, videoURL, uploadDate, views
+    } = this.state;
     const { uploader } = this.state;
     
     return (
@@ -41,6 +43,7 @@ class VideoWatchPage extends React.Component {
             description={description}
             uploader={uploader}
             uploadDate={uploadDate}
+            views={views}
           />
         </main>
       </>

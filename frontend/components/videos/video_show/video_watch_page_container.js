@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
     id: null,
     title: '',
     description: '',
-    uploader_id: null,
+    views: '',
     videoURL: ''
   };
 

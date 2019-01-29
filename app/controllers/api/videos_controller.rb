@@ -4,6 +4,9 @@ class Api::VideosController < ApplicationController
     @uploader = User.find_by(id: @video.uploader_id)
 
     if @video
+      @video.views += 1
+      @video.save
+      
       render :show
     else
       render json: ['Video not found'],
