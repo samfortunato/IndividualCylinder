@@ -1,8 +1,13 @@
 class Api::VideosController < ApplicationController
   def show
-    @video = Video.find(params[:id])
+    @video = Video.find_by(id: params[:id])
 
-    render :show
+    if @video
+      render :show
+    else
+      render json: ['Video not found'],
+        status: 404
+    end
   end
 
   def create
@@ -26,6 +31,6 @@ class Api::VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:title, :description, :video_file)
+    params.require(:video).permit(:title, :description, :video_file, :video_thumbnail)
   end
 end

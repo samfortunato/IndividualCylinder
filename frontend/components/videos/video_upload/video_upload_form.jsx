@@ -11,10 +11,15 @@ class VideoUploadForm extends React.Component {
       title: '',
       description: '',
       videoFile: null,
-      submitDisabled: false
+      videoThumbnailFile: '',
+
+      submitDisabled: false,
+
+      uploadedVideoId: ''
     };
 
     this.handleVideoFile = this.handleVideoFile.bind(this);
+    this.handleVideoThumbnailFile = this.handleVideoThumbnailFile.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -24,7 +29,7 @@ class VideoUploadForm extends React.Component {
     };
   }
 
-  updateVideoFileName(e) {
+  setTitleToFileName(e) {
     const videoFileSplitPath = e.target.value
       .split(/(\\|\/)/g);
     const fileNameIndex = videoFileSplitPath.length - 1;
@@ -56,10 +61,14 @@ class VideoUploadForm extends React.Component {
   handleVideoFile(e) {
     this.setState({ videoFile: e.currentTarget.files[0] });
 
-    this.updateVideoFileName(e);
+    this.setTitleToFileName(e);
     this.updateUploadForm();
 
     // this.displayVideoThumbnail();
+  }
+
+  handleVideoThumbnailFile(e) {
+    this.setState({ videoThumbnailFile: e.currentTarget.files[0] });
   }
 
   handleSubmit(e) {
@@ -75,14 +84,23 @@ class VideoUploadForm extends React.Component {
       formData.set('video[video_file]', this.state.videoFile);
     }
 
+    if (this.state.videoThumbnailFile) {
+      formData.set('video[video_thumbnail]', this.state.videoThumbnailFile);
+    }
+
     this.props.uploadVideo(formData)
       .then(
-        () => console.log('Video uploaded successfully'),
+        res => this.setState({ uploadedVideoId: Object.keys(res.video)[0] }),
         () => this.setState({ submitDisabled: false })
       );
   }
   
   render() {
+    const { uploadedVideoId } = this.state;
+    const videoWatchLinkMessageClasses = (
+      uploadedVideoId !== '' ? 'video-watch-link' : 'video-watch-link hidden'
+    );
+    
     const errorLis = this.props.errors.map((error, i) => {
       return <li key={i}>{error}</li>;
     }) || null;
@@ -119,6 +137,13 @@ class VideoUploadForm extends React.Component {
               onChange={this.handleChange('description')}
             />
 
+            <label htmlFor="thumbnail">Video Thumbnail</label>
+            <input
+              id="thumbnail"
+              type="file"
+              onChange={this.handleVideoThumbnailFile}
+            />
+
             <input
               type="submit"
               value="Upload Video"
@@ -129,9 +154,9 @@ class VideoUploadForm extends React.Component {
 
         <ul className="upload-form-errors">{errorLis}</ul>
 
-        <div className="video-watch-link hidden">
+        <div className={videoWatchLinkMessageClasses}>
           <span>Your video will be live at:</span>
-          <Link to={`/watch/${''}`}>https://individualcylinder.herokuapp.com/watch/{``}</Link>
+          <Link to={`/watch/${uploadedVideoId}`}>https://individualcylinder.herokuapp.com/watch/{uploadedVideoId}</Link>
         </div>
       </section>
     );

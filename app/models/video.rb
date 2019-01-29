@@ -8,6 +8,7 @@ class Video < ApplicationRecord
     foreign_key: :uploader_id
 
   has_one_attached :video_file
+  has_one_attached :video_thumbnail
 
   def ensure_video_file
     if !self.video_file.attached?
