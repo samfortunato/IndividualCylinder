@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
     id: null,
     title: '',
     description: '',
-    videoUrl: ''
+    videoURL: ''
   };
 
   const videoId = ownProps.match.params.id;

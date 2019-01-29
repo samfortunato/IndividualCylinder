@@ -20,14 +20,14 @@ class VideoWatchPage extends React.Component {
   }
   
   render() {
-    const { title, description, videoUrl } = this.state;
+    const { title, description, videoURL } = this.state;
     
     return (
       <>
         <NavHeader />
 
         <main className="video-watch-page">
-          <VideoPlayer videoUrl={videoUrl} />
+          <VideoPlayer videoURL={videoURL} />
           <VideoInfo title={title} description={description} />
         </main>
       </>

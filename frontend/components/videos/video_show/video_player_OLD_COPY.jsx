@@ -209,17 +209,17 @@ class VideoPlayer extends React.Component {
   }
   
   render() {
-    const { videoUrl } = this.props;
+    const { videoURL } = this.props;
     
     const videoPlayer = (
         <figure id="video-container">
           <video
             id="video"
-            src={videoUrl}
+            src={videoURL}
             preload="metadata">
             
             {/* <source
-              src={videoUrl}
+              src={videoURL}
               type="video/mp4"
             /> */}
 
