@@ -8,8 +8,12 @@ class VideoInfo extends React.Component {
   render() {
     const {
       title, description, uploader, uploadDate,
-      views
+      views, currentUserId
     } = this.props;
+
+    const editVideoButtonClasses = (
+      uploader.id === currentUserId ? 'video-info-button edit-video-button' : 'video-info-button edit-video-button hidden'
+    );
     
     return (
       <article className="video-info">
@@ -32,7 +36,8 @@ class VideoInfo extends React.Component {
             <h3>{`Published on ${uploadDate}`}</h3>
           </section>
 
-          <button className="subscribe-button" type="button">Subscribe</button>
+          <button className={editVideoButtonClasses} type="button">Edit Video</button>
+          <button className="video-info-button subscribe-button" type="button">Subscribe</button>
         </section>
 
         <p className="video-description">{description}</p>

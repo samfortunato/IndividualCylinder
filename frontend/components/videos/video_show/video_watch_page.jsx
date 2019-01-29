@@ -2,7 +2,7 @@ import React from 'react';
 
 import NavHeader from '../../header/nav_header';
 import VideoPlayer from './video_player';
-import VideoInfo from './video_info';
+import VideoInfoContainer from './video_info_container';
 
 class VideoWatchPage extends React.Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class VideoWatchPage extends React.Component {
 
         <main className="video-watch-page">
           <VideoPlayer videoURL={videoURL} />
-          <VideoInfo
+          <VideoInfoContainer
             title={title}
             description={description}
             uploader={uploader}

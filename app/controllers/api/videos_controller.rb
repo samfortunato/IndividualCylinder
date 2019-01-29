@@ -26,6 +26,7 @@ class Api::VideosController < ApplicationController
     else
       @video = Video.new(video_params)
       @video.uploader_id = current_user.id
+      @uploader = User.find_by(id: @video.uploader_id)
 
       @video.save
       render :show

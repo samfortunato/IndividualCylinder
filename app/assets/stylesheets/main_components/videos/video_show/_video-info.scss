@@ -3,7 +3,7 @@
   
   .video-title {
     border-bottom: 1px solid rgb(229, 229, 229);
-    padding-bottom: (23 / 16 * 1rem);
+    padding-bottom: (20 / 16 * 1rem);
     line-height: 1;
     
     h1, h4 {
@@ -13,7 +13,7 @@
     }
 
     h1 {
-      margin-bottom: (20 / 16 * 1rem);
+      margin-bottom: (18 / 16 * 1rem);
       font-size: (18 / 16 * 1rem);
     }
 
@@ -36,6 +36,8 @@
     }
 
     .upload-info {
+      flex-grow: 2;
+      
       h2 {
         margin: 0;
         font-size: $base-font-size-smaller;
@@ -50,22 +52,28 @@
       }
     }
 
-    .subscribe-button {
+    .video-info-button {
       box-sizing: border-box;
-      width: 141px;
-      height: 36px;
 
-      margin-left: auto;
       border: 0;
-      padding: 0;
-
+      border-radius: 2px;
+      padding: .6rem 1rem;
+      
       font-size: $base-font-size-smaller;
       font-weight: 500;
       text-transform: uppercase;
-      
-      background-color: red;
       color: #fff;
+      
       cursor: pointer;
+    }
+    
+    .edit-video-button {
+      margin-right: (4 / 16 * 1rem);
+      background-color: $form-action-color;
+    }
+    
+    .subscribe-button {
+      background-color: red;
     }
   }
 

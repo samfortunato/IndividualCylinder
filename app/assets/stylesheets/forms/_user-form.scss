@@ -27,7 +27,7 @@
     font-weight: 700;
     text-decoration: none;
     
-    color: $user-form-action-color;
+    color: $form-action-color;
   }
 }
 
@@ -78,14 +78,14 @@
       width: 100%;
       
       &:focus {
-        border: 2px solid $user-form-action-color;
+        border: 2px solid $form-action-color;
         padding: (7 / 16 * 1rem) (10 / 16 * 1rem);
 
         transition: border-color .1s,
                     color .1s;
 
         & + label {
-          color: $user-form-action-color;
+          color: $form-action-color;
           transform: translate(-13px, -18px)
                       scale(.7);
         }
@@ -110,7 +110,7 @@
       padding: (11 / 16 * 1rem) (28.5 / 16 * 1rem);
       
       font-weight: 700;
-      background-color: $user-form-action-color;
+      background-color: $form-action-color;
       color: #fff;
       
       transition: box-shadow .3s;
@@ -140,7 +140,7 @@
     font-weight: 700;
     
     text-decoration: none;
-    color: $user-form-action-color;
+    color: $form-action-color;
 
     transition: background-color .12s;
 
