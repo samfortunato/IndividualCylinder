@@ -6,7 +6,11 @@ class VideoInfo extends React.Component {
   }
 
   render() {
-    const { title, description } = this.props;
+    const {
+      title, description, uploader, uploadDate
+    } = this.props;
+
+    debugger;
     
     return (
       <article className="video-info">
@@ -20,8 +24,8 @@ class VideoInfo extends React.Component {
           />
 
           <section className="upload-info">
-            <h2>Username</h2>
-            <h3>Published on May 1, 1364</h3>
+            <h2>{`${uploader.firstName} ${uploader.lastName}`}</h2>
+            <h3>{`Published on ${uploadDate}`}</h3>
           </section>
 
           <button className="subscribe-button" type="button">Subscribe</button>

@@ -9,11 +9,11 @@ const mapStateToProps = (state, ownProps) => {
     id: null,
     title: '',
     description: '',
+    uploader_id: null,
     videoURL: ''
   };
 
   const videoId = ownProps.match.params.id;
-
   const video = state.entities.videos[videoId] || _nullVideo;
 
   return { video };

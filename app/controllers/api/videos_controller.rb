@@ -1,6 +1,7 @@
 class Api::VideosController < ApplicationController
   def show
     @video = Video.find_by(id: params[:id])
+    @uploader = User.find_by(id: @video.uploader_id)
 
     if @video
       render :show

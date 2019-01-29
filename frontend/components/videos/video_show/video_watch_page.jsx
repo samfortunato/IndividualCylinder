@@ -8,7 +8,14 @@ class VideoWatchPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = this.props.video;
+    this.state = {
+      video: this.props.video,
+      uploader: {
+        id: null,
+        firstName: '',
+        lastName: ''
+      }
+    };
   }
   
   componentDidMount() {
@@ -20,7 +27,10 @@ class VideoWatchPage extends React.Component {
   }
   
   render() {
-    const { title, description, videoURL } = this.state;
+    debugger;
+    
+    const { title, description, videoURL, uploadDate } = this.state;
+    const { uploader } = this.state;
     
     return (
       <>
@@ -28,7 +38,12 @@ class VideoWatchPage extends React.Component {
 
         <main className="video-watch-page">
           <VideoPlayer videoURL={videoURL} />
-          <VideoInfo title={title} description={description} />
+          <VideoInfo
+            title={title}
+            description={description}
+            uploader={uploader}
+            uploadDate={uploadDate}
+          />
         </main>
       </>
     );
