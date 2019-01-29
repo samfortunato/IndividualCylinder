@@ -234,8 +234,8 @@ class VideoPlayer extends React.Component {
               <li><button id="mute" type="button"><i className="fas fa-volume-up"></i></button></li>
               <li><input id="volume-slider" type="range" min="0" max="1" step="0.01" /></li>
               <li>
-                <span class="current-video-time">00:00</span>
-                <span class="video-duration">00:00</span>
+                <span className="current-video-time">00:00</span>
+                <span className="video-duration">00:00</span>
               </li>
               <li><button id="full-screen" type="button"><i className="far fa-square"></i></button></li>
             </ul>

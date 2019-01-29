@@ -9,25 +9,25 @@ class VideoInfo extends React.Component {
     const { title, description } = this.props;
     
     return (
-      <article class="video-info">
+      <article className="video-info">
         <h1>{title}</h1>
 
-        <header class="video-details">
+        <header className="video-details">
           <img
-            class="uploader-profile-picture"
+            className="uploader-profile-picture"
             src="https://placeimg.com/48/48/people"
             alt="User's profile picture"
           />
 
-          <section class="upload-info">
+          <section className="upload-info">
             <h2>Username</h2>
             <h3>Published on May 1, 1364</h3>
           </section>
 
-          <button class="subscribe-button" type="button">Subscribe</button>
+          <button className="subscribe-button" type="button">Subscribe</button>
         </header>
 
-        <p class="video-description">{description}</p>
+        <p className="video-description">{description}</p>
       </article>
     );
   }

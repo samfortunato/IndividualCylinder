@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import UserActionsMenuButtonContainer from './user_actions_menu_button_container';
+import UserActionsMenuContainer from './user_actions_menu_container';
 
 class NavHeader extends React.Component {
   render() {
@@ -25,7 +25,7 @@ class NavHeader extends React.Component {
             <li>
               <Link to="/upload">Upload</Link>
             </li>
-            <li><UserActionsMenuButtonContainer /></li>
+            <li><UserActionsMenuContainer /></li>
           </ul>
         </nav>
       </header>

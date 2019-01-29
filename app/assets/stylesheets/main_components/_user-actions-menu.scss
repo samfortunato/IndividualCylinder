@@ -1,3 +1,20 @@
+.sign-in-button {
+  display: inline-block;
+  margin: .36rem .3rem .35rem;
+  
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $user-form-action-color;
+}
+
+.user-actions-menu-button {
+  z-index: 10;
+
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 .user-actions-menu {
   z-index: 10;
   position: fixed;
@@ -61,4 +78,13 @@
 
     cursor: pointer;
   }
+}
+
+.transparent-modal-click-area {
+  z-index: 9;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

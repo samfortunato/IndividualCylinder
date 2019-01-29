@@ -1,7 +1,15 @@
 import { connect } from 'react-redux';
 
-import { logOut } from '../../actions/session_actions';
 import UserActionsMenu from './user_actions_menu';
+import { logOut } from '../../actions/session_actions';
+
+const mapStateToProps = (state) => {
+  const { users } = state.entities;
+  const { session } = state;
+  const currentUser = users[session.id] || null;
+
+  return { currentUser };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -10,6 +18,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(UserActionsMenu);
