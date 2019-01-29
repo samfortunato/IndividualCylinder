@@ -21,7 +21,7 @@ class VideoInfo extends React.Component {
 
           <section class="upload-info">
             <h2>Username</h2>
-            <h3>Published on May 1st, 1364</h3>
+            <h3>Published on May 1, 1364</h3>
           </section>
 
           <button class="subscribe-button" type="button">Subscribe</button>
