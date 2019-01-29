@@ -14,6 +14,10 @@ class VideoInfo extends React.Component {
     const editVideoButtonClasses = (
       uploader.id === currentUserId ? 'video-info-button edit-video-button' : 'video-info-button edit-video-button hidden'
     );
+
+    const subscribeButtonClasses = (
+      uploader.id === currentUserId ? 'video-info-button subscribe-button hidden' : 'video-info-button subscribe-button'
+    );
     
     return (
       <article className="video-info">
@@ -37,7 +41,7 @@ class VideoInfo extends React.Component {
           </section>
 
           <button className={editVideoButtonClasses} type="button">Edit Video</button>
-          <button className="video-info-button subscribe-button" type="button">Subscribe</button>
+          <button className={subscribeButtonClasses} type="button">Subscribe</button>
         </section>
 
         <p className="video-description">{description}</p>
