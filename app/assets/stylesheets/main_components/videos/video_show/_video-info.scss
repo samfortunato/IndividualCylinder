@@ -1,0 +1,64 @@
+.video-info {
+  margin-top: (25 / 16 * 1rem);
+  
+  h1 {
+    border-bottom: 1px solid rgb(229, 229, 229);
+    padding-bottom: (23 / 16 * 1rem);
+    
+    font-size: (18 / 16 * 1rem);
+    font-weight: 400;
+  }
+
+  .video-details {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+
+    .uploader-profile-picture {
+      width: 3rem;
+      height: 3rem;
+      margin-right: 1rem;
+      border-radius: 50%;
+    }
+
+    .upload-info {
+      h2 {
+        margin: 0;
+        font-size: $base-font-size-smaller;
+      }
+
+      h3 {
+        margin: 0;
+        
+        font-size: (13 / 16 * 1rem);
+        font-weight: 400;
+        color: rgba(17, 17, 17, .6);
+      }
+    }
+
+    .subscribe-button {
+      box-sizing: border-box;
+      width: 141px;
+      height: 36px;
+
+      margin-left: auto;
+      border: 0;
+      padding: 0;
+
+      font-size: $base-font-size-smaller;
+      font-weight: 500;
+      text-transform: uppercase;
+      
+      background-color: red;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
+  .video-description {
+    margin: 0 141px 0 4rem;
+    padding: 12px 1rem 0 0;
+    
+    font-size: (14 / 16 * 1rem);
+  }
+}
