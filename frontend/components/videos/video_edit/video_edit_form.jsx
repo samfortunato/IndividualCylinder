@@ -41,9 +41,7 @@ class VideoEditForm extends React.Component {
     }
 
     this.props.updateVideo(formData)
-      .then(
-        this.props.history.push(`/watch/${this.props.match.params.id}`)
-      );
+      .then(() => this.props.history.push(`/watch/${this.props.match.params.id}`));
   }
 
   handleDelete(e) {
@@ -55,11 +53,15 @@ class VideoEditForm extends React.Component {
       );
   }
 
-  // getDerivedStateFromProps(nextProps, prevState) {
-  //   if (nextProps.title !== prevState.title) {
-  //     // ???
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    if (prevProps.title !== this.props.title ||
+        prevProps.description !== this.props.description) {
+      this.setState({
+        title: this.props.title,
+        description: this.props.description
+      });
+    }
+  }
 
   render() {
     return (
@@ -90,7 +92,7 @@ class VideoEditForm extends React.Component {
             onChange={this.handleThumbnailFile}
           />
 
-          <div class="edit-action-buttons">
+          <div className="edit-action-buttons">
             <input type="submit" value="Save" />
             <button
               className="video-delete-button"

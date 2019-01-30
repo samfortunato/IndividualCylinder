@@ -28,18 +28,25 @@ class VideoWatchPage extends React.Component {
         <NavHeader />
 
         <main className="video-watch-page">
-          <VideoPlayer
-            videoURL={videoURL}
-            videoThumbnailURL={videoThumbnailURL}
-          />
-          <VideoInfoContainer
-            videoId={id}
-            title={title}
-            description={description}
-            uploader={uploader}
-            uploadDate={uploadDate}
-            views={views}
-          />
+          <section id="main-video-content">
+            <VideoPlayer
+              videoURL={videoURL}
+              videoThumbnailURL={videoThumbnailURL}
+            />
+
+            <VideoInfoContainer
+              videoId={id}
+              title={title}
+              description={description}
+              uploader={uploader}
+              uploadDate={uploadDate}
+              views={views}
+            />
+          </section>
+          
+          <aside className="related-videos-sidebar">
+            
+          </aside>
         </main>
       </>
     );

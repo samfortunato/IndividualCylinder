@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import NavHeader from '../../header/nav_header';
 import VideoEditFormContainer from './video_edit_form_container';
@@ -17,6 +17,8 @@ class VideoEditPage extends React.Component {
   
   render() {
     const { id, title, description, videoURL, videoThumbnailURL } = this.props;
+    
+    debugger;
     
     return (
       <>
