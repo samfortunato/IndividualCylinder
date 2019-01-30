@@ -23,13 +23,14 @@ class VideoWatchPage extends React.Component {
     const { fetchVideo } = this.props;
 
     fetchVideo(videoId)
-      .then(() => this.setState(this.props.video));
+      .then(() => this.setState({ video: this.props.video }));
   }
   
   render() {
     const {
-      id, title, description, videoURL, uploadDate, views
-    } = this.state;
+      id, title, description, videoURL,
+      uploadDate, views, videoThumbnailURL
+    } = this.state.video;
     const { uploader } = this.state;
     
     return (
@@ -37,7 +38,10 @@ class VideoWatchPage extends React.Component {
         <NavHeader />
 
         <main className="video-watch-page">
-          <VideoPlayer videoURL={videoURL} />
+          <VideoPlayer
+            videoURL={videoURL}
+            videoThumbnailURL={videoThumbnailURL}
+          />
           <VideoInfoContainer
             videoId={id}
             title={title}
