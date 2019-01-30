@@ -24,9 +24,9 @@ class VideoEditPage extends React.Component {
 
         <main className="video-editor">
           <aside className="video-edit-sidebar">
-            <div class="video-thumbnail-frame">
+            <div className="video-thumbnail-frame">
               <img src={videoThumbnailURL} alt={`${title} thumbnail`} />
-              {/* <span class="view-video-link">
+              {/* <span className="view-video-link">
                 <Link to={`/watch/${id}`}>View on IndividualCylinder</Link>
               </span> */}
             </div>

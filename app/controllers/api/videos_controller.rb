@@ -1,4 +1,11 @@
 class Api::VideosController < ApplicationController
+  include ActionView::Helpers::DateHelper
+  
+  def index
+    @all_videos = Video.all
+    render :index
+  end
+  
   def show
     @video = Video.find_by(id: params[:id])
 
@@ -40,6 +47,16 @@ class Api::VideosController < ApplicationController
     else
       render json: ['Invalid video parameters'],
         status: 422
+    end
+  end
+  
+  def destroy
+    @video = Video.find_by(id: params[:id])
+
+    if @video.destroy
+      render json: @video.id
+    else
+      render json: ['Delete error']
     end
   end
 

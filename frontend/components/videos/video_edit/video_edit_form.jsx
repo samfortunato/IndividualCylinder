@@ -14,6 +14,7 @@ class VideoEditForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleThumbnailFile = this.handleThumbnailFile.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleChange(property) {
@@ -42,6 +43,15 @@ class VideoEditForm extends React.Component {
     this.props.updateVideo(formData)
       .then(
         this.props.history.push(`/watch/${this.props.match.params.id}`)
+      );
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+
+    this.props.deleteVideo(this.state.videoId)
+      .then(
+        this.props.history.push('/')
       );
   }
 
@@ -81,6 +91,10 @@ class VideoEditForm extends React.Component {
           />
 
           <input type="submit" value="Save" />
+        </form>
+
+        <form onSubmit={this.handleDelete}>
+          <input type="submit" value="Delete" />
         </form>
       </section>
     );

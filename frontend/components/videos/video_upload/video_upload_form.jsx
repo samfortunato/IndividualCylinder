@@ -94,6 +94,10 @@ class VideoUploadForm extends React.Component {
         () => this.setState({ submitDisabled: false })
       );
   }
+
+  componentDidMount() {
+    this.props.clearVideoErrors();
+  }
   
   render() {
     const { uploadedVideoId } = this.state;

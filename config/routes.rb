@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :users, only: [:create, :show]
     
-    resources :videos, only: [:show, :create, :update]
+    resources :videos, only: [:index, :show, :create, :update, :destroy]
   end
 end

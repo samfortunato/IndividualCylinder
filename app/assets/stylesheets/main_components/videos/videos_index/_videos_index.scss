@@ -1,0 +1,24 @@
+.video-homepage {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+
+  background-color: rgb(250, 250, 250);
+
+  .videos-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+    max-width: 1300px;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    li {
+      margin-right: 4px;
+    }
+  }
+}

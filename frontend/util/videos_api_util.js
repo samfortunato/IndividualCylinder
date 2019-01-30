@@ -1,3 +1,10 @@
+export const fetchAllVideos = () => {
+  return $.ajax({
+    url: 'api/videos',
+    method: 'GET'
+  });
+};
+
 export const fetchVideo = (id) => {
   return $.ajax({
     url: `api/videos/${id}`,
@@ -22,5 +29,12 @@ export const updateVideo = (video) => {
     data: video,
     contentType: false,
     processData: false
+  });
+};
+
+export const deleteVideo = (id) => {
+  return $.ajax({
+    url: `api/videos/${id}`,
+    method: 'DELETE'
   });
 };

@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
 
 import VideoUploadForm from './video_upload_form';
-import { uploadVideo } from '../../../actions/videos_actions';
+import {
+  uploadVideo,
+  clearVideoErrors
+} from '../../../actions/videos_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,7 +15,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    uploadVideo: video => dispatch(uploadVideo(video))
+    uploadVideo: video => dispatch(uploadVideo(video)),
+    clearVideoErrors: () => dispatch(clearVideoErrors())
   };
 };
 
