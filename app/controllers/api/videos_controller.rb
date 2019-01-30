@@ -32,7 +32,14 @@ class Api::VideosController < ApplicationController
     else
       @video = Video.new(video_params)
       @video.uploader_id = current_user.id
-      @uploader = User.find_by(id: @video.uploader_id)
+
+      if !@video.video_thumbnail.attached?
+        @video.video_thumbnail.attach(
+          io: File.open(Rails.root.join('app', 'assets', 'images', 'default-thumbnail.png')),
+          filename: 'default-thumbnail.png',
+          content_type: 'image/png'
+        )
+      end
 
       @video.save
       render :show

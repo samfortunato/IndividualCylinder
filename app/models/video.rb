@@ -10,6 +10,8 @@ class Video < ApplicationRecord
   has_one_attached :video_file
   has_one_attached :video_thumbnail
 
+  private
+
   def ensure_video_file
     if !self.video_file.attached?
       errors[:video_file] << 'must be attached'
