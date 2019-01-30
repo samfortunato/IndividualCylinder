@@ -68,20 +68,27 @@
       }
     }
 
-    input[type="submit"] {
-      flex-shrink: 2;
-      
-      width: initial;
-      margin-right: auto;
-      border: 0;
-      border-radius: 2px;
-      padding: .7rem 1.75rem;
-      
-      font-size: 14px;
-      text-transform: uppercase;
-      
-      background-color: rgb(13, 90, 208);
-      color: #fff;
+    .edit-action-buttons {
+      input[type="submit"],
+      .video-delete-button {
+        flex-shrink: 2;
+        
+        width: initial;
+        margin-right: auto;
+        border: 0;
+        border-radius: 2px;
+        padding: .7rem 1.75rem;
+        
+        font-size: 14px;
+        text-transform: uppercase;
+        
+        background-color: rgb(13, 90, 208);
+        color: #fff;
+      }
+
+      input[type="submit"] {
+        margin-right: 4px;
+      }
     }
   }
 }

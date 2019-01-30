@@ -90,12 +90,16 @@ class VideoEditForm extends React.Component {
             onChange={this.handleThumbnailFile}
           />
 
-          <input type="submit" value="Save" />
+          <div class="edit-action-buttons">
+            <input type="submit" value="Save" />
+            <button
+              className="video-delete-button"
+              type="button"
+              onClick={this.handleDelete}
+            >Delete</button>
+          </div>
         </form>
 
-        <form onSubmit={this.handleDelete}>
-          <input type="submit" value="Delete" />
-        </form>
       </section>
     );
   }
