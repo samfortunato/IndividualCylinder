@@ -14,3 +14,13 @@ export const uploadVideo = (video) => {
     processData: false
   });
 };
+
+export const updateVideo = (video) => {
+  return $.ajax({
+    url: `api/videos/${video.id}`,
+    method: 'PATCH',
+    data: video,
+    contentType: false,
+    processData: false
+  });
+};

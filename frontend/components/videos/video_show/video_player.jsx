@@ -230,7 +230,7 @@ class VideoPlayer extends React.Component {
           id="video"
           src={videoURL}
           preload="metadata">
-
+          
           {/* <source
               src={videoURL}
               type="video/mp4"

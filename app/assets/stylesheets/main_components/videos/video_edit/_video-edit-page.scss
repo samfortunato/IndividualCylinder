@@ -1,0 +1,14 @@
+.video-editor {
+  display: flex;
+  align-items: stretch;
+  height: 100vh;
+  
+  .video-edit-sidebar {
+    width: 16rem;
+    border-right: 1px solid $form-light-gray;
+
+    img {
+      width: 100%;
+    }
+  }
+}

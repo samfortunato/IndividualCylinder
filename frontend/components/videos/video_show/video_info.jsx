@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class VideoInfo extends React.Component {
   constructor(props) {
@@ -7,8 +8,8 @@ class VideoInfo extends React.Component {
 
   render() {
     const {
-      title, description, uploader, uploadDate,
-      views, currentUserId
+      videoId, title, description, uploader,
+      uploadDate, views, currentUserId
     } = this.props;
 
     const editVideoButtonClasses = (
@@ -40,7 +41,7 @@ class VideoInfo extends React.Component {
             <h3>{`Published on ${uploadDate}`}</h3>
           </section>
 
-          <button className={editVideoButtonClasses} type="button">Edit Video</button>
+          <Link className={editVideoButtonClasses} to={`/video/${videoId}/edit`}>Edit Video</Link>
           <button className={subscribeButtonClasses} type="button">Subscribe</button>
         </section>
 

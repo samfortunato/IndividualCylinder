@@ -57,11 +57,12 @@
 
       border: 0;
       border-radius: 2px;
-      padding: .6rem 1rem;
+      padding: .6rem 1rem .5rem;
       
       font-size: $base-font-size-smaller;
       font-weight: 500;
       text-transform: uppercase;
+      text-decoration: none;
       color: #fff;
       
       cursor: pointer;

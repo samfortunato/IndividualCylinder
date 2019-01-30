@@ -20,6 +20,14 @@ export const uploadVideo = (video) => (dispatch) => {
     );
 };
 
+export const updateVideo = (video) => (dispatch) => {
+  return VideosAPIUtil.updateVideo(video)
+    .then(
+      video => dispatch(receiveVideo(video)),
+      errors => dispatch(receiveVideoErrors(errors))
+    );
+};
+
 export const receiveVideo = (video) => {
   return {
     type: RECEIVE_VIDEO,

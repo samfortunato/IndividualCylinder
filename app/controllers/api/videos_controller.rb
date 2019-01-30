@@ -1,7 +1,6 @@
 class Api::VideosController < ApplicationController
   def show
     @video = Video.find_by(id: params[:id])
-    @uploader = User.find_by(id: @video.uploader_id)
 
     if @video
       @video.views += 1
@@ -30,6 +29,17 @@ class Api::VideosController < ApplicationController
 
       @video.save
       render :show
+    end
+  end
+
+  def update
+    @video = Video.find_by(id: params[:video][:id])
+
+    if @video.update_attributes(video_params)
+      render :show
+    else
+      render json: ['Invalid video parameters'],
+        status: 422
     end
   end
 

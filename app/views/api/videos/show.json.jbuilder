@@ -1,3 +1,5 @@
+@uploader = User.find_by(id: @video.uploader_id)
+
 json.set! @video.id do
   json.extract! @video, :id, :title, :description, :views
   json.videoURL url_for(@video.video_file)

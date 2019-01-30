@@ -12,9 +12,7 @@ import SignInFormContainer from './user_forms/sign_in_form_container';
 
 import VideoWatchPageContainer from './videos/video_show/video_watch_page_container';
 import VideoUploadPage from './videos/video_upload/video_upload_page';
-
-// test
-// import VideoIndex from './videos/videos_index_test';
+import VideoEditPageContainer from './videos/video_edit/video_edit_page_container';
 
 export default (props) => {
   return (
@@ -24,9 +22,7 @@ export default (props) => {
       <LoggedInAuthRoute path="/signin" component={SignInFormContainer} />
       <Route path="/watch/:id" component={VideoWatchPageContainer} />
       <LogInAuthRoute path="/upload" component={VideoUploadPage} />
-
-      {/* test */}
-      {/* <Route path="/videos" component={VideoIndex} /> */}
+      <LogInAuthRoute path="/video/:id/edit" component={VideoEditPageContainer} />
     </>
   );
 };
