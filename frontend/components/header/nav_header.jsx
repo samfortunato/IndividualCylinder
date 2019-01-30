@@ -9,7 +9,7 @@ class NavHeader extends React.Component {
       <header className="main-header">
         <nav className="global-nav">
           <ul>
-            <li><i class="fas fa-bars"></i></li>
+            <li><i className="fas fa-bars"></i></li>
             <li>
               <Link className="main-header-logo-home-link" to="/">
                 <img className="main-header-logo" src="https://i.imgur.com/k5ZfpMM.png" alt="InvidivualCylinder logo" />
@@ -18,7 +18,10 @@ class NavHeader extends React.Component {
           </ul>
         </nav>
 
-        <input type="search"/>
+        <input id="search-bar" type="search"/>
+        <button id="search-button">
+          <i class="fas fa-search"></i>
+        </button>
 
         <nav className="user-actions">
           <ul>
