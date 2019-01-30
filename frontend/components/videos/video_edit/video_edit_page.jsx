@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import NavHeader from '../../header/nav_header';
 import VideoEditFormContainer from './video_edit_form_container';
@@ -23,7 +24,12 @@ class VideoEditPage extends React.Component {
 
         <main className="video-editor">
           <aside className="video-edit-sidebar">
-            <img src={videoThumbnailURL} alt={`${title} thumbnail`} />
+            <div class="video-thumbnail-frame">
+              <img src={videoThumbnailURL} alt={`${title} thumbnail`} />
+              {/* <span class="view-video-link">
+                <Link to={`/watch/${id}`}>View on IndividualCylinder</Link>
+              </span> */}
+            </div>
           </aside>
 
           <VideoEditFormContainer
