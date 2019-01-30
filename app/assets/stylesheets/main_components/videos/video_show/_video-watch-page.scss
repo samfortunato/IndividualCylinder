@@ -1,3 +1,15 @@
 .video-watch-page {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
   padding: 1.5rem;
+
+  .main-video-content {
+    max-width: 1280px;
+  }
+  
+  .related-videos-sidebar {
+    width: 402px;
+    margin-left: 1.5rem;
+  }
 }
