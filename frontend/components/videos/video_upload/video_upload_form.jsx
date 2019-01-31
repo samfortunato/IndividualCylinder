@@ -14,6 +14,7 @@ class VideoUploadForm extends React.Component {
       videoThumbnailFile: '',
 
       submitDisabled: false,
+      uploadButtonText: 'Upload Video',
 
       uploadedVideoId: ''
     };
@@ -74,7 +75,10 @@ class VideoUploadForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.setState({ submitDisabled: true });
+    this.setState({
+      submitDisabled: true,
+      uploadButtonText: 'Uploading...'
+    });
     
     const formData = new FormData();
     formData.set('video[title]', this.state.title);
@@ -90,7 +94,10 @@ class VideoUploadForm extends React.Component {
 
     this.props.uploadVideo(formData)
       .then(
-        res => this.setState({ uploadedVideoId: Object.keys(res.video)[0] }),
+        res => this.setState({
+          uploadedVideoId: Object.keys(res.video)[0],
+          uploadButtonText: 'Done!'
+        }),
         () => this.setState({ submitDisabled: false })
       );
   }
@@ -130,6 +137,7 @@ class VideoUploadForm extends React.Component {
               type="text"
               value={this.state.title}
               placeholder="Title"
+              disabled={this.state.submitDisabled}
               onChange={this.handleChange('title')}
             />
 
@@ -138,6 +146,7 @@ class VideoUploadForm extends React.Component {
               id="description"
               value={this.state.description}
               placeholder="Description"
+              disabled={this.state.submitDisabled}
               onChange={this.handleChange('description')}
             />
 
@@ -145,12 +154,13 @@ class VideoUploadForm extends React.Component {
             <input
               id="thumbnail"
               type="file"
+              disabled={this.state.submitDisabled}
               onChange={this.handleVideoThumbnailFile}
             />
 
             <input
               type="submit"
-              value="Upload Video"
+              value={this.state.uploadButtonText}
               disabled={this.state.submitDisabled}
             />
           </div>

@@ -12,6 +12,22 @@
 
   box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
 
+  #title, #description {
+    order: 1;
+  }
+
+  label[for="thumbnail"] {
+    order: 2;
+  }
+
+  #thumbnail {
+    order: 3;
+  }
+  
+  input[type="submit"] {
+    order: 4;
+  }
+  
   h1 {
     order: 1;
     
@@ -47,6 +63,14 @@
         visibility: hidden;
         width: 0;
         height: 0;
+      }
+    }
+    
+    input:disabled, textarea:disabled {
+      opacity: .3;
+
+      + label {
+        opacity: .3;
       }
     }
     
