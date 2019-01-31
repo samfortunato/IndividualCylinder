@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_validation :ensure_session_token
+  before_validation :ensure_session_token, :ensure_profile_picture
   
   validates :first_name, :last_name, :email, :password_digest,
     presence: true
@@ -49,5 +49,15 @@ class User < ApplicationRecord
   
   def ensure_session_token
     self.session_token ||= User.generate_session_token
+  end
+
+  def ensure_profile_picture
+    unless @user.avatar.attached?
+      @user.avatar.attach(
+        io: File.open(Rails.root.join('app', 'assets', 'images', 'default-profile-picture.png')),
+        filename: 'default-profile-picture.png',
+        content_type: 'image/png'
+      )
+    end
   end
 end
