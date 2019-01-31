@@ -26,3 +26,20 @@ video {
   height: 100%;
   overflow-y: scroll;
 }
+
+%general-action-button {
+  box-sizing: border-box;
+
+  border: 0;
+  border-radius: 2px;
+  padding: .6rem 1rem;
+  
+  font-size: $base-font-size-smaller;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  
+  background-color: $form-action-color;
+  cursor: pointer;
+}

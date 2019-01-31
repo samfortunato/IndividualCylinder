@@ -29,18 +29,23 @@ class VideoCommentForm extends React.Component {
 
   render() {
     return (
-      <form id="video-comment-form" onSubmit={this.handleSubmit}>
-        <label htmlFor="body">Comment Body</label>
-        <input
-          id="body"
-          type="text"
-          value={this.state.body}
-          placeholder="Add a public comment..."
-          onChange={this.updateBody}
-        />
+      <section id="add-comment">
+        <img className="current-user-avatar" src="https://placeimg.com/40/40/people" alt=""/>
+      
+        <form id="video-comment-form" onSubmit={this.handleSubmit}>
+          <label htmlFor="body">Comment Body</label>
+          <input
+            id="body"
+            type="text"
+            value={this.state.body}
+            required
+            placeholder="Add a public comment..."
+            onChange={this.updateBody}
+          />
 
-        <input type="submit" value="Comment" />
-      </form>
+          <input type="submit" value="Comment" />
+        </form>
+      </section>
     );
   }
 }
