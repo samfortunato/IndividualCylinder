@@ -41,6 +41,4 @@ export const userAvatarGenerator = (firstName) => {
   ctx.fillText(firstName[0].toUpperCase(), (canvas.width / 2), ((canvas.height / 2) + 4));
   
   return dataURIToBlob(canvas.toDataURL());
-  // let canvasBlob = getBlob(canvas);
-  // return canvasBlob;
 };
