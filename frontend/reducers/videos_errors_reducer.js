@@ -3,7 +3,7 @@ import {
   CLEAR_VIDEO_ERRORS
 } from '../actions/videos_actions';
 
-const videosErrorReducer = (currentState = [], action) => {
+const videosErrorsReducer = (currentState = [], action) => {
   Object.freeze(currentState);
 
   switch (action.type) {
@@ -18,4 +18,4 @@ const videosErrorReducer = (currentState = [], action) => {
   }
 };
 
-export default videosErrorReducer;
+export default videosErrorsReducer;

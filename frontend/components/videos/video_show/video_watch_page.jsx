@@ -3,6 +3,7 @@ import React from 'react';
 import NavHeader from '../../header/nav_header';
 import VideoPlayer from './video_player';
 import VideoInfoContainer from './video_info_container';
+import VideoComments from './video_comments';
 
 class VideoWatchPage extends React.Component {
   constructor(props) {
@@ -22,7 +23,9 @@ class VideoWatchPage extends React.Component {
       uploadDate, views, videoThumbnailURL,
       uploader
     } = this.props.video;
-    
+
+    const comments = Object.values(this.props.video.comments);
+
     return (
       <>
         <NavHeader />
@@ -42,6 +45,8 @@ class VideoWatchPage extends React.Component {
               uploadDate={uploadDate}
               views={views}
             />
+
+            <VideoComments comments={comments} />
           </section>
           
           <aside className="related-videos-sidebar">

@@ -16,7 +16,15 @@ json.set! @video.id do
   json.comments do
     @video.comments.each do |comment|
       json.set! comment.id do
-        json.extract! comment, :id, :reply_id, :user_id, :video_id, :body
+        json.extract! comment, :id, :reply_id, :video_id, :body
+        json.createdAt time_ago_in_words(
+          comment.created_at,
+          include_seconds: true
+        )
+        json.user do
+          json.extract! comment.user, :id, :first_name, :last_name
+          json.avatarURL url_for(comment.user.avatar)
+        end
       end
     end
   end

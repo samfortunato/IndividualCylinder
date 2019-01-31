@@ -1,0 +1,44 @@
+#video-comments{
+  h4 {
+    margin-bottom: 1.5rem;
+
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .all-comments {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .comment {
+    display: flex;
+    margin-bottom: 1.5rem;
+    
+    list-style: none;
+    
+    .commenter-avatar {
+      width: 40px;
+      height: 40px;
+      margin-right: 1rem;
+      border-radius: 50%;
+    }
+
+    .commenter-username {
+      display: inline-block;
+      margin: 0 4px 4px 0;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .comment-post-date {
+      font-size: 13px;
+      color: rgb(96, 96, 96);
+    }
+
+    .comment-body {
+      margin: 0;
+      font-size: 14px;
+    }
+  }
+}
