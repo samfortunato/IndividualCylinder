@@ -5,10 +5,20 @@ json.set! @video.id do
   json.videoURL url_for(@video.video_file)
   json.videoThumbnailURL (url_for(@video.video_thumbnail) || '')
   json.uploadDate @video.created_at.strftime('%B %d, %Y')
+
   json.uploader do
     json.id @uploader.id
     json.firstName @uploader.first_name
     json.lastName @uploader.last_name
     json.avatarURL url_for(@uploader.avatar)
   end
+  
+  json.comments do
+    @video.comments.each do |comment|
+      json.set! comment.id do
+        json.extract! comment, :id, :reply_id, :user_id, :video_id, :body
+      end
+    end
+  end
 end
+

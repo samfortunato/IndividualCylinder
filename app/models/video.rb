@@ -6,6 +6,7 @@ class Video < ApplicationRecord
   belongs_to :user,
     class_name: 'User',
     foreign_key: :uploader_id
+  has_many :comments
 
   has_one_attached :video_file
   has_one_attached :video_thumbnail

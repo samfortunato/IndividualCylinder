@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show]
     
     resources :videos, only: [:index, :show, :create, :update, :destroy]
+    resources :comments, only: [:create, :show, :update, :destroy]
   end
 end

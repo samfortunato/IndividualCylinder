@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :videos,
     class_name: 'Video',
     foreign_key: :uploader_id
+  has_many :comments
 
   has_one_attached :avatar
 
