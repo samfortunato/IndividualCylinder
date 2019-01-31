@@ -1,11 +1,9 @@
 class Api::UsersController < ApplicationController
   def create
-    @user = User.new(
-      first_name: params[:user][:first_name],
-      last_name: params[:user][:last_name],
-      email: params[:user][:email],
-      password: params[:user][:password]
-    )
+    # debugger
+    # debugger
+    
+    @user = User.new(user_params)
 
     if @user.save
       log_in(@user)
@@ -27,9 +25,9 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  # private
+  private
 
-  # def user_params
-  #   params.require(:user).permit(:first_name, :last_name, :email, :password)
-  # end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :avatar)
+  end
 end

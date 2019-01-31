@@ -10,6 +10,8 @@ a.sign-in-button {
 
 .user-actions-menu-button {
   z-index: 10;
+  width: 2rem;
+  height: 2rem;
 
   border-radius: 50%;
   cursor: pointer;
@@ -41,6 +43,8 @@ a.sign-in-button {
     font-weight: 400;
 
     .user-profile-picture {
+      width: 40px;
+      height: 40px;
       margin-right: 1rem;
       border-radius: 50%;
     }

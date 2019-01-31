@@ -9,5 +9,6 @@ json.set! @video.id do
     json.id @uploader.id
     json.firstName @uploader.first_name
     json.lastName @uploader.last_name
+    json.avatarURL url_for(@uploader.avatar)
   end
 end

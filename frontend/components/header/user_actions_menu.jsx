@@ -30,12 +30,14 @@ class UserActionsMenu extends React.Component {
   render () {
     const { currentUser } = this.props;
     const { menuOpen } = this.state;
+
+    // debugger;
     
     const signInButton = <Link className="sign-in-button" to="/signin">Sign In</Link>;
     const userIcon = currentUser ? (
       <img
         className="user-actions-menu-button"
-        src="https://placeimg.com/32/32/people"
+        src={currentUser.avatarURL}
         alt={`${currentUser.first_name}'s profile picture`}
         onClick={this.toggleMenu}
       />
@@ -69,7 +71,7 @@ class UserActionsMenu extends React.Component {
             <header className="user-actions-menu-header">
               <img
                 className="user-profile-picture"
-                src="https://placeimg.com/40/40/people"
+                src={currentUser.avatarURL}
                 alt={`${currentUser.first_name}'s profile picture`}
               />
 

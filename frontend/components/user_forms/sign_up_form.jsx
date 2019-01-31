@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import merge from 'lodash/merge';
+
+import { userAvatarGenerator } from '../../util/user_avatar_util';
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class SignUpForm extends React.Component {
       password: ''
     };
     
+    this.userAvatarGenerator = userAvatarGenerator.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -25,8 +27,16 @@ class SignUpForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const user = merge({}, this.state);
-    this.props.createUser(user)
+    const formData = new FormData();
+    formData.set('user[first_name]', this.state.first_name);
+    formData.set('user[last_name]', this.state.last_name);
+    formData.set('user[email]', this.state.email);
+    formData.set('user[password]', this.state.password);
+    
+    const userAvatar = this.userAvatarGenerator(this.state.first_name);
+    formData.set('user[avatar]', userAvatar);
+
+    this.props.createUser(formData)
       .then(() => this.props.history.push('/'));
   }
 

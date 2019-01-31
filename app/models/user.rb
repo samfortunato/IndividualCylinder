@@ -13,6 +13,8 @@ class User < ApplicationRecord
     class_name: 'Video',
     foreign_key: :uploader_id
 
+  has_one_attached :avatar
+
   attr_reader :password
 
   def self.generate_session_token

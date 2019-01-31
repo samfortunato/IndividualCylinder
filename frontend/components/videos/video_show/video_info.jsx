@@ -32,7 +32,7 @@ class VideoInfo extends React.Component {
         <section className="video-details">
           <img
             className="uploader-profile-picture"
-            src="https://placeimg.com/48/48/people"
+            src={uploader.avatarURL || ''}
             alt="User's profile picture"
           />
 
