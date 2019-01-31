@@ -6,7 +6,8 @@ class VideoCommentForm extends React.Component {
     super(props);
 
     this.state = {
-      body: ''
+      body: '',
+      disabled: false
     };
 
     this.updateBody = this.updateBody.bind(this);
@@ -20,11 +21,17 @@ class VideoCommentForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
+    this.setState({ disabled: true });
+
     const commentData = new FormData();
     commentData.set('comment[body]', this.state.body);
     commentData.set('comment[video_id]', this.props.match.params.id);
-
-    this.props.createComment(commentData);
+    
+    this.props.createComment(commentData)
+      .then(() => this.setState({
+        body: '',
+        disabled: false
+      }));
   }
 
   render() {
@@ -39,11 +46,16 @@ class VideoCommentForm extends React.Component {
             type="text"
             value={this.state.body}
             required
+            disabled={this.state.disabled}
             placeholder="Add a public comment..."
             onChange={this.updateBody}
           />
 
-          <input type="submit" value="Comment" />
+          <input
+            type="submit"
+            value="Comment"
+            disabled={this.state.disabled}
+          />
         </form>
       </section>
     );

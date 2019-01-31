@@ -45,6 +45,10 @@
   
       &:valid + input[type="submit"] {
         opacity: 1;
+
+        &:disabled {
+          opacity: .2;
+        }
       }
     }
   
