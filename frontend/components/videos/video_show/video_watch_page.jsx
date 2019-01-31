@@ -24,7 +24,13 @@ class VideoWatchPage extends React.Component {
       uploader
     } = this.props.video;
 
-    const comments = Object.values(this.props.video.comments);
+    const comments = (
+      this.props.video.comments ? (
+        Object.values(this.props.video.comments)
+      ) : (
+        []
+      )
+    );
 
     return (
       <>
