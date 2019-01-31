@@ -39,7 +39,14 @@
       // }
     }
   }
-}
 
-// 255
-// 145
+  .loading-message,
+  .access-denied-message {
+    padding: 1.5rem;
+    font-size: 14px;
+  }
+
+  .access-denied-message {
+    color: rgb(200, 0, 0);
+  }
+}

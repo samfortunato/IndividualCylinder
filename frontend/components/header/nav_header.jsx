@@ -20,7 +20,7 @@ class NavHeader extends React.Component {
 
         <input id="search-bar" type="search"/>
         <button id="search-button">
-          <i class="fas fa-search"></i>
+          <i className="fas fa-search"></i>
         </button>
 
         <nav className="user-actions">

@@ -13,7 +13,10 @@ const mapStateToProps = (state, ownProps) => {
     videoThumbnailURL: ''
   };
 
-  return state.entities.videos[videoId] || _nullVideo;
+  return {
+    video: state.entities.videos[videoId] || _nullVideo,
+    currentUserId: state.session.id
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

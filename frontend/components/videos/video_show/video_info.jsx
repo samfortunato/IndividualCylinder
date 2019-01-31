@@ -7,8 +7,6 @@ class VideoInfo extends React.Component {
   }
 
   render() {
-    // debugger;
-    
     const {
       videoId, title, description, uploader,
       uploadDate, views, currentUserId

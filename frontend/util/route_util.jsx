@@ -22,16 +22,16 @@ const LogInAuthComponent = ({ component: Component, exact, path, loggedIn }) => 
   )} />
 };
 
-const mapStateToProps = (state) => {
+const mapStateToPropsAuth = (state) => {
   return {
-    loggedIn: Boolean(state.session.id)
+    loggedIn: Boolean(state.session.id),
   };
 };
 
 export const LoggedInAuthRoute = withRouter(connect(
-  mapStateToProps
+  mapStateToPropsAuth
 )(LoggedInAuthComponent));
 
 export const LogInAuthRoute = withRouter(connect(
-  mapStateToProps
+  mapStateToPropsAuth
 )(LogInAuthComponent));

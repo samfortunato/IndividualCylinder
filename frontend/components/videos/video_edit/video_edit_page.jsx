@@ -16,9 +16,31 @@ class VideoEditPage extends React.Component {
   }
   
   render() {
-    const { id, title, description, videoURL, videoThumbnailURL } = this.props;
+    const { id, title, description, videoURL, videoThumbnailURL } = this.props.video;
+    const { currentUserId } = this.props;
+    let videoEditFormRender;
     
-    debugger;
+    if (title === '') {
+      videoEditFormRender = <span className="loading-message">Loading...</span>;
+    } else {
+      const uploaderId = this.props.video.uploader.id;
+      
+      if (currentUserId !== uploaderId) {
+        videoEditFormRender = (
+          <span className="access-denied-message">ERROR 401: Access denied.</span>
+        );
+      } else {
+        videoEditFormRender = (
+          <VideoEditFormContainer
+            videoId={id}
+            title={title}
+            description={description}
+            videoURL={videoURL}
+            videoThumbnailURL={videoThumbnailURL}
+          />
+        );
+      }
+    }
     
     return (
       <>
@@ -34,13 +56,7 @@ class VideoEditPage extends React.Component {
             </div>
           </aside>
 
-          <VideoEditFormContainer
-            videoId={id}
-            title={title}
-            description={description}
-            videoURL={videoURL}
-            videoThumbnailURL={videoThumbnailURL}
-          />
+          {videoEditFormRender}
         </main>
       </>
     );

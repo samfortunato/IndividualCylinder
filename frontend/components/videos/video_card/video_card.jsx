@@ -17,7 +17,7 @@ class VideoCard extends React.Component {
         <header>
           <h4>{title}</h4>
           
-          <div class="video-thumbnail-frame">
+          <div className="video-thumbnail-frame">
             <Link to={`/watch/${id}`}>
               <img src={videoThumbnailURL} alt={`${title} video thumbnail`} />
             </Link>

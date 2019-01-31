@@ -49,6 +49,11 @@ class Api::VideosController < ApplicationController
   def update
     @video = Video.find_by(id: params[:video][:id])
 
+    if @video.uploader_id != current_user.id
+      render json: ['Access denied'],
+        status: 401
+    end
+    
     if @video.update_attributes(video_params)
       render :show
     else
