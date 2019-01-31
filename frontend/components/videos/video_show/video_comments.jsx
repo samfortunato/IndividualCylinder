@@ -1,5 +1,7 @@
 import React from 'react';
 
+import VideoCommentFormContainer from './video_comment_form_container';
+
 class VideoComments extends React.Component {
   constructor(props) {
     super(props);
@@ -38,6 +40,8 @@ class VideoComments extends React.Component {
     return (
       <section id="video-comments">
         <h4>{commentsHeader}</h4>
+
+        <VideoCommentFormContainer />
 
         <ul className="all-comments">
           {commentLis}

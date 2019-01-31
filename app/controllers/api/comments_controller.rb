@@ -1,6 +1,7 @@
 class Api::CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
     @comment.reply_id = nil unless @comment.reply_id
 
     if @comment.save
