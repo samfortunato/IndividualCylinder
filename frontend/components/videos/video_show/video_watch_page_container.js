@@ -12,7 +12,9 @@ const mapStateToProps = (state, ownProps) => {
   const videoId = ownProps.match.params.id;
   const video = state.entities.videos[videoId] || _nullVideo;
 
-  const comments = video.comment_ids.map((id) => {
+  let commentIds = video.comment_ids || [];
+
+  const comments = commentIds.map((id) => {
     if (state.entities.comments[id]) {
       return state.entities.comments[id];
     }

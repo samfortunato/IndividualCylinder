@@ -1,5 +1,11 @@
 class Api::CommentsController < ApplicationController
   def create
+    if !logged_in?
+      render json: ['You must be logged in to comment'],
+        status: 401
+      return
+    end
+    
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.reply_id = nil unless @comment.reply_id

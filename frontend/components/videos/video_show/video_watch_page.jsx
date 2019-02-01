@@ -3,7 +3,7 @@ import React from 'react';
 import NavHeader from '../../header/nav_header';
 import VideoPlayer from './video_player';
 import VideoInfoContainer from './video_info_container';
-import VideoComments from './video_comments';
+import VideoCommentsContainer from './video_comments_container';
 
 class VideoWatchPage extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class VideoWatchPage extends React.Component {
 
             <VideoInfoContainer />
 
-            <VideoComments comments={this.props.comments} />
+            <VideoCommentsContainer comments={this.props.comments} />
           </section>
           
           <aside className="related-videos-sidebar">

@@ -14,6 +14,10 @@ class VideoCommentForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  checkLoggedIn(e) {
+    
+  }
+  
   updateBody(e) {
     this.setState({ body: e.target.value });
   }
@@ -35,9 +39,11 @@ class VideoCommentForm extends React.Component {
   }
 
   render() {
+    const { currentUserAvatarURL } = this.props;
+    
     return (
       <section id="add-comment">
-        <img className="current-user-avatar" src="https://placeimg.com/40/40/people" alt=""/>
+        <img className="current-user-avatar" src={currentUserAvatarURL} alt=""/>
       
         <form id="video-comment-form" onSubmit={this.handleSubmit}>
           <label htmlFor="body">Comment Body</label>
@@ -49,6 +55,7 @@ class VideoCommentForm extends React.Component {
             disabled={this.state.disabled}
             placeholder="Add a public comment..."
             onChange={this.updateBody}
+            onClick={this.checkLoggedIn}
           />
 
           <input

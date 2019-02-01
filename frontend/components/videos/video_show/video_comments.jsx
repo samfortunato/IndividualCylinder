@@ -8,23 +8,23 @@ class VideoComments extends React.Component {
   }
 
   render() {
-    debugger;
-    
     const commentLis = this.props.comments.map((comment) => {
-      const { user } = comment;
-      const fullName = `${user.first_name} ${user.last_name}`;
+      const { users } = this.props;
+      const commenter = users[comment.user_id];
+
+      const fullName = `${commenter.first_name} ${commenter.last_name}`;
       
       return (
         <li key={comment.id} className="comment">
           <img
             className="commenter-avatar"
-            src={user.avatar_url}
+            src={commenter.avatar_url}
             alt={`${fullName}'s avatar`}
           />
 
           <section className="comment-details">
             <span className="commenter-username">{fullName}</span>
-            <span className="comment-post-date">{comment.createdAt} ago</span>
+            <span className="comment-post-date">{comment.created_at} ago</span>
             <p className="comment-body">{comment.body}</p>
           </section>
         </li>

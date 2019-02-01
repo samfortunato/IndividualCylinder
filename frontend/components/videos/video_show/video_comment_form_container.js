@@ -4,6 +4,25 @@ import { withRouter } from 'react-router-dom';
 import VideoCommentForm from './video_comment_form';
 import { createComment } from '../../../actions/comments_actions';
 
+const mapStateToProps = (state) => {
+  debugger;
+  
+  const currentUserId = state.session.id;
+  let currentUser, currentUserAvatarURL;
+
+  if (currentUserId !== null) {
+    currentUser = state.entities.users[currentUserId];
+    currentUserAvatarURL = currentUser.avatar_url;
+  }
+
+  const defaultAvatarURL = 'https://s3.amazonaws.com/individualcylinder-video-upload-dev/default-profile-picture.png';
+  
+  return {
+    currentUserId,
+    currentUserAvatarURL: currentUserAvatarURL || defaultAvatarURL
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     createComment: comment => dispatch(createComment(comment))
@@ -12,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(VideoCommentForm)
 );

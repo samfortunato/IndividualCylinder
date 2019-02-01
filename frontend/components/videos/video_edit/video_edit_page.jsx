@@ -23,7 +23,7 @@ class VideoEditPage extends React.Component {
     if (title === '') {
       videoEditFormRender = <span className="loading-message">Loading...</span>;
     } else {
-      const uploaderId = this.props.video.uploader.id;
+      const uploaderId = this.props.video.uploader_id;
       
       if (currentUserId !== uploaderId) {
         videoEditFormRender = (
