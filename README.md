@@ -1,5 +1,7 @@
 # IndividualCylinder
 
+![Demo gif of IndividualCylinder app](https://s3.amazonaws.com/individualcylinder-video-upload-dev/demo.gif)
+
 _(Individual === You; Cylinder === Tube)_
 
 ## Info
