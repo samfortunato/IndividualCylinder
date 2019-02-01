@@ -13,10 +13,21 @@ class VideosIndex extends React.Component {
   }
 
   render() {
-    const videoCards = this.props.allVideos.map((video) => {
+    const _nullUploader = {
+      id: '',
+      first_name: '',
+      last_name: ''
+    };
+    
+    const { allVideos, uploaders } = this.props;
+    
+    const videoCards = allVideos.map((video) => {
       return (
         <li key={video.id}>
-          <VideoCard video={video} />
+          <VideoCard
+            video={video}
+            uploader={uploaders[video.uploader_id] || _nullUploader}
+          />
         </li>
       );
     });

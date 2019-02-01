@@ -4,8 +4,11 @@ import VideosIndex from './videos_index';
 import { fetchAllVideos } from '../../../actions/videos_actions';
 
 const mapStateToProps = (state) => {
+  const allVideos = Object.values(state.entities.videos);
+  
   return {
-    allVideos: Object.values(state.entities.videos)
+    allVideos,
+    uploaders: state.entities.users
   };
 };
 

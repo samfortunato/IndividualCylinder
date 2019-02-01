@@ -8,6 +8,8 @@ class VideoComments extends React.Component {
   }
 
   render() {
+    debugger;
+    
     const commentLis = this.props.comments.map((comment) => {
       const { user } = comment;
       const fullName = `${user.first_name} ${user.last_name}`;

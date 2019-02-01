@@ -32,7 +32,7 @@ const usersReducer = (currentState = {}, action) => {
     }
 
     case RECEIVE_ALL_VIDEOS: {
-      return merge({}, currentState, action.users)
+      return merge({}, currentState, action.users);
     }
     
     case RECEIVE_VIDEO: {
