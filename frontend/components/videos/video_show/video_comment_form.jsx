@@ -10,12 +10,15 @@ class VideoCommentForm extends React.Component {
       disabled: false
     };
 
+    this.checkLoggedIn = this.checkLoggedIn.bind(this);
     this.updateBody = this.updateBody.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  checkLoggedIn(e) {
-    
+  checkLoggedIn() {
+    if (this.props.currentUserId === null) {
+      this.props.history.push('/signin');
+    }
   }
   
   updateBody(e) {

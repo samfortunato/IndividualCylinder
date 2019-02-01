@@ -5,8 +5,6 @@ import VideoCommentForm from './video_comment_form';
 import { createComment } from '../../../actions/comments_actions';
 
 const mapStateToProps = (state) => {
-  debugger;
-  
   const currentUserId = state.session.id;
   let currentUser, currentUserAvatarURL;
 
