@@ -1,32 +1,37 @@
 @uploader = User.find_by(id: @video.uploader_id)
 
-json.set! @video.id do
-  json.extract! @video, :id, :title, :description, :views
-  json.videoURL url_for(@video.video_file)
-  json.videoThumbnailURL (url_for(@video.video_thumbnail) || '')
-  json.uploadDate @video.created_at.strftime('%B %d, %Y')
+json.video do
+  json.extract! @video, :id, :title, :description, :views, :uploader_id, :comment_ids
+  json.video_url url_for(@video.video_file)
+  json.video_thumbnail_url (url_for(@video.video_thumbnail) || '')
+  json.upload_date @video.created_at.strftime('%B %d, %Y')
+end
 
-  json.uploader do
-    json.id @uploader.id
-    json.firstName @uploader.first_name
-    json.lastName @uploader.last_name
-    json.avatarURL url_for(@uploader.avatar)
-  end
-  
+json.users do
   unless @video.comments.empty?
-    json.comments do
-      @video.comments.each do |comment|
-        json.set! comment.id do
-          json.extract! comment, :id, :reply_id, :video_id, :body
-          json.createdAt time_ago_in_words(
-            comment.created_at,
-            include_seconds: true
-          )
-          json.user do
-            json.extract! comment.user, :id, :first_name, :last_name
-            json.avatarURL url_for(comment.user.avatar)
-          end
-        end
+    @video.comments.each do |comment|
+      json.set! comment.user.id do
+        json.extract! comment.user, :id, :first_name, :last_name
+        json.avatar_url url_for(comment.user.avatar)
+      end
+    end
+  end
+
+  json.set! @uploader.id do
+    json.extract! @uploader, :id, :first_name, :last_name
+    json.avatar_url url_for(@uploader.avatar)
+  end
+end
+
+unless @video.comments.empty?
+  json.comments do
+    @video.comments.each do |comment|
+      json.set! comment.id do
+        json.extract! comment, :id, :user_id, :reply_id, :video_id, :body
+        json.created_at time_ago_in_words(
+          comment.created_at,
+          include_seconds: true
+        )
       end
     end
   end

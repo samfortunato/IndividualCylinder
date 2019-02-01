@@ -16,7 +16,7 @@ class VideoComments extends React.Component {
         <li key={comment.id} className="comment">
           <img
             className="commenter-avatar"
-            src={user.avatarURL}
+            src={user.avatar_url}
             alt={`${fullName}'s avatar`}
           />
 

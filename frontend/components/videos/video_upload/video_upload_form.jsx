@@ -94,8 +94,8 @@ class VideoUploadForm extends React.Component {
 
     this.props.uploadVideo(formData)
       .then(
-        res => this.setState({
-          uploadedVideoId: Object.keys(res.video)[0],
+        action => this.setState({
+          uploadedVideoId: action.video.id,
           uploadButtonText: 'Done!'
         }),
         () => this.setState({ submitDisabled: false })

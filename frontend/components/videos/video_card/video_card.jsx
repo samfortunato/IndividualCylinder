@@ -8,8 +8,8 @@ class VideoCard extends React.Component {
 
   render() {
     const {
-      id, title, uploadDate,
-      uploader, videoThumbnailURL, views
+      id, title, upload_date,
+      uploader, video_thumbnail_url, views
     } = this.props.video;
     
     return (
@@ -19,17 +19,17 @@ class VideoCard extends React.Component {
           
           <div className="video-thumbnail-frame">
             <Link to={`/watch/${id}`}>
-              <img src={videoThumbnailURL} alt={`${title} video thumbnail`} />
+              <img src={video_thumbnail_url} alt={`${title} video thumbnail`} />
             </Link>
           </div>
         </header>
 
         <section className="video-card-details">
-          <span className="uploader-name">{`${uploader.firstName} ${uploader.lastName}`}</span>
+          <span className="uploader-name">{`${uploader.first_name} ${uploader.last_name}`}</span>
           <span className="view-count">{(
             views === 1 ? `${views} view` : `${views} views`
           )}</span>
-          <span className="upload-date">{`${uploadDate} ago`}</span>
+          <span className="upload-date">{`${upload_date} ago`}</span>
         </section>
       </article>
     );

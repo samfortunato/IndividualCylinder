@@ -19,18 +19,9 @@ class VideoWatchPage extends React.Component {
   
   render() {
     const {
-      id, title, description, videoURL,
-      uploadDate, views, videoThumbnailURL,
-      uploader
+      video_url,
+      video_thumbnail_url
     } = this.props.video;
-
-    const comments = (
-      this.props.video.comments ? (
-        Object.values(this.props.video.comments)
-      ) : (
-        []
-      )
-    );
 
     return (
       <>
@@ -39,20 +30,13 @@ class VideoWatchPage extends React.Component {
         <main className="video-watch-page">
           <section id="main-video-content">
             <VideoPlayer
-              videoURL={videoURL}
-              videoThumbnailURL={videoThumbnailURL}
+              video_url={video_url}
+              video_thumbnail_url={video_thumbnail_url}
             />
 
-            <VideoInfoContainer
-              videoId={id}
-              title={title}
-              description={description}
-              uploader={uploader}
-              uploadDate={uploadDate}
-              views={views}
-            />
+            <VideoInfoContainer />
 
-            <VideoComments comments={comments} />
+            <VideoComments comments={this.props.comments} />
           </section>
           
           <aside className="related-videos-sidebar">

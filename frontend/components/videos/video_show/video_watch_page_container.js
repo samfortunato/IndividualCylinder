@@ -5,21 +5,18 @@ import VideoWatchPage from './video_watch_page';
 import { fetchVideo } from '../../../actions/videos_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const _nullVideo = {
-    id: null,
-    title: '',
-    description: '',
-    views: '',
-    videoURL: '',
-    videoThumbnailURL: '',
-    uploader: {},
-    comments: {}
-  };
-
+  debugger;
+  
   const videoId = ownProps.match.params.id;
-  const video = state.entities.videos[videoId] || _nullVideo;
+  const video = state.entities.videos[videoId] || {};
 
-  return { video };
+  const comments = video.comment_ids.map((id) => {
+    if (state.entities.comments[id]) {
+      return state.entities.comments[id];
+    }
+  });
+
+  return { video, comments };
 };
 
 const mapDispatchToProps = (dispatch) => {

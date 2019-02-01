@@ -8,8 +8,8 @@ class SignUpForm extends React.Component {
     super(props);
 
     this.state = {
-      first_name: '',
-      last_name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: ''
     };
@@ -28,12 +28,12 @@ class SignUpForm extends React.Component {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.set('user[first_name]', this.state.first_name);
-    formData.set('user[last_name]', this.state.last_name);
+    formData.set('user[first_name]', this.state.firstName);
+    formData.set('user[last_name]', this.state.lastName);
     formData.set('user[email]', this.state.email);
     formData.set('user[password]', this.state.password);
     
-    const userAvatar = this.userAvatarGenerator(this.state.first_name);
+    const userAvatar = this.userAvatarGenerator(this.state.firstName);
     formData.set('user[avatar]', userAvatar);
 
     this.props.createUser(formData)
@@ -63,9 +63,9 @@ class SignUpForm extends React.Component {
                 <input
                   id="first-name"
                   type="text"
-                  value={this.state.first_name}
+                  value={this.state.firstName}
                   autoFocus
-                  onChange={this.updateValue('first_name')}
+                  onChange={this.updateValue('firstName')}
                 />
                 <label htmlFor="first-name">First name</label>
               </div>
@@ -74,8 +74,8 @@ class SignUpForm extends React.Component {
                 <input
                   id="last-name"
                   type="text"
-                  value={this.state.last_name}
-                  onChange={this.updateValue('last_name')}
+                  value={this.state.lastName}
+                  onChange={this.updateValue('lastName')}
                 />
                 <label htmlFor="last-name">Last name</label>
               </div>

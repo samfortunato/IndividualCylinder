@@ -7,15 +7,22 @@ class VideoInfo extends React.Component {
   }
 
   render() {
+    const { currentUserId } = this.props;
+
     const {
-      videoId, title, description, uploader,
-      uploadDate, views, currentUserId
-    } = this.props;
+      id: videoId,
+      title,
+      description,
+      views,
+      upload_date
+    } = this.props.video;
+
+    const { uploader } = this.props;
 
     const editVideoButtonClasses = (
       uploader.id === currentUserId ? 'video-info-button edit-video-button' : 'video-info-button edit-video-button hidden'
     );
-
+    
     const subscribeButtonClasses = (
       uploader.id === currentUserId ? 'video-info-button subscribe-button hidden' : 'video-info-button subscribe-button'
     );
@@ -32,13 +39,13 @@ class VideoInfo extends React.Component {
         <section className="video-details">
           <img
             className="uploader-profile-picture"
-            src={uploader.avatarURL || ''}
+            src={uploader.avatar_url || ''}
             alt="User's profile picture"
           />
 
           <section className="upload-info">
-            <h2>{`${uploader.firstName} ${uploader.lastName}`}</h2>
-            <h3>{`Published on ${uploadDate}`}</h3>
+            <h2>{`${uploader.first_name} ${uploader.last_name}`}</h2>
+            <h3>{`Published on ${upload_date}`}</h3>
           </section>
 
           <Link className={editVideoButtonClasses} to={`/video/${videoId}/edit`}>Edit Video</Link>

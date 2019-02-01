@@ -9,7 +9,7 @@ export const CLEAR_VIDEO_ERRORS = 'CLEAR_VIDEO_ERRORS';
 export const fetchAllVideos = () => (dispatch) => {
   return VideosAPIUtil.fetchAllVideos()
     .then(
-      videos => dispatch(receiveAllVideos(videos)),
+      payload => dispatch(receiveAllVideos(payload)),
       errors => dispatch(receiveVideoErrors(errors))
     );
 };
@@ -17,7 +17,7 @@ export const fetchAllVideos = () => (dispatch) => {
 export const fetchVideo = (id) => (dispatch) => {
   return VideosAPIUtil.fetchVideo(id)
     .then(
-      video => dispatch(receiveVideo(video)),
+      payload => dispatch(receiveVideo(payload)),
       errors => dispatch(receiveVideoErrors(errors))
     );
 };
@@ -46,17 +46,20 @@ export const deleteVideo = (id) => (dispatch) => {
     );
 };
 
-export const receiveAllVideos = (videos) => {
+export const receiveAllVideos = ({ videos, users }) => {
   return {
     type: RECEIVE_ALL_VIDEOS,
-    videos
+    videos,
+    users
   };
 };
 
-export const receiveVideo = (video) => {
+export const receiveVideo = ({ video, users, comments }) => {
   return {
     type: RECEIVE_VIDEO,
-    video
+    video,
+    users,
+    comments
   };
 };
 

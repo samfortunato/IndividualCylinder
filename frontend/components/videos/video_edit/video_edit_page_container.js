@@ -9,8 +9,8 @@ const mapStateToProps = (state, ownProps) => {
   const _nullVideo = {
     title: '',
     description: '',
-    videoURL: '',
-    videoThumbnailURL: ''
+    video_url: '',
+    video_thumbnail_url: ''
   };
 
   return {
