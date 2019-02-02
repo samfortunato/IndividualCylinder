@@ -1,8 +1,5 @@
 class Api::UsersController < ApplicationController
   def create
-    # debugger
-    # debugger
-    
     @user = User.new(user_params)
 
     if @user.save

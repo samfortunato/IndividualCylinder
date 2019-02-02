@@ -27,6 +27,14 @@ class VideoComments extends React.Component {
             <span className="comment-post-date">{comment.created_at} ago</span>
             <p className="comment-body">{comment.body}</p>
           </section>
+
+          <button
+            className="comment-delete-button"
+            type="button"
+            onClick={() => this.props.deleteComment(comment.id)}
+          >
+            <i className="fas fa-ellipsis-v"></i>
+          </button>
         </li>
       );
     });

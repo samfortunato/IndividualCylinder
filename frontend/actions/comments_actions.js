@@ -32,7 +32,7 @@ export const updateComment = (comment) => (dispatch) => {
 export const deleteComment = (id) => (dispatch) => {
   return CommentsAPIUtil.deleteComment(id)
     .then(
-      id => dispatch(removeComment(id)),
+      comment => dispatch(removeComment(comment)),
       errors => dispatch(receiveCommentErrors(errors))
     );
 };
@@ -44,10 +44,10 @@ export const receiveComment = (comment) => {
   };
 };
 
-export const removeComment = (id) => {
+export const removeComment = (comment) => {
   return {
     type: REMOVE_COMMENT,
-    id
+    comment
   };
 };
 

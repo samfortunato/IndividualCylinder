@@ -37,6 +37,7 @@ class Api::CommentsController < ApplicationController
     @comment = Comment.find_by(id: params[:id])
 
     @comment.destroy
+    render :show
   end
 
   private

@@ -6,7 +6,10 @@ import {
   REMOVE_VIDEO
 } from '../actions/videos_actions';
 
-import { RECEIVE_COMMENT } from '../actions/comments_actions';
+import {
+  RECEIVE_COMMENT,
+  REMOVE_COMMENT
+} from '../actions/comments_actions';
 
 const videosReducer = (currentState = {}, action) => {
   Object.freeze(currentState);
@@ -33,6 +36,19 @@ const videosReducer = (currentState = {}, action) => {
     case RECEIVE_COMMENT: {
       let nextState = merge({}, currentState);
       nextState[action.comment.video_id].comment_ids.push(action.comment.id);
+
+      return nextState;
+    }
+
+    case REMOVE_COMMENT: {
+      let nextState = merge({}, currentState);
+
+      const videoId = action.comment.video_id;
+      const videoCommentIdIndex = nextState[videoId]
+        .comment_ids
+        .indexOf(action.comment.id);
+
+      nextState[videoId].comment_ids.splice(videoCommentIdIndex, 1);
 
       return nextState;
     }
