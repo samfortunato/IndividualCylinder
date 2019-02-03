@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint(8)        not null, primary key
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  first_name      :string           not null
+#  last_name       :string           not null
+#  email           :string           not null
+#
+
 class User < ApplicationRecord
   before_validation :ensure_session_token
   after_commit :ensure_profile_picture
@@ -14,6 +26,7 @@ class User < ApplicationRecord
     class_name: 'Video',
     foreign_key: :uploader_id
   has_many :comments
+  has_many :likes
 
   has_one_attached :avatar
 

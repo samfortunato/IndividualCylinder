@@ -2,6 +2,8 @@
 
 json.video do
   json.extract! @video, :id, :title, :description, :views, :uploader_id
+  json.likes @video.likes.count { |like| like.was_liked == true }
+  json.dislikes @video.likes.count { |like| like.was_liked == false }
   json.comment_ids @video.comment_ids.sort.reverse
   json.video_url url_for(@video.video_file)
   json.video_thumbnail_url (url_for(@video.video_thumbnail) || '')
@@ -28,11 +30,7 @@ unless @video.comments.empty?
   json.comments do
     @video.comments.each do |comment|
       json.set! comment.id do
-        json.extract! comment, :id, :user_id, :reply_id, :video_id, :body
-        json.created_at time_ago_in_words(
-          comment.created_at,
-          include_seconds: true
-        )
+        json.partial! 'api/comments/show', comment: comment
       end
     end
   end
