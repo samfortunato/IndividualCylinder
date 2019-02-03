@@ -14,7 +14,7 @@
   .comment {
     display: flex;
     margin-bottom: 1.5rem;
-    
+    word-break: break-word;
     list-style: none;
 
     &:hover .comment-delete-button,
