@@ -17,7 +17,8 @@
     
     list-style: none;
 
-    &:hover .comment-delete-button {
+    &:hover .comment-delete-button,
+    &:hover .comment-edit-button {
       visibility: visible;
     }
     
@@ -45,17 +46,69 @@
       font-size: 14px;
     }
 
-    .comment-delete-button {
-      margin-left: auto;
+    .comment-delete-button,
+    .comment-edit-button {
       border: 0;
       padding: 0 18px;
       
       cursor: pointer;
       visibility: hidden;
       opacity: .4;
-
+      
       &:hover {
         opacity: .6;
+      }
+    }
+
+    .comment-delete-button {
+      margin-left: auto;
+    }
+
+    .comment-edit-form {
+      flex-grow: 2;
+      text-align: right;
+      
+      label {
+        position: absolute;
+
+        clip: rect(0 0 0 0);
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        border: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      input[type="text"] {
+        display: block;
+        outline: none;
+
+        box-sizing: border-box;
+        width: 100%;
+        margin-bottom: .5rem;
+        border: 0;
+        border-bottom: 1px solid rgb(238, 238, 238);
+        padding-bottom: 10px;
+
+        font-size: 14px;
+
+        &:focus {
+          margin-bottom: 7px;
+          border-bottom: 2px solid rgb(105, 105, 105);
+        }
+      }
+
+      input[type="submit"],
+      .edit-cancel-button {
+        @extend %general-action-button;
+
+        background-color: transparent;
+        color: rgba(0, 0, 0, .3);
+
+        &:hover {
+          color: rgba(0, 0, 0, .6);
+        }
       }
     }
   }

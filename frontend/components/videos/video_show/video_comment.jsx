@@ -11,6 +11,7 @@ class VideoComment extends React.Component {
     super(props);
 
     this.state = {
+      prevBody: '',
       body: '',
       editing: false
     };
@@ -59,7 +60,7 @@ class VideoComment extends React.Component {
 
         {(
           this.state.editing ? (
-            <form onSubmit={this.handleSubmit}>
+            <form className="comment-edit-form" onSubmit={this.handleSubmit}>
               <label htmlFor="body">Comment Body</label>
               <input
                 id="body"
@@ -70,6 +71,7 @@ class VideoComment extends React.Component {
               />
 
               <button
+                className="edit-cancel-button"
                 type="button"
                 onClick={() => this.setState({ editing: false })}
               >
@@ -99,7 +101,7 @@ class VideoComment extends React.Component {
                 type="button"
                 onClick={this.handleEdit}
               >
-                Edit
+                <i className="fas fa-edit"></i>
               </button>
             </>
           )
