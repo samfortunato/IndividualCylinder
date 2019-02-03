@@ -35,7 +35,7 @@ const videosReducer = (currentState = {}, action) => {
 
     case RECEIVE_COMMENT: {
       let nextState = merge({}, currentState);
-      nextState[action.comment.video_id].comment_ids.push(action.comment.id);
+      nextState[action.comment.video_id].comment_ids.unshift(action.comment.id);
 
       return nextState;
     }
