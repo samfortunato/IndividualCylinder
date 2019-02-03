@@ -1,23 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import VideoActionsInterface from './video_actions_interface';
+
 class VideoInfo extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    const { currentUserId } = this.props;
-
-    const {
-      id: videoId,
-      title,
-      description,
-      views,
-      upload_date
-    } = this.props.video;
-
-    const { uploader } = this.props;
+    const { video, uploader, currentUserId } = this.props;
 
     const editVideoButtonClasses = (
       uploader.id === currentUserId ? 'video-info-button edit-video-button' : 'video-info-button edit-video-button hidden'
@@ -29,11 +21,18 @@ class VideoInfo extends React.Component {
     
     return (
       <article className="video-info">
-        <header className="video-title">
-          <h1>{title}</h1>
-          <h4>{(
-            views === 1 ? `${views} view` : `${views} views`
-          )}</h4>
+        <header className="video-header">
+          <div className="video-title">
+            <h1>{video.title}</h1>
+            <h4>{(
+              video.views === 1 ? `${video.views} view` : `${video.views} views`
+            )}</h4>
+          </div>
+
+          <VideoActionsInterface
+            likes={video.likes}
+            dislikes={video.dislikes}
+          />
         </header>
 
         <section className="video-details">
@@ -45,14 +44,14 @@ class VideoInfo extends React.Component {
 
           <section className="upload-info">
             <h2>{`${uploader.first_name} ${uploader.last_name}`}</h2>
-            <h3>{`Published on ${upload_date}`}</h3>
+            <h3>{`Published on ${video.upload_date}`}</h3>
           </section>
 
-          <Link className={editVideoButtonClasses} to={`/video/${videoId}/edit`}>Edit Video</Link>
+          <Link className={editVideoButtonClasses} to={`/video/${video.id}/edit`}>Edit Video</Link>
           <button className={subscribeButtonClasses} type="button">Subscribe</button>
         </section>
 
-        <p className="video-description">{description}</p>
+        <p className="video-description">{video.description}</p>
       </article>
     );
   }

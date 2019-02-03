@@ -1,0 +1,13 @@
+#video-actions-interface {
+  display: flex;
+  margin: 0;
+  margin-left: auto;
+
+  list-style: none;
+
+  li {
+    span {
+      display: block;
+    }
+  }
+}
