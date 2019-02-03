@@ -16,6 +16,10 @@
     margin-bottom: 1.5rem;
     
     list-style: none;
+
+    &:hover .comment-delete-button {
+      visibility: visible;
+    }
     
     .commenter-avatar {
       width: 40px;
@@ -39,6 +43,20 @@
     .comment-body {
       margin: 0;
       font-size: 14px;
+    }
+
+    .comment-delete-button {
+      margin-left: auto;
+      border: 0;
+      padding: 0 18px;
+      
+      cursor: pointer;
+      visibility: hidden;
+      opacity: .4;
+
+      &:hover {
+        opacity: .6;
+      }
     }
   }
 }
