@@ -1,10 +1,6 @@
 import { connect } from 'react-redux';
 
 import VideoComments from './video_comments';
-import {
-  updateComment,
-  deleteComment
-} from '../../../actions/comments_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,14 +8,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateComment: comment => dispatch(updateComment(comment)),
-    deleteComment: id => dispatch(deleteComment(id))
-  };
-};
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(VideoComments);
