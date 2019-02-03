@@ -2,7 +2,7 @@
 
 json.video do
   json.extract! @video, :id, :title, :description, :views, :uploader_id
-  json.comment_ids @video.comment_ids.reverse
+  json.comment_ids @video.comment_ids.sort.reverse
   json.video_url url_for(@video.video_file)
   json.video_thumbnail_url (url_for(@video.video_thumbnail) || '')
   json.upload_date @video.created_at.strftime('%B %-d, %Y')
