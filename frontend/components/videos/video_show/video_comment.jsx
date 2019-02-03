@@ -89,19 +89,19 @@ class VideoComment extends React.Component {
               </section>
 
               <button
-                className="comment-delete-button"
-                type="button"
-                onClick={() => this.props.deleteComment(comment.id)}
-              >
-                <i className="fas fa-ellipsis-v"></i>
-              </button>
-
-              <button
                 className="comment-edit-button"
                 type="button"
                 onClick={this.handleEdit}
               >
                 <i className="fas fa-edit"></i>
+              </button>
+
+              <button
+                className="comment-delete-button"
+                type="button"
+                onClick={() => this.props.deleteComment(comment.id)}
+              >
+                <i className="fas fa-trash-alt"></i>
               </button>
             </>
           )
