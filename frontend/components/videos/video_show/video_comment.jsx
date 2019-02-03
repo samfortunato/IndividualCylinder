@@ -15,22 +15,30 @@ class VideoComment extends React.Component {
       editing: false
     };
 
-    this.handleEditComment = this.handleEditComment.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.updateBody = this.updateBody.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleEditComment(e, commentBody) {
-    return () => this.setState({
-      editingCommentBody: commentBody,
-      editingComment: true
-    });
+  handleEdit() {
+    this.setState({ editing: true });
   }
 
   updateBody(e) {
     this.setState({ body: e.target.value });
   }
 
-  handleEditSubmit(e) {
+  handleSubmit(e) {
     e.preventDefault();
+
+    const commentData = new FormData();
+    commentData.set('comment[id]', this.props.comment.id);
+    commentData.set('comment[body]', this.state.body);
+    
+    this.props.updateComment(commentData)
+      .then(() => {
+        this.setState({ editing: false });
+      });
   }
   
   componentDidMount() {
@@ -42,7 +50,7 @@ class VideoComment extends React.Component {
     const fullName = `${user.first_name} ${user.last_name}`;
 
     return (
-      <li key={comment.id} className="comment">
+      <li key={this.props.key} className="comment">
         <img
           className="user-avatar"
           src={user.avatar_url}
@@ -50,8 +58,8 @@ class VideoComment extends React.Component {
         />
 
         {(
-          this.state.editingComment ? (
-            <form onSubmit={this.handleEditSubmit}>
+          this.state.editing ? (
+            <form onSubmit={this.handleSubmit}>
               <label htmlFor="body">Comment Body</label>
               <input
                 id="body"
@@ -63,7 +71,7 @@ class VideoComment extends React.Component {
 
               <button
                 type="button"
-                onClick={() => this.setState({ editingComment: false })}
+                onClick={() => this.setState({ editing: false })}
               >
                 Cancel
               </button>
@@ -89,7 +97,7 @@ class VideoComment extends React.Component {
               <button
                 className="comment-edit-button"
                 type="button"
-                onClick={this.handleEditComment(comment.body)}
+                onClick={this.handleEdit}
               >
                 Edit
               </button>

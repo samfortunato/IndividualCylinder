@@ -11,10 +11,6 @@ const commentsReducer = (currentState = {}, action) => {
   Object.freeze(currentState);
 
   switch (action.type) {
-    case RECEIVE_VIDEO: {
-      return merge({}, currentState, action.comments);
-    }
-    
     case RECEIVE_COMMENT: {
       return merge({}, currentState, { [action.comment.id]: action.comment });
     }
@@ -22,8 +18,12 @@ const commentsReducer = (currentState = {}, action) => {
     case REMOVE_COMMENT: {
       let nextState = merge({}, currentState);
       delete nextState[action.id];
-
+      
       return nextState;
+    }
+
+    case RECEIVE_VIDEO: {
+      return merge({}, currentState, action.comments);
     }
     
     default:

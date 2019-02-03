@@ -15,6 +15,7 @@ class VideoComments extends React.Component {
       
       return (
         <VideoComment
+          key={comment.id}
           comment={comment}
           commenter={commenter}
         />

@@ -19,7 +19,9 @@ export const updateComment = (comment) => {
   return $.ajax({
     url: `api/comments/${comment.id}`,
     method: 'PATCH',
-    data: comment
+    data: comment,
+    contentType: false,
+    processData: false
   });
 };
 
