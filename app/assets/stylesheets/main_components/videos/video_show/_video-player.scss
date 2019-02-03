@@ -6,6 +6,10 @@
 
   color: #fff;
 
+  &:hover #video-interface {
+    opacity: 1;
+  }
+
   #video {
     width: 100%;
     background-color: #000;
@@ -70,7 +74,10 @@
     width: 100%;
     height: 20%;
 
+    opacity: 0;
     background: linear-gradient(transparent, rgba(0, 0, 0, .7));
+
+    transition: opacity .2s;
     
     .main-video-interface {
       display: flex;
