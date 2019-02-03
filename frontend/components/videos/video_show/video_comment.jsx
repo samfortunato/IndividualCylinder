@@ -19,10 +19,15 @@ class VideoComment extends React.Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.updateBody = this.updateBody.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleEdit() {
-    this.setState({ editing: true });
+    const { comment, currentUserId } = this.props;
+
+    if (comment.user_id === currentUserId) {
+      this.setState({ editing: true });
+    }
   }
 
   updateBody(e) {
@@ -41,14 +46,48 @@ class VideoComment extends React.Component {
         this.setState({ editing: false });
       });
   }
+
+  handleDelete() {
+    const { comment, currentUserId } = this.props;
+
+    if (comment.user_id === currentUserId) {
+      this.props.deleteComment(comment.id);
+    }
+  }
   
   componentDidMount() {
     this.setState({ body: this.props.comment.body });
   }
 
   render() {
-    const { comment, commenter: user } = this.props;
+    const { comment, commenter: user, currentUserId } = this.props;
     const fullName = `${user.first_name} ${user.last_name}`;
+
+    let commentActionButtons;
+
+    if (comment.user_id === currentUserId) {
+      commentActionButtons = (
+        <>
+          <button
+            className="comment-edit-button"
+            type="button"
+            onClick={this.handleEdit}
+          >
+            <i className="fas fa-edit"></i>
+          </button>
+
+          <button
+            className="comment-delete-button"
+            type="button"
+            onClick={this.handleDelete}
+          >
+            <i className="fas fa-trash-alt"></i>
+          </button>
+        </>
+      );
+    } else {
+      commentActionButtons = null;
+    }
 
     return (
       <li key={this.props.key} className="comment">
@@ -59,7 +98,7 @@ class VideoComment extends React.Component {
         />
 
         {(
-          this.state.editing ? (
+          (this.state.editing) ? (
             <form className="comment-edit-form" onSubmit={this.handleSubmit}>
               <label htmlFor="body">Comment Body</label>
               <input
@@ -88,21 +127,7 @@ class VideoComment extends React.Component {
                 <p className="comment-body">{comment.body}</p>
               </section>
 
-              <button
-                className="comment-edit-button"
-                type="button"
-                onClick={this.handleEdit}
-              >
-                <i className="fas fa-edit"></i>
-              </button>
-
-              <button
-                className="comment-delete-button"
-                type="button"
-                onClick={() => this.props.deleteComment(comment.id)}
-              >
-                <i className="fas fa-trash-alt"></i>
-              </button>
+              {commentActionButtons}
             </>
           )
         )}
@@ -111,6 +136,12 @@ class VideoComment extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    currentUserId: state.session.id
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     updateComment: comment => dispatch(updateComment(comment)),
@@ -118,4 +149,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(VideoComment);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(VideoComment);
