@@ -11,6 +11,8 @@ import {
   REMOVE_COMMENT
 } from '../actions/comments_actions';
 
+import { RECEIVE_LIKE } from '../actions/likes_actions';
+
 const videosReducer = (currentState = {}, action) => {
   Object.freeze(currentState);
 
@@ -53,6 +55,22 @@ const videosReducer = (currentState = {}, action) => {
         .indexOf(action.comment.id);
 
       nextState[videoId].comment_ids.splice(videoCommentIdIndex, 1);
+
+      return nextState;
+    }
+
+    case RECEIVE_LIKE: {
+      if (action.like.likable_type !== 'Video') {
+        return currentState;
+      }
+
+      let nextState = merge({}, currentState);
+      
+      if (action.like.was_liked) {
+        nextState[action.like.likable_id].likes++;
+      } else {
+        nextState[action.like.likable_id].dislikes++;
+      }
 
       return nextState;
     }

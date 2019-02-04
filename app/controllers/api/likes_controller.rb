@@ -1,14 +1,13 @@
-class LikesController < ApplicationController
+class Api::LikesController < ApplicationController
   def create
-    @like = null
-    
-    if params[:likable_type] == 'Video'
-      @like = Video.find(params[:likable_id])
-        .likes.new(like_params)
-    elsif params[:likable_type] == 'Comment'
-      @like = Comment.find(params[:likable_id])
-        .likes.new(like_params)
+    if already_liked?
+      render json: ['You have already judged this entity'],
+        status: 403
+
+      return
     end
+
+    @like = current_user.likes.new(like_params)
 
     if @like.save
       render json: @like
@@ -38,5 +37,13 @@ class LikesController < ApplicationController
 
   def like_params
     params.require(:like).permit(:id, :likable_id, :likable_type, :was_liked, :user_id)
+  end
+
+  def already_liked?
+    Like.where(
+      user_id: current_user.id,
+      likable_id: params[:like][:likable_id],
+      likable_type: params[:like][:likable_type]
+    ).exists?
   end
 end
