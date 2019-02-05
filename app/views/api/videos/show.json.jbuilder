@@ -8,6 +8,18 @@ json.video do
   json.video_url url_for(@video.video_file)
   json.video_thumbnail_url (url_for(@video.video_thumbnail) || '')
   json.upload_date @video.created_at.strftime('%B %-d, %Y')
+
+  if current_user
+    current_user_like = current_user.likes.where(
+      likable_id: @video.id, likable_type: 'Video'
+    )
+  end
+
+  if current_user && current_user_like.exists?
+    json.current_user_like current_user_like.first.was_liked
+  else
+    json.current_user_like nil
+  end
 end
 
 json.users do
@@ -31,6 +43,18 @@ unless @video.comments.empty?
     @video.comments.each do |comment|
       json.set! comment.id do
         json.partial! 'api/comments/show', comment: comment
+
+        if current_user
+          current_user_like = current_user.likes.where(
+            likable_id: comment.id, likable_type: 'Comment'
+          )
+        end
+
+        if current_user && current_user_like.exists?
+          json.current_user_like current_user_like.first.was_liked
+        else
+          json.current_user_like nil
+        end
       end
     end
   end
