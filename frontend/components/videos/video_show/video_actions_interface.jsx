@@ -30,8 +30,8 @@ class VideoActionsInterface extends React.Component {
       currentUserLikeType
     } = this.props;
 
-    let userLikedClass = '';
-    let userDislikedClass = '';
+    let userLikedClass = '',
+        userDislikedClass = '';
 
     switch (currentUserLikeType) {
       case true:

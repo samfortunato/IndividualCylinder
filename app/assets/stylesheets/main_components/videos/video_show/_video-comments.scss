@@ -60,6 +60,11 @@
       }
     }
 
+    .comment-like-button.was-liked,
+    .comment-dislike-button.was-disliked {
+      color: lightblue;
+    }
+
     .comment-edit-button {
       margin-left: auto;
     }

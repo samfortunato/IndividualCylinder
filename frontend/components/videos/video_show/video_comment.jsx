@@ -6,6 +6,8 @@ import {
   deleteComment
 } from '../../../actions/comments_actions';
 
+import { createLike } from '../../../actions/likes_actions';
+
 class VideoComment extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +22,17 @@ class VideoComment extends React.Component {
     this.updateBody = this.updateBody.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleLike(wasLiked) {
+    return () => {
+      const likeData = new FormData();
+      likeData.set('like[likable_id]', this.props.comment.id);
+      likeData.set('like[likable_type]', 'Comment');
+      likeData.set('like[was_liked]', wasLiked);
+
+      this.props.createLike(likeData);
+    };
   }
 
   handleEdit() {
@@ -63,6 +76,20 @@ class VideoComment extends React.Component {
     const { comment, commenter: user, currentUserId } = this.props;
     const fullName = `${user.first_name} ${user.last_name}`;
 
+    let userLikedClass = '',
+        userDislikedClass = '';
+
+    switch (comment.current_user_like) {
+      case true:
+        if (currentUserId) userLikedClass = ' was-liked';
+        break
+      case false:
+        if (currentUserId) userDislikedClass = ' was-disliked';
+        break
+      default:
+        break;
+    }
+    
     let commentActionButtons;
 
     if (comment.user_id === currentUserId) {
@@ -125,6 +152,24 @@ class VideoComment extends React.Component {
                 <span className="user-username">{fullName}</span>
                 <span className="comment-post-date">{comment.created_at} ago</span>
                 <p className="comment-body">{comment.body}</p>
+
+                <button
+                  className={`comment-like-button${userLikedClass}`}
+                  type="button"
+                  onClick={this.handleLike(true)}
+                >
+                  Like
+                </button>
+                
+                <span>{comment.likes > 0 ? comment.likes : null}</span>
+                
+                <button
+                  className={`comment-dislike-button${userDislikedClass}`}
+                  type="button"
+                  onClick={this.handleLike(false)}
+                >
+                  Dislike
+                </button>
               </section>
 
               {commentActionButtons}
@@ -145,7 +190,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateComment: comment => dispatch(updateComment(comment)),
-    deleteComment: id => dispatch(deleteComment(id))
+    deleteComment: id => dispatch(deleteComment(id)),
+    createLike: like => dispatch(createLike(like))
   };
 };
 
