@@ -23,12 +23,32 @@ class VideoActionsInterface extends React.Component {
   }
 
   render() {
-    const { likes, dislikes } = this.props;
+    const {
+      likes,
+      dislikes,
+      currentUser,
+      currentUserLikeType
+    } = this.props;
+
+    let userLikedClass = '';
+    let userDislikedClass = '';
+
+    switch (currentUserLikeType) {
+      case true:
+        if (currentUser) userLikedClass = 'was-liked';
+        break;
+      case false:
+        if (currentUser) userDislikedClass = 'was-disliked';
+        break;
+      default:
+        break;
+    }
     
     return (
       <ul id="video-actions-interface">
         <li>
           <button
+            className={`video-like-button ${userLikedClass}`}
             type="button"
             onClick={this.handleLike(true)}
           >
@@ -39,6 +59,7 @@ class VideoActionsInterface extends React.Component {
         </li>
         <li>
           <button
+            className={`video-dislike-button ${userDislikedClass}`}
             type="button"
             onClick={this.handleLike(false)}
           >
@@ -52,8 +73,18 @@ class VideoActionsInterface extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  const videoId = ownProps.match.params.id;
+  const currentVideo = state.entities.videos[videoId] || null;
+  let currentUserLikeType;
+  
+  if (currentVideo) {
+    currentUserLikeType = currentVideo.current_user_like;
+  }
+  
   return {
-    videoId: ownProps.match.params.id
+    videoId,
+    currentUser: state.session.id !== null,
+    currentUserLikeType
   };
 };
 
@@ -62,7 +93,7 @@ const mapDispatchToProps = (dispatch) => {
     createLike: like => dispatch(createLike(like)),
     updateLike: like => dispatch(updateLike(like)),
     deleteLike: id => dispatch(deleteLike(id)),
-  }
+  };
 };
 
 export default withRouter(

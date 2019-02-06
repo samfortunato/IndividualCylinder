@@ -65,11 +65,35 @@ const videosReducer = (currentState = {}, action) => {
       }
 
       let nextState = merge({}, currentState);
+
+      const videoId = action.like.likable_id;
+      const currentUserLike = nextState[videoId].current_user_like;
+      const videoWasAlreadyJudged = currentUserLike === true || currentUserLike === false;
       
-      if (action.like.was_liked) {
-        nextState[action.like.likable_id].likes++;
-      } else {
-        nextState[action.like.likable_id].dislikes++;
+      if (action.like.was_liked === true) {
+        if (currentUserLike === true) {
+          nextState[videoId].likes--;
+          nextState[videoId].current_user_like = null;
+        } else {
+          nextState[videoId].likes++;
+          nextState[videoId].current_user_like = true;
+  
+          if (videoWasAlreadyJudged) {
+            nextState[videoId].dislikes--;
+          }
+        }
+      } else  {
+        if (currentUserLike === false) {
+          nextState[videoId].dislikes--;
+          nextState[videoId].current_user_like = null;
+        } else {
+          nextState[videoId].dislikes++;
+          nextState[videoId].current_user_like = false;
+  
+          if (videoWasAlreadyJudged) {
+            nextState[videoId].likes--;
+          }
+        }
       }
 
       return nextState;

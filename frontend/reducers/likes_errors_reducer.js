@@ -5,7 +5,7 @@ const likesErrorsReducer = (currentState = [], action) => {
 
   switch (action.type) {
     case RECEIVE_LIKE_ERRORS:
-      return action.errors;
+      return action.errors.responseJSON;
     
     default:
       return currentState;
