@@ -53,6 +53,8 @@
 
     &::-webkit-meter-optimum-value {
       background: rgb(144, 144, 144);
+
+      transition: width .2s
     }
 
     &.was-liked::-webkit-meter-optimum-value,
