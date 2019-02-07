@@ -42,7 +42,7 @@ unless @video.comments.empty?
   json.comments do
     @video.comments.each do |comment|
       json.set! comment.id do
-        json.partial! 'api/comments/show', comment: comment
+        json.partial! 'api/comments/comment', comment: comment
 
         if current_user
           current_user_like = current_user.likes.where(
