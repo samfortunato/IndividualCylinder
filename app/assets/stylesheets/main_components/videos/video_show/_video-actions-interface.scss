@@ -5,22 +5,59 @@
 
   list-style: none;
 
-  .judgment-button {
-    display: inline-block;
+  .video-like-button,
+  .video-dislike-button {
+    border: 0;
+    padding: 0 .5rem .9rem;
     
-    span {
-      display: block;
+    font-size: 1.2rem;
+    color: rgb(144, 144, 144);
+    
+    outline: none;
+    cursor: pointer;
+
+    & + label {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgb(144, 144, 144);
+
+      cursor: pointer;
     }
+  }
+
+  .video-like-button + label {
+    margin-right: 14px;
+  }
+
+  .video-dislike-button + label {
+    margin-right: .5rem;
   }
 
   .video-like-button.was-liked,
   .video-dislike-button.was-disliked {
-    color: lightblue;
+    color: rgb(3, 80, 220);
+
+    + label {
+      color: rgb(3, 80, 220);
+    }
   }
 
   #like-bar {
     display: block;
     height: 2px;
     width: 100%;
+
+    &::-webkit-meter-bar {
+      background: rgb(204, 204, 204);
+    }
+
+    &::-webkit-meter-optimum-value {
+      background: rgb(144, 144, 144);
+    }
+
+    &.was-liked::-webkit-meter-optimum-value,
+    &.was-disliked::-webkit-meter-optimum-value {
+      background: rgb(3, 80, 220);
+    }
   }
 }

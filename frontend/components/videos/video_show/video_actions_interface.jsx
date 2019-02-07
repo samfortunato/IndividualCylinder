@@ -52,6 +52,7 @@ class VideoActionsInterface extends React.Component {
       <div id="video-actions-interface">
         <div id="video-judgment-buttons">
           <button
+            id="like-button"
             className={`video-like-button ${userLikedClass}`}
             type="button"
             onClick={this.handleLike(true)}
@@ -59,19 +60,26 @@ class VideoActionsInterface extends React.Component {
             <i className="fas fa-thumbs-up"></i>
           </button>
 
-          <span>{likes}</span>
+          <label htmlFor="like-button">{likes}</label>
 
           <button
+            id="dislike-button"
             className={`video-dislike-button ${userDislikedClass}`}
             type="button"
             onClick={this.handleLike(false)}
           >
-            Dislike
+            <i className="fas fa-thumbs-down"></i>
           </button>
 
-          <span>{dislikes}</span>
+          <label htmlFor="dislike-button">{dislikes}</label>
 
-          <meter id="like-bar" min="0" max="1" value={likePercentage}>
+          <meter
+            id="like-bar"
+            className={`${userLikedClass} ${userDislikedClass}`}
+            min="0"
+            max="1"
+            value={likePercentage}
+          >
             {`${likes} / ${dislikes}`}
           </meter>
         </div>

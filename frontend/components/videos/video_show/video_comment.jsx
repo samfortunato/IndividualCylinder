@@ -158,17 +158,17 @@ class VideoComment extends React.Component {
                   type="button"
                   onClick={this.handleLike(true)}
                 >
-                  Like
+                  <i className="fas fa-thumbs-up"></i>
                 </button>
                 
-                <span>{comment.likes > 0 ? comment.likes : null}</span>
+                <span className="comment-like-amount">{comment.likes > 0 ? comment.likes : null}</span>
                 
                 <button
                   className={`comment-dislike-button${userDislikedClass}`}
                   type="button"
                   onClick={this.handleLike(false)}
                 >
-                  Dislike
+                  <i className="fas fa-thumbs-down"></i>
                 </button>
               </section>
 
