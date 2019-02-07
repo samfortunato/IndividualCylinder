@@ -5,7 +5,9 @@
 
   list-style: none;
 
-  li {
+  .judgment-button {
+    display: inline-block;
+    
     span {
       display: block;
     }
@@ -14,5 +16,11 @@
   .video-like-button.was-liked,
   .video-dislike-button.was-disliked {
     color: lightblue;
+  }
+
+  #like-bar {
+    display: block;
+    height: 2px;
+    width: 100%;
   }
 }

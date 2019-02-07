@@ -43,21 +43,24 @@ class VideoActionsInterface extends React.Component {
       default:
         break;
     }
+
+    const likePercentage = (
+      (likes || dislikes) ? (likes / (likes + dislikes)) : 0
+    );
     
     return (
-      <ul id="video-actions-interface">
-        <li>
+      <div id="video-actions-interface">
+        <div id="video-judgment-buttons">
           <button
             className={`video-like-button ${userLikedClass}`}
             type="button"
             onClick={this.handleLike(true)}
           >
-            Like
+            <i className="fas fa-thumbs-up"></i>
           </button>
 
           <span>{likes}</span>
-        </li>
-        <li>
+
           <button
             className={`video-dislike-button ${userDislikedClass}`}
             type="button"
@@ -65,9 +68,14 @@ class VideoActionsInterface extends React.Component {
           >
             Dislike
           </button>
+
           <span>{dislikes}</span>
-        </li>
-      </ul>
+
+          <meter id="like-bar" min="0" max="1" value={likePercentage}>
+            {`${likes} / ${dislikes}`}
+          </meter>
+        </div>
+      </div>
     );
   }
 }

@@ -4,10 +4,8 @@
   padding-bottom: 2.5rem;
   
   .video-header {
-    display: flex;
-    
     border-bottom: 1px solid rgb(229, 229, 229);
-    padding-bottom: (20 / 16 * 1rem);
+    padding-bottom: 1rem;
     line-height: 1;
     
     h1, h4 {
@@ -21,9 +19,13 @@
       font-size: (18 / 16 * 1rem);
     }
 
-    h4 {
-      font-size: 1rem;
-      color: rgb(96, 96, 96);
+    .video-subheader {
+      display: flex;
+
+      h4 {
+        font-size: 1rem;
+        color: rgb(96, 96, 96);
+      }
     }
   }
 

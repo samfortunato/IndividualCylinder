@@ -22,17 +22,18 @@ class VideoInfo extends React.Component {
     return (
       <article className="video-info">
         <header className="video-header">
-          <div className="video-title">
-            <h1>{video.title}</h1>
+          <h1>{video.title}</h1>
+          
+          <div className="video-subheader">
             <h4>{(
               video.views === 1 ? `${video.views} view` : `${video.views} views`
             )}</h4>
-          </div>
 
-          <VideoActionsInterface
-            likes={video.likes}
-            dislikes={video.dislikes}
-          />
+            <VideoActionsInterface
+              likes={video.likes}
+              dislikes={video.dislikes}
+            />
+          </div>
         </header>
 
         <section className="video-details">
