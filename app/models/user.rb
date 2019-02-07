@@ -27,6 +27,9 @@ class User < ApplicationRecord
     foreign_key: :uploader_id
   has_many :comments
   has_many :likes
+  has_one :channel,
+    class_name: 'Channel',
+    foreign_key: :owner_id
 
   has_one_attached :avatar
 
