@@ -13,6 +13,8 @@ import {
 
 import { RECEIVE_LIKE } from '../actions/likes_actions';
 
+import { RECEIVE_CHANNEL } from '../actions/channels_actions';
+
 const videosReducer = (currentState = {}, action) => {
   Object.freeze(currentState);
 
@@ -98,6 +100,9 @@ const videosReducer = (currentState = {}, action) => {
 
       return nextState;
     }
+
+    case RECEIVE_CHANNEL:
+      return merge({}, currentState, action.videos);
 
     default:
       return currentState;

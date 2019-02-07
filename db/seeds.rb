@@ -13,8 +13,6 @@ demo_user = User.create!(
   password: '12345678'
 )
 
-# comment1 = Comment.create!(
-#   user_id: 42,
-#   video_id: 50,
-#   body: 'sup dog yo bro mang dude'
-# )
+demo_user_channel = Channel.create!(
+  owner_id: demo_user.id
+)

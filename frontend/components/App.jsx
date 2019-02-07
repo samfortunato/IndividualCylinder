@@ -14,15 +14,20 @@ import VideoWatchPageContainer from './videos/video_show/video_watch_page_contai
 import VideoUploadPage from './videos/video_upload/video_upload_page';
 import VideoEditPageContainer from './videos/video_edit/video_edit_page_container';
 
+import Channel from './channels/channel';
+
 export default () => {
   return (
     <>
       <Route exact path="/" component={VideosIndexContainer} />
       <LoggedInAuthRoute path="/signup" component={SignUpFormContainer} />
       <LoggedInAuthRoute path="/signin" component={SignInFormContainer} />
+      
       <Route path="/watch/:id" component={VideoWatchPageContainer} />
       <LogInAuthRoute path="/upload" component={VideoUploadPage} />
       <LogInAuthRoute path="/video/:id/edit" component={VideoEditPageContainer} />
+
+      <Route path="/channels/:id" component={Channel} />
     </>
   );
 };

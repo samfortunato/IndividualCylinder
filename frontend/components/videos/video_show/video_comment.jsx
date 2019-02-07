@@ -150,7 +150,7 @@ class VideoComment extends React.Component {
             <>
               <section className="comment-details">
                 <span className="user-username">{fullName}</span>
-                <span className="comment-post-date">{comment.created_at} ago</span>
+                <span className="comment-post-date">{comment.created_at}</span>
                 <p className="comment-body">{comment.body}</p>
 
                 <button

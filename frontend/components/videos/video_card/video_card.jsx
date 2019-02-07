@@ -34,7 +34,7 @@ class VideoCard extends React.Component {
           <span className="view-count">{(
             views === 1 ? `${views} view` : `${views} views`
           )}</span>
-          <span className="upload-date">{`${upload_date} ago`}</span>
+          <span className="upload-date">{upload_date}</span>
         </section>
       </article>
     );
