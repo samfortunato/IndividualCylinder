@@ -17,6 +17,8 @@ json.channel do
       json.total_views 0
       json.video_ids []
     end
+
+    json.join_date @channel.created_at.strftime('%B %-d, %Y')
   end
 end
 

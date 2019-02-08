@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { fetchChannel } from '../../actions/channels_actions';
-import VideoCard from '../videos/video_card/video_card';
+import NavHeader from '../header/nav_header';
+import ChannelBanner from './channel_banner';
+import ChannelVideosTab from './channel_videos_tab';
+import ChannelAboutTab from './channel_about_tab';
 
 class Channel extends React.Component {
   constructor(props) {
@@ -15,25 +18,36 @@ class Channel extends React.Component {
   }
 
   render() {
-    const { channel, owner } = this.props;
-    const videoCards = this.props.videos.map((video) => {
-      return (
-        <VideoCard
-          key={video.id}
-          video={video}
-          uploader={owner}
-        />
-      )
-    });
+    const currentTabURL = this.props.location.pathname;
+    const channelId = this.props.match.params.id;
+    const { channel, owner, videos } = this.props;
+
+    let currentTab = null;
+    
+    switch (currentTabURL) {
+      case `/channels/${channelId}/videos`:
+        currentTab = <ChannelVideosTab videos={videos} owner={owner} />;
+        break;
+      case `/channels/${channelId}/about`:
+        currentTab = <ChannelAboutTab channel={channel} owner={owner} />;
+        break;
+      default:
+        currentTab = <ChannelVideosTab videos={videos} owner={owner} />;
+    }
     
     return (
-      <main id="user-channel">
-        <img src={channel.banner_image_url} alt=""/>
+      <>
+        <NavHeader />
+      
+        <ChannelBanner
+          channel={channel}
+          owner={owner}
+        />
 
-        <img src={owner.avatar_url} alt=""/>
-        <h1>{`${owner.first_name} ${owner.last_name}`}</h1>
-        {videoCards}
-      </main>
+        <main id="channel-content">
+          {currentTab}
+        </main>
+      </>
     );
   }
 }
