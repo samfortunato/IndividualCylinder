@@ -18,4 +18,14 @@ class Channel < ApplicationRecord
     through: :owner
 
   has_one_attached :banner_image
+
+  private
+
+  def attach_default_banner
+    self.banner_image.attach(
+      io: File.open(Rails.root.join('app', 'assets', 'images', 'default-channel-banner.jpg')),
+      filename: 'default-channel-banner.jpg',
+      content_type: 'image/jpeg'
+    )
+  end
 end

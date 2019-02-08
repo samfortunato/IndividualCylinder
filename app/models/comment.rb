@@ -16,8 +16,11 @@ class Comment < ApplicationRecord
     presence: true
 
   belongs_to :user
+  
   belongs_to :video
+  
   has_many :comments
+  
   has_many :likes,
     as: :likable
 end

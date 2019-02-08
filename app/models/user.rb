@@ -16,20 +16,29 @@ class User < ApplicationRecord
   
   validates :first_name, :last_name, :email, :password_digest,
     presence: true
+    
   validates :email,
     uniqueness: true
+    
   validates :password,
     length: { minimum: 8 },
     allow_nil: true
 
   has_many :videos,
     class_name: 'Video',
-    foreign_key: :uploader_id
-  has_many :comments
-  has_many :likes
+    foreign_key: :uploader_id,
+    dependent: :destroy
+    
+  has_many :comments,
+    dependent: :destroy
+    
+  has_many :likes,
+    dependent: :destroy
+    
   has_one :channel,
     class_name: 'Channel',
-    foreign_key: :owner_id
+    foreign_key: :owner_id,
+    dependent: :destroy
 
   has_one_attached :avatar
 
