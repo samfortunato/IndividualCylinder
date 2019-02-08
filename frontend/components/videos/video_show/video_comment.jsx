@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import {
@@ -118,11 +119,13 @@ class VideoComment extends React.Component {
 
     return (
       <li key={this.props.key} className="comment">
-        <img
-          className="user-avatar"
-          src={user.avatar_url}
-          alt={`${fullName}'s avatar`}
-        />
+        <Link to={`/channels/${user.channel_id}`}>
+          <img
+            className="user-avatar"
+            src={user.avatar_url}
+            alt={`${fullName}'s avatar`}
+          />
+        </Link>
 
         {(
           (this.state.editing) ? (
@@ -149,7 +152,7 @@ class VideoComment extends React.Component {
           ) : (
             <>
               <section className="comment-details">
-                <span className="user-username">{fullName}</span>
+                <Link to={`/channels/${user.channel_id}`} className="user-username">{fullName}</Link>
                 <span className="comment-post-date">{comment.created_at}</span>
                 <p className="comment-body">{comment.body}</p>
 

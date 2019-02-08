@@ -30,7 +30,9 @@ class VideoCard extends React.Component {
         </header>
 
         <section className="video-card-details">
-          <span className="uploader-name">{`${uploader.first_name} ${uploader.last_name}`}</span>
+          <Link className="uploader-name" to={`/channels/${uploader.channel_id}`}>
+            {`${uploader.first_name} ${uploader.last_name}`}
+          </Link>
           <span className="view-count">{(
             views === 1 ? `${views} view` : `${views} views`
           )}</span>

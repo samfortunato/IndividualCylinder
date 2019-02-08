@@ -44,9 +44,15 @@
     .upload-info {
       flex-grow: 2;
       
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+      
       h2 {
         margin: 0;
         font-size: $base-font-size-smaller;
+        font-weight: 500;
       }
 
       h3 {

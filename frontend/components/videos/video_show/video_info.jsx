@@ -37,14 +37,19 @@ class VideoInfo extends React.Component {
         </header>
 
         <section className="video-details">
-          <img
-            className="uploader-profile-picture"
-            src={uploader.avatar_url || ''}
-            alt="User's profile picture"
-          />
+          <Link to={`/channels/${uploader.channel_id}`}>
+            <img
+              className="uploader-profile-picture"
+              src={uploader.avatar_url || ''}
+              alt="User's profile picture"
+            />
+          </Link>
 
           <section className="upload-info">
-            <h2>{`${uploader.first_name} ${uploader.last_name}`}</h2>
+            <Link to={`/channels/${uploader.channel_id}`}>
+              <h2>{`${uploader.first_name} ${uploader.last_name}`}</h2>
+            </Link>
+
             <h3>{`Published on ${video.upload_date}`}</h3>
           </section>
 

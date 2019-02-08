@@ -35,13 +35,19 @@ a.sign-in-button {
   }
 
   .user-actions-menu-header {
-    display: flex;
     box-sizing: border-box;
-    padding: 1rem;
     background-color: rgb(238, 238, 238);
 
     font-weight: 400;
 
+    #user-actions-menu-header-channel-link {
+      display: flex;
+      width: 100%;
+      padding: 1rem;
+
+      color: #000;
+    }
+    
     .user-profile-picture {
       width: 40px;
       height: 40px;

@@ -67,16 +67,18 @@ class UserActionsMenu extends React.Component {
 
           <div className={userActionsMenuClasses}>
             <header className="user-actions-menu-header">
-              <img
-                className="user-profile-picture"
-                src={currentUser.avatar_url}
-                alt={`${currentUser.first_name}'s profile picture`}
-              />
+              <Link id="user-actions-menu-header-channel-link" to={`/channels/${currentUser.channel_id}`}>
+                <img
+                  className="user-profile-picture"
+                  src={currentUser.avatar_url}
+                  alt={`${currentUser.first_name}'s profile picture`}
+                />
 
-              <ul className="user-details">
-                <li><h2>{`${currentUser.first_name} ${currentUser.last_name}`}</h2></li>
-                <li><h3>{currentUser.email}</h3></li>
-              </ul>
+                <ul className="user-details">
+                  <li><h2>{`${currentUser.first_name} ${currentUser.last_name}`}</h2></li>
+                  <li><h3>{currentUser.email}</h3></li>
+                </ul>
+              </Link>
             </header>
 
             <nav>

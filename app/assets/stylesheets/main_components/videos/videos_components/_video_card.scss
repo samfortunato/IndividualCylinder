@@ -42,10 +42,16 @@
 
   .video-card-details {
     font-size: 13px;
-    color: rgba(17, 17, 17, .8);
+    color: rgba(17, 17, 17, .6);
 
     .uploader-name {
       display: block;
+      text-decoration: none;
+      color: rgba(17, 17, 17, .6);
+
+      &:hover {
+        color: rgba(17, 17, 17, .8);
+      }
     }
 
     .view-count::after {
