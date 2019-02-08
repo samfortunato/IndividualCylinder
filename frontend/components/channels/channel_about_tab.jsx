@@ -18,8 +18,11 @@ class ChannelAboutTab extends React.Component {
 
           <section className="channel-about-section">
             <h2>Details</h2>
-            <span>Email:</span>
-            <span>{owner.email}</span>
+
+            <div className="channel-detail-group">
+              <span className="channel-detail-type">Email:</span>
+              <a href={`mailto:${owner.email}`}>{owner.email}</a>
+            </div>
           </section>
         </article>
 

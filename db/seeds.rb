@@ -16,3 +16,7 @@ demo_user = User.create!(
 demo_user_channel = Channel.create!(
   owner_id: demo_user.id
 )
+
+demo_user_channel.update_attributes(
+  description: 'Welcome to IndividualCylinder -- my YouTube Clone!'
+)
