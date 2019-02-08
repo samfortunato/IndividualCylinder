@@ -1,0 +1,33 @@
+#channel-main-details {
+  margin-right: 6rem;
+}
+
+.channel-about-section {
+  width: 31rem;
+  border-bottom: 1px solid rgb(229, 229, 229);
+  padding-bottom: 2rem;
+
+  p {
+    margin: 0;
+  }
+}
+
+#channel-other-details {
+  width: 16rem;
+  
+  h2 {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgb(229, 229, 229);
+    padding-bottom: 1rem;
+  }
+
+  .other-channel-metadata {
+    display: block;
+    border-bottom: 1px solid rgb(229, 229, 229);
+    padding: 1rem 0;
+  }
+}
+
+#channel-featured-channels {
+  width: 16rem;
+}

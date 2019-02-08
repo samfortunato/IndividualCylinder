@@ -1,0 +1,23 @@
+h2 {
+  margin: 1.5rem 0;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+#channel-content {
+  display: flex;
+  padding: 1rem 4rem 0;
+
+  font-size: 14px;
+}
+
+#subscribe-button {
+  padding: 10px 1rem;
+  border: 0;
+  
+  background-color: rgb(252, 0, 5);
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  text-transform: uppercase;
+}

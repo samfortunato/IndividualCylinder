@@ -1,7 +1,7 @@
 json.channel do
   json.set! @channel.id do
     json.extract! @channel, :id, :owner_id, :description
-    json.banner_image_url ''
+    json.banner_image_url url_for(@channel.banner_image)
     
     if @channel.videos
       video_view_count = 0
