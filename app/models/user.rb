@@ -72,6 +72,10 @@ class User < ApplicationRecord
     self.save!
   end
 
+  def channel_id
+    self.channel.id
+  end
+
   private
   
   def ensure_session_token

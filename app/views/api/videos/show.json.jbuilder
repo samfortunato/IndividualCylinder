@@ -26,14 +26,14 @@ json.users do
   unless @video.comments.empty?
     @video.comments.each do |comment|
       json.set! comment.user.id do
-        json.extract! comment.user, :id, :first_name, :last_name
+        json.extract! comment.user, :id, :first_name, :last_name, :channel_id
         json.avatar_url url_for(comment.user.avatar)
       end
     end
   end
 
   json.set! @uploader.id do
-    json.extract! @uploader, :id, :first_name, :last_name
+    json.extract! @uploader, :id, :first_name, :last_name, :channel_id
     json.avatar_url url_for(@uploader.avatar)
   end
 end
