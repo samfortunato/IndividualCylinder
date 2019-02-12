@@ -19,14 +19,15 @@
       }
 
       h1 {
-        margin: 0 0 0 1.5rem;
+        margin: 0 auto 0 1.5rem;
         
         font-size: 1.5rem;
         font-weight: 400;
       }
 
-      #subscribe-button {
-        margin-left: auto;
+      .customize-channel-button {
+        margin-right: 1.5rem;
+        background-color: rgb(14, 88, 212);
       }
     }
 

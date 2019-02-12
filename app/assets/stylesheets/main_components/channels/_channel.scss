@@ -11,13 +11,17 @@ h2 {
   font-size: 14px;
 }
 
-#subscribe-button {
+.channel-button {
   padding: 10px 1rem;
   border: 0;
+  border-radius: 2px;
   
   background-color: rgb(252, 0, 5);
   font-size: 14px;
   font-weight: 500;
   color: #fff;
   text-transform: uppercase;
+  text-decoration: none;
+
+  cursor: pointer;
 }

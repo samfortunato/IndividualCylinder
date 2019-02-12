@@ -8,7 +8,29 @@ class ChannelBanner extends React.Component {
 
   render() {
     const channelId = this.props.match.params.id;
-    const { channel, owner } = this.props;
+    const { channel, owner, currentUserId } = this.props;
+
+    let channelActionButton = null;
+
+    if (currentUserId === owner.id) {
+      channelActionButton = (
+        <Link
+          className="channel-button customize-channel-button"
+          to={`/channel/${channelId}/edit`}
+        >
+          Customize Channel
+        </Link>
+      );
+    } else {
+      channelActionButton = (
+        <button
+          className="channel-button subscribe-button"
+          type="button"
+        >
+          Subscribe
+        </button>
+      );
+    }
     
     return (
       <header id="channel-header">
@@ -23,12 +45,7 @@ class ChannelBanner extends React.Component {
             />
             <h1>{`${owner.first_name} ${owner.last_name}`}</h1>
 
-            <button
-              id="subscribe-button"
-              type="button"
-            >
-              Subscribe
-            </button>
+            {channelActionButton}
           </div>
 
           <nav id="channel-navigation">

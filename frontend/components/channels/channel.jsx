@@ -20,7 +20,7 @@ class Channel extends React.Component {
   render() {
     const currentTabURL = this.props.location.pathname;
     const channelId = this.props.match.params.id;
-    const { channel, owner, videos } = this.props;
+    const { channel, owner, videos, currentUserId } = this.props;
 
     let currentTab = null;
     
@@ -42,6 +42,7 @@ class Channel extends React.Component {
         <ChannelBanner
           channel={channel}
           owner={owner}
+          currentUserId={currentUserId}
         />
 
         <main id="channel-content">
@@ -66,13 +67,19 @@ const mapStateToProps = (state, ownProps) => {
       return state.entities.videos[id];
     })
   }
+
+  let currentUserId = null;
+
+  if (state.session.id) {
+    currentUserId = state.session.id;
+  }
   
-  return { channel, owner, videos };
+  return { channel, owner, videos, currentUserId };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchChannel: userId => dispatch(fetchChannel(userId))
+    fetchChannel: channelId => dispatch(fetchChannel(channelId))
   };
 };
 
