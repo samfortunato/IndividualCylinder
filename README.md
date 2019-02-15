@@ -51,9 +51,10 @@ The video player can also be controlled by keyboard shortcuts -- just like real 
 
 ## Possible Future Features
 
-* Comment edit/delete
-* Likes/dislikes on videos/comments
-* Channels/subscriptions
+* Comment edit/delete &#10004;
+* Likes/dislikes on videos/comments &#10004;
+* Channels &#10004;
+* Subscriptions
 * Search & collapsible nav sidebar
 * Playlists
 * Annotations/video cards
