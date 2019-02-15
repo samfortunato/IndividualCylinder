@@ -18,6 +18,8 @@ The site uses Ruby on Rails for the backend, and React/Redux for frontend displa
 * Custom video player with keyboard shortcuts
 * Video view and upload (with custom thumbnails)
 * Commenting
+* Likes
+* Channels
 
 ## Key Features
 
