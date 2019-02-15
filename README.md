@@ -15,7 +15,6 @@ The site uses Ruby on Rails for the backend, and React/Redux for frontend displa
 ## Overview
 
 * User sign up and sign in
-  * Automatic user avatar image generation
 * Custom video player with keyboard shortcuts
 * Video view and upload (with custom thumbnails)
 * Commenting
@@ -58,3 +57,9 @@ The video player can also be controlled by keyboard shortcuts -- just like real 
 * Annotations/video cards
 * Video playback speed, captions, video quality
 * Automatic video thumbnail generation
+
+## Everything Else
+
+YouTube is &copy; Google. I claim no rights to their product &mdash; this is just a fun clone!
+
+DataURI to blob conversion code (for user avatar generation) is thanks to [David Gomez-Urquiza](https://gist.github.com/davoclavo/4424731).
