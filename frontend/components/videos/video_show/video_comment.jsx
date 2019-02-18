@@ -130,9 +130,9 @@ class VideoComment extends React.Component {
         {(
           (this.state.editing) ? (
             <form className="comment-edit-form" onSubmit={this.handleSubmit}>
-              <label htmlFor="body">Comment Body</label>
+              <label htmlFor="comment-body">Comment Body</label>
               <input
-                id="body"
+                id="comment-body"
                 type="text"
                 value={this.state.body}
                 required

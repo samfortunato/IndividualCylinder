@@ -62,6 +62,16 @@ class VideoPlayer extends React.Component {
   }
 
   handleKeyboardShortcuts(e) {
+    const elementsToDisableShortcuts = [
+      document.querySelector('#search-bar'),
+      document.querySelector('input#body'),
+      document.querySelector('input#comment-body')
+    ];
+    
+    if (elementsToDisableShortcuts.includes(document.activeElement)) {
+      return;
+    }
+    
     switch (e.key) {
       case 'k':
         this.handlePlayPause();
