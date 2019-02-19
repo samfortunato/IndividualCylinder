@@ -6,6 +6,31 @@ import VideoActionsInterface from './video_actions_interface';
 class VideoInfo extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleSubscription = this.handleSubscription.bind(this);
+  }
+
+  handleSubscription() {
+    const {
+      currentUserIsSubscribed,
+      uploader,
+      currentUserId,
+      createSubscription,
+      deleteSubscription
+    } = this.props;
+
+    const subscription = {
+      channel_id: uploader.channel_id,
+      user_id: currentUserId
+    };
+
+    if (currentUserIsSubscribed) {
+      deleteSubscription({ subscription });
+    } else if (currentUserId !== null) {
+      createSubscription({ subscription });
+    } else {
+      this.props.history.push('/signin');
+    }
   }
 
   render() {
@@ -62,11 +87,12 @@ class VideoInfo extends React.Component {
           </section>
 
           <Link className={editVideoButtonClasses} to={`/video/${video.id}/edit`}>Edit Video</Link>
-          <button className={subscribeButtonClasses} type="button">
-            {currentUserIsSubscribed ? 'Subscribed' : 'Subscribe'} 
-            <span className="subscriber-count">
-              {uploader.subscriber_amount !== 0 ? uploader.subscriber_amount : ''}
-            </span>
+          <button
+            className={subscribeButtonClasses}
+            type="button"
+            onClick={this.handleSubscription}
+          >
+            {`${(currentUserIsSubscribed ? 'Subscribed' : 'Subscribe')} ${(uploader.subscriber_amount !== 0 ? uploader.subscriber_amount : '')}`}
           </button>
         </section>
 

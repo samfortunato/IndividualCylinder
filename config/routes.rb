@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :show, :update, :destroy]
     resources :likes, only: [:create]
     resources :channels, only: [:show, :update]
-    resources :subscriptions, only: [:create, :destroy]
+    resources :subscriptions, only: [:create]
+    match 'subscriptions/delete',
+      to: 'subscriptions#destroy',
+      via: [:delete]
   end
 end

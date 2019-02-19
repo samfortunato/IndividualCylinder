@@ -1,4 +1,4 @@
-class SubscriptionsController < ApplicationController
+class Api::SubscriptionsController < ApplicationController
   def create
     @subscription = Subscription.new(subscription_params)
 
@@ -11,15 +11,18 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
-    @subscription = Subscription.find(params[:id])
+    @subscription = Subscription.where(
+      channel_id: params[:subscription][:channel_id],
+      user_id: params[:subscription][:user_id]
+    )
 
-    @subscription.destroy
+    @subscription.first.destroy
     render json: @subscription
   end
 
   private
 
   def subscription_params
-    params.require(:subscriptions).permit(:id, :channel_id, :user_id)
+    params.require(:subscription).permit(:channel_id, :user_id)
   end
 end

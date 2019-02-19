@@ -12,8 +12,8 @@ export const createSubscription = (subscription) => (dispatch) => {
     );
 };
 
-export const deleteSubscription = (subscriptionId) => (dispatch) => {
-  return SubscriptionsAPIUtil.deleteSubscription(subscriptionId)
+export const deleteSubscription = (subscription) => (dispatch) => {
+  return SubscriptionsAPIUtil.deleteSubscription(subscription)
     .then(
       subscriptionId => dispatch(removeSubscription(subscriptionId)),
       errors => dispatch(receiveSubscriptionErrors(errors))

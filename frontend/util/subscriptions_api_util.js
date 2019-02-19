@@ -6,9 +6,10 @@ export const createSubscription = (subscription) => {
   });
 };
 
-export const deleteSubscription = (subscriptionId) => {
+export const deleteSubscription = (subscription) => {
   return $.ajax({
-    url: `api/subscriptions/${subscriptionId}`,
-    method: 'DELETE'
+    url: `api/subscriptions/delete`,
+    method: 'DELETE',
+    data: subscription
   });
 };

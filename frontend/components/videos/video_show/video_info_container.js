@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import VideoInfo from './video_info';
+import { createSubscription, deleteSubscription } from '../../../actions/subscriptions_actions';
+import { create } from 'domain';
 
 const mapStateToProps = (state, ownProps) => {
   const _nullVideo = {
@@ -35,6 +37,16 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createSubscription: subscription => dispatch(createSubscription(subscription)),
+    deleteSubscription: subscription => dispatch(deleteSubscription(subscription))
+  };
+};
+
 export default withRouter(
-  connect(mapStateToProps)(VideoInfo)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(VideoInfo)
 );
