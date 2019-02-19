@@ -86,7 +86,17 @@
     
     .subscribe-button {
       margin-left: (4 / 16 * 1rem);
+      padding-bottom: .6rem;
       background-color: red;
+
+      &.subscribed {
+        background-color: rgb(238, 238, 238);
+        color: rgba(17, 17, 17, 0.6);
+      }
+
+      & .subscriber-count {
+        margin-left: .5rem;
+      }
     }
   }
 

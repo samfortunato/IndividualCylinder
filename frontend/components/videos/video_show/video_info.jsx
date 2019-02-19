@@ -9,15 +9,23 @@ class VideoInfo extends React.Component {
   }
 
   render() {
-    const { video, uploader, currentUserId } = this.props;
+    const {
+      video, uploader, currentUserId, currentUserIsSubscribed
+    } = this.props;
 
     const editVideoButtonClasses = (
       uploader.id === currentUserId ? 'video-info-button edit-video-button' : 'video-info-button edit-video-button hidden'
     );
     
-    const subscribeButtonClasses = (
-      uploader.id === currentUserId ? 'video-info-button subscribe-button hidden' : 'video-info-button subscribe-button'
-    );
+    let subscribeButtonClasses;
+
+    if (uploader.id === currentUserId) {
+      subscribeButtonClasses = 'video-info-button subscribe-button hidden';
+    } else if (currentUserIsSubscribed) {
+      subscribeButtonClasses = 'video-info-button subscribe-button subscribed';
+    } else {
+      subscribeButtonClasses = 'video-info-button subscribe-button';
+    }
     
     return (
       <article className="video-info">
@@ -54,7 +62,12 @@ class VideoInfo extends React.Component {
           </section>
 
           <Link className={editVideoButtonClasses} to={`/video/${video.id}/edit`}>Edit Video</Link>
-          <button className={subscribeButtonClasses} type="button">Subscribe</button>
+          <button className={subscribeButtonClasses} type="button">
+            {currentUserIsSubscribed ? 'Subscribed' : 'Subscribe'} 
+            <span className="subscriber-count">
+              {uploader.subscriber_amount !== 0 ? uploader.subscriber_amount : ''}
+            </span>
+          </button>
         </section>
 
         <p className="video-description">{video.description}</p>
