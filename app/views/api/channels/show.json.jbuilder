@@ -19,6 +19,12 @@ json.channel do
     end
 
     json.join_date @channel.created_at.strftime('%B %-d, %Y')
+
+    if current_user
+      json.current_user_is_subscribed current_user.subscribed_channel_ids.include?(@channel.id)
+    else
+      json.current_user_is_subscribed false
+    end
   end
 end
 

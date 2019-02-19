@@ -35,6 +35,12 @@ json.users do
   json.set! @uploader.id do
     json.extract! @uploader, :id, :first_name, :last_name, :channel_id
     json.avatar_url url_for(@uploader.avatar)
+
+    if current_user
+      json.current_user_is_subscribed current_user.subscribed_channel_ids.include?(@uploader.channel_id)
+    else
+      json.current_user_is_subscribed false
+    end
   end
 end
 
