@@ -26,10 +26,18 @@ const mapStateToProps = (state, ownProps) => {
   const videoId = ownProps.match.params.id;
   const video = state.entities.videos[videoId] || _nullVideo;
   const uploader = state.entities.users[video.uploader_id] || _nullUploader;
-  const currentUserIsSubscribed = uploader.current_user_is_subscribed;
+  const currentUserId = state.session.id;
+
+  let currentUserIsSubscribed;
+
+  if (currentUserId !== null) {
+    currentUserIsSubscribed = uploader.current_user_is_subscribed;
+  } else {
+    currentUserIsSubscribed = false;
+  }
 
   return {
-    currentUserId: state.session.id,
+    currentUserId,
     video,
     uploader,
     currentUserIsSubscribed

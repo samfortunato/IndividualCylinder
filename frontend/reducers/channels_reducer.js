@@ -21,8 +21,10 @@ const channelsReducer = (currentState = {}, action) => {
       let nextState = merge({}, currentState);
       const { channel_id: channelId } = action.subscription;
       
-      nextState[channelId].current_user_is_subscribed = true;
-      nextState[channelId].subscriber_amount++;
+      if (nextState[channelId]) {
+        nextState[channelId].current_user_is_subscribed = true;
+        nextState[channelId].subscriber_amount++;
+      }
       
       return nextState;
     }
@@ -31,8 +33,10 @@ const channelsReducer = (currentState = {}, action) => {
       let nextState = merge({}, currentState);
       const { channel_id: channelId } = action.subscription;
 
-      nextState[channelId].current_user_is_subscribed = false;
-      nextState[channelId].subscriber_amount--;
+      if (nextState[channelId]) {
+        nextState[channelId].current_user_is_subscribed = false;
+        nextState[channelId].subscriber_amount--;
+      }
 
       return nextState;
     }

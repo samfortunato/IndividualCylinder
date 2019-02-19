@@ -71,7 +71,9 @@ class ChannelBanner extends React.Component {
           type="button"
           onClick={this.handleSubscription}
         >
-          Subscribe
+          Subscribe {(
+            channel.subscriber_amount === 0 ? '' : channel.subscriber_amount
+          )}
         </button>
       );
     }
