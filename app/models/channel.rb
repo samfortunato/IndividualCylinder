@@ -19,6 +19,12 @@ class Channel < ApplicationRecord
   has_many :videos,
     through: :owner
 
+  has_many :subscriptions
+
+  has_many :subscribers,
+    through: :subscriptions,
+    source: :user
+
   has_one_attached :banner_image
 
   private

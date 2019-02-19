@@ -40,6 +40,12 @@ class User < ApplicationRecord
     foreign_key: :owner_id,
     dependent: :destroy
 
+  has_many :subscriptions
+
+  has_many :subscribed_channels,
+    through: :subscriptions,
+    source: :channel
+
   has_one_attached :avatar
 
   attr_reader :password
