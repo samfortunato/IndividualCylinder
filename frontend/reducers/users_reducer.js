@@ -10,6 +10,8 @@ import {
 
 import { RECEIVE_CHANNEL } from '../actions/channels_actions';
 
+import { RECEIVE_SUBSCRIPTION, REMOVE_SUBSCRIPTION } from '../actions/subscriptions_actions';
+
 const usersReducer = (currentState = {}, action) => {
   Object.freeze(currentState);
 
@@ -42,6 +44,26 @@ const usersReducer = (currentState = {}, action) => {
 
     case RECEIVE_CHANNEL:
       return merge({}, currentState, action.user);
+      
+    case RECEIVE_SUBSCRIPTION: {
+      let newState = merge({}, currentState);
+      const uploaderId = action.subscription.channel_owner_id;
+      
+      newState[uploaderId].current_user_is_subscribed = true;
+      newState[uploaderId].subscriber_amount++;
+
+      return newState;
+    }
+
+    case REMOVE_SUBSCRIPTION: {
+      let newState = merge({}, currentState);
+      const uploaderId = action.subscription.channel_owner_id;
+
+      newState[uploaderId].current_user_is_subscribed = false;
+      newState[uploaderId].subscriber_amount--;
+
+      return newState;
+    }
       
     default:
       return currentState;

@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 
 import VideoInfo from './video_info';
 import { createSubscription, deleteSubscription } from '../../../actions/subscriptions_actions';
-import { create } from 'domain';
 
 const mapStateToProps = (state, ownProps) => {
   const _nullVideo = {

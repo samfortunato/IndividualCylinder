@@ -3,7 +3,10 @@ class Api::SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
 
     if @subscription.save
-      render json: @subscription
+      render json: {
+        channel_id: @subscription.channel_id,
+        channel_owner_id: @subscription.channel.owner_id
+      }
     else
       render json: @subscription.errors.full_messages,
         status: 422
@@ -14,10 +17,13 @@ class Api::SubscriptionsController < ApplicationController
     @subscription = Subscription.where(
       channel_id: params[:subscription][:channel_id],
       user_id: params[:subscription][:user_id]
-    )
+    ).first
 
-    @subscription.first.destroy
-    render json: @subscription
+    @subscription.destroy
+    render json: {
+      channel_id: @subscription.channel_id,
+      channel_owner_id: @subscription.channel.owner_id
+    }
   end
 
   private

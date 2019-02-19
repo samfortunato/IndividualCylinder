@@ -92,7 +92,11 @@ class VideoInfo extends React.Component {
             type="button"
             onClick={this.handleSubscription}
           >
-            {`${(currentUserIsSubscribed ? 'Subscribed' : 'Subscribe')} ${(uploader.subscriber_amount !== 0 ? uploader.subscriber_amount : '')}`}
+            {`${
+              (currentUserIsSubscribed ? 'Subscribed' : 'Subscribe')
+            } ${
+              (uploader.subscriber_amount !== 0 ? uploader.subscriber_amount : '')
+            }`}
           </button>
         </section>
 

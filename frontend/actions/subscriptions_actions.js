@@ -27,10 +27,10 @@ export const receiveSubscription = (subscription) => {
   };
 };
 
-export const removeSubscription = (subscriptionId) => {
+export const removeSubscription = (subscription) => {
   return {
     type: REMOVE_SUBSCRIPTION,
-    subscriptionId
+    subscription
   };
 };
 
