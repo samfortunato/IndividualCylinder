@@ -47,12 +47,14 @@ class ChannelBanner extends React.Component {
 
     if (currentUserId === owner.id) {
       channelActionButton = (
-        <Link
-          className="channel-button customize-channel-button"
-          to={`/channel/${channelId}/edit`}
-        >
-          Customize Channel
-        </Link>
+        // <Link
+        //   className="channel-button customize-channel-button"
+        //   to={`/channel/${channelId}/edit`}
+        // >
+        //   Customize Channel
+        // </Link>
+        
+        null
       );
     } else if (currentUserIsSubscribed) {
       channelActionButton = (
