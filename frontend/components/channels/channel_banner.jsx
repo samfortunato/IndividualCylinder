@@ -1,14 +1,47 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+
+import { createSubscription, deleteSubscription } from '../../actions/subscriptions_actions';
 
 class ChannelBanner extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleSubscription = this.handleSubscription.bind(this);
+  }
+
+  handleSubscription() {
+    const {
+      channel,
+      currentUserId,
+      currentUserIsSubscribed,
+      createSubscription,
+      deleteSubscription
+    } = this.props;
+
+    const subscription = {
+      channel_id: channel.id,
+      user_id: currentUserId
+    };
+    
+    if (currentUserIsSubscribed) {
+      deleteSubscription(subscription);
+    } else if (currentUserId !== null) {
+      createSubscription(subscription);
+    } else {
+      this.props.history.push('/signin');
+    }
   }
 
   render() {
     const channelId = this.props.match.params.id;
-    const { channel, owner, currentUserId } = this.props;
+    const {
+      channel,
+      owner,
+      currentUserId,
+      currentUserIsSubscribed
+    } = this.props;
 
     let channelActionButton = null;
 
@@ -21,11 +54,22 @@ class ChannelBanner extends React.Component {
           Customize Channel
         </Link>
       );
+    } else if (currentUserIsSubscribed) {
+      channelActionButton = (
+        <button
+          className="channel-button subscribe-button subscribed"
+          type="button"
+          onClick={this.handleSubscription}
+        >
+          Subscribed {channel.subscriber_amount}
+        </button>
+      )
     } else {
       channelActionButton = (
         <button
           className="channel-button subscribe-button"
           type="button"
+          onClick={this.handleSubscription}
         >
           Subscribe
         </button>
@@ -67,4 +111,16 @@ class ChannelBanner extends React.Component {
   }
 }
 
-export default withRouter(ChannelBanner);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createSubscription: subscription => dispatch(createSubscription(subscription)),
+    deleteSubscription: subscription => dispatch(deleteSubscription(subscription))
+  };
+};
+
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(ChannelBanner)
+);

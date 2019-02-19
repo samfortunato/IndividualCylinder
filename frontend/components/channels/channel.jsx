@@ -20,7 +20,13 @@ class Channel extends React.Component {
   render() {
     const currentTabURL = this.props.location.pathname;
     const channelId = this.props.match.params.id;
-    const { channel, owner, videos, currentUserId } = this.props;
+    const {
+      channel,
+      owner,
+      videos,
+      currentUserId,
+      currentUserIsSubscribed
+    } = this.props;
 
     let currentTab = null;
     
@@ -43,6 +49,7 @@ class Channel extends React.Component {
           channel={channel}
           owner={owner}
           currentUserId={currentUserId}
+          currentUserIsSubscribed={currentUserIsSubscribed}
         />
 
         <main id="channel-content">
@@ -57,7 +64,8 @@ const mapStateToProps = (state, ownProps) => {
   const channelId = ownProps.match.params.id;
   let channel = {},
       owner = {},
-      videos = [];
+      videos = [],
+      currentUserIsSubscribed = false;
 
   if (state.entities.channels[channelId]) {
     channel = state.entities.channels[channelId];
@@ -65,16 +73,17 @@ const mapStateToProps = (state, ownProps) => {
 
     videos = channel.video_ids.map((id) => {
       return state.entities.videos[id];
-    })
-  }
-
-  let currentUserId = null;
-
-  if (state.session.id) {
-    currentUserId = state.session.id;
+    });
   }
   
-  return { channel, owner, videos, currentUserId };
+  let currentUserId = null;
+  
+  if (state.session.id) {
+    currentUserId = state.session.id;
+    currentUserIsSubscribed = channel.current_user_is_subscribed;
+  }
+  
+  return { channel, owner, videos, currentUserId, currentUserIsSubscribed };
 };
 
 const mapDispatchToProps = (dispatch) => {

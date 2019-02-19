@@ -25,9 +25,9 @@ class VideoInfo extends React.Component {
     };
 
     if (currentUserIsSubscribed) {
-      deleteSubscription({ subscription });
+      deleteSubscription(subscription);
     } else if (currentUserId !== null) {
-      createSubscription({ subscription });
+      createSubscription(subscription);
     } else {
       this.props.history.push('/signin');
     }
