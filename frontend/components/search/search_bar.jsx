@@ -1,27 +1,55 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { searchVideos } from '../../actions/search_actions';
 
 class SearchBar extends React.Component {
   constructor() {
     super();
 
+    this.state = {
+      searchTerms: ''
+    };
+
+    this.handleSearchTerms = this.handleSearchTerms.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSearchTerms(e) {
+    this.setState({ searchTerms: e.target.value });
   }
   
   handleSubmit(e) {
     e.preventDefault();
+
+    this.props.searchVideos({ search_terms: this.state.searchTerms });
   }
   
   render() {
     return (
-      <>
-        <input id="search-bar" type="search" />
+      <form onSubmit={this.handleSubmit}>
+        <input
+          id="search-bar"
+          type="search"
+          value={this.state.searchTerms}
+          onChange={this.handleSearchTerms}
+        />
         
-        <button id="search-button" onSubmit={this.handleSubmit}>
+        <button id="search-button">
           <i className="fas fa-search"></i>
         </button>
-      </>
+      </form>
     );
   }
 }
 
-export default SearchBar;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchVideos: (searchTerms) => dispatch(searchVideos(searchTerms))
+  }
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SearchBar);

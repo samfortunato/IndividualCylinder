@@ -6,14 +6,10 @@ import {
   REMOVE_VIDEO
 } from '../actions/videos_actions';
 
-import {
-  RECEIVE_COMMENT,
-  REMOVE_COMMENT
-} from '../actions/comments_actions';
-
+import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comments_actions';
 import { RECEIVE_LIKE } from '../actions/likes_actions';
-
 import { RECEIVE_CHANNEL } from '../actions/channels_actions';
+import { RECEIVE_SEARCH_RESULTS } from '../actions/search_actions';
 
 const videosReducer = (currentState = {}, action) => {
   Object.freeze(currentState);
@@ -104,6 +100,9 @@ const videosReducer = (currentState = {}, action) => {
     case RECEIVE_CHANNEL:
       return merge({}, currentState, action.videos);
 
+    case RECEIVE_SEARCH_RESULTS:
+      return merge({}, currentState, action.results.videos);
+      
     default:
       return currentState;
   }

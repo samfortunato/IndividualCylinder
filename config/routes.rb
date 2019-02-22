@@ -15,5 +15,7 @@ Rails.application.routes.draw do
     match 'subscriptions/delete',
       to: 'subscriptions#destroy',
       via: [:delete]
+
+    resources :search, only: [:create]
   end
 end
