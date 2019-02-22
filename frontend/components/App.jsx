@@ -6,10 +6,11 @@ import {
   LogInAuthRoute
 } from '../util/route_util';
 
-import VideosIndexContainer from './videos/videos_index/videos_index_container';
 import SignUpFormContainer from './user_forms/sign_up_form_container';
 import SignInFormContainer from './user_forms/sign_in_form_container';
+import SearchResultsPage from './search/search_results_page';
 
+import VideosIndexContainer from './videos/videos_index/videos_index_container';
 import VideoWatchPageContainer from './videos/video_show/video_watch_page_container';
 import VideoUploadPage from './videos/video_upload/video_upload_page';
 import VideoEditPageContainer from './videos/video_edit/video_edit_page_container';
@@ -22,6 +23,8 @@ export default () => {
       <Route exact path="/" component={VideosIndexContainer} />
       <LoggedInAuthRoute path="/signup" component={SignUpFormContainer} />
       <LoggedInAuthRoute path="/signin" component={SignInFormContainer} />
+
+      <Route path="/results" component={SearchResultsPage} />
       
       <Route path="/watch/:id" component={VideoWatchPageContainer} />
       <LogInAuthRoute path="/upload" component={VideoUploadPage} />

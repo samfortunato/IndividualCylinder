@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { searchVideos } from '../../actions/search_actions';
@@ -22,7 +23,8 @@ class SearchBar extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    this.props.searchVideos({ search_terms: this.state.searchTerms });
+    const queryString = `?search_query=${this.state.searchTerms}`;
+    this.props.history.push(`/results${queryString}`);
   }
   
   render() {
@@ -49,7 +51,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(SearchBar);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(SearchBar)
+);
