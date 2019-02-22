@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import SearchBar from '../search/search_bar';
 import UserActionsMenuContainer from './user_actions_menu_container';
 
 class NavHeader extends React.Component {
@@ -18,10 +19,7 @@ class NavHeader extends React.Component {
           </ul>
         </nav>
 
-        <input id="search-bar" type="search"/>
-        <button id="search-button">
-          <i className="fas fa-search"></i>
-        </button>
+        <SearchBar />
 
         <nav className="user-actions">
           <ul>
