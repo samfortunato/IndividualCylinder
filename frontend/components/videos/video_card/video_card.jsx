@@ -15,7 +15,7 @@ class VideoCard extends React.Component {
       views
     } = this.props.video;
 
-    const { uploader } = this.props || _nullUploader;
+    const { uploader } = this.props;
     
     return (
       <article className="video-card">

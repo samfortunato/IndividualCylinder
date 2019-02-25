@@ -1,3 +1,7 @@
+json.search_results do
+  json.video_ids @search_results.map { |video| video.id }
+end
+
 json.videos do
   @search_results.each do |video|
     json.set! video.id do

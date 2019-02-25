@@ -16,7 +16,8 @@ class VideosIndex extends React.Component {
     const _nullUploader = {
       id: '',
       first_name: '',
-      last_name: ''
+      last_name: '',
+      channel_id: null
     };
     
     const { allVideos, uploaders } = this.props;

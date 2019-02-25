@@ -1,8 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-
-import { searchVideos } from '../../actions/search_actions';
 
 class SearchBar extends React.Component {
   constructor() {
@@ -45,15 +42,4 @@ class SearchBar extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    searchVideos: (searchTerms) => dispatch(searchVideos(searchTerms))
-  }
-};
-
-export default withRouter(
-  connect(
-    null,
-    mapDispatchToProps
-  )(SearchBar)
-);
+export default withRouter(SearchBar);
