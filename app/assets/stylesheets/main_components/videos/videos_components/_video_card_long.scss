@@ -1,0 +1,53 @@
+.video-card-long {
+  width: 100%;
+  display: flex;
+  margin-top: 1rem;
+
+  &:first-of-type {
+    margin-top: 1.5rem;
+  }
+
+  .video-thumbnail-frame {
+    line-height: 0;
+    
+    a {
+      line-height: 0;
+    }
+
+    img {
+      width: 246px;
+      margin-right: 1rem;
+    }
+  }
+
+  .result-title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .uploader-name,
+  .view-count,
+  .upload-date,
+  .result-description {
+    font-size: 13px;
+    color: rgb(96, 96, 96);
+  }
+
+  .uploader-name {
+    margin-right: 0.5rem;
+    text-decoration: none;
+
+    &:hover {
+      color: #000;
+    }
+  }
+
+  .view-count::after {
+    content: ' • ';
+  }
+
+  .result-description {
+    margin-top: 0.5rem;
+  }
+}

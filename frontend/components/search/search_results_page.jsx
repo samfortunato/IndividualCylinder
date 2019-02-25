@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import NavHeader from '../header/nav_header';
 import { searchVideos } from '../../actions/search_actions';
-import VideoCard from '../videos/video_card/video_card';
+import VideoCardLong from '../videos/video_card/video_card_long';
 
 class SearchResultsPage extends React.Component {
   constructor() {
@@ -31,7 +31,7 @@ class SearchResultsPage extends React.Component {
     const { matchingVideos, users } = this.props;
     const videoCards = matchingVideos.map((video, id) => {
         return (
-          <VideoCard 
+          <VideoCardLong
             key={id}
             video={video}
             uploader={users[video.uploader_id]}
@@ -43,8 +43,7 @@ class SearchResultsPage extends React.Component {
       <>
         <NavHeader />
 
-        <h1>Search Results</h1>
-        <ul>
+        <ul id="search-results">
           {videoCards}
         </ul>
       </>
