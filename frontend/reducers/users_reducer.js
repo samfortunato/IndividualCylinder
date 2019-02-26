@@ -12,23 +12,17 @@ const usersReducer = (currentState = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_CURRENT_USER: {
-      let newState = merge(
-        {},
-        currentState,
-        { [action.currentUser.id]: action.currentUser }
-      );
-
-      return newState;
+      const currentUserInfo = {
+        [action.currentUser.id]: action.currentUser
+      };
+      
+      return merge({}, currentState, currentUserInfo);
     }
       
     case RECEIVE_USER: {
-      let newState = merge(
-        {},
-        currentState,
-        { [action.user.id]: action.user }
-      );
-
-      return newState;
+      const userInfo = { [action.user.id]: action.user };
+      
+      return merge({}, currentState, userInfo);
     }
 
     case RECEIVE_ALL_VIDEOS:
