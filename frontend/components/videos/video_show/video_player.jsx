@@ -174,6 +174,8 @@ class VideoPlayer extends React.Component {
       if (this.video.muted) this.handleMute();
       
       this.video.volume = e.target.value;
+      
+      if (this.video.volume === 0) this.handleMute();
     });
 
     this.video.addEventListener('loadedmetadata', () => {
