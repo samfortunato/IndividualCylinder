@@ -68,7 +68,7 @@ class Api::VideosController < ApplicationController
     if @video.destroy
       render json: @video.id
     else
-      render json: ['Delete error']
+      render json: ['Encountered an error when trying to delete video.']
     end
   end
 
