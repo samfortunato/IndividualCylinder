@@ -43,7 +43,7 @@ The video player can also be controlled by keyboard shortcuts -- just like real 
 
 **Keyboard Shortcuts**
 
-* `k` - play/pause
+* `k` or `spacebar` - play/pause
 * `m` - mute/unmute
 * `j` - go back 10 seconds
 * `l` - go forward 10 seconds
@@ -54,8 +54,9 @@ The video player can also be controlled by keyboard shortcuts -- just like real 
 * Comment edit/delete &#10004;
 * Likes/dislikes on videos/comments &#10004;
 * Channels &#10004;
-* Subscriptions
-* Search & collapsible nav sidebar
+* Subscriptions &#10004;
+* Search &#10004;
+* Collapsible nav sidebar
 * Playlists
 * Annotations/video cards
 * Video playback speed, captions, video quality
