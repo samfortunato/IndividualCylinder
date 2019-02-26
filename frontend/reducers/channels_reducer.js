@@ -19,11 +19,11 @@ const channelsReducer = (currentState = {}, action) => {
 
     case RECEIVE_SUBSCRIPTION: {
       let nextState = merge({}, currentState);
-      const { channel_id: channelId } = action.subscription;
+      const { channel_id } = action.subscription;
       
-      if (nextState[channelId]) {
-        nextState[channelId].current_user_is_subscribed = true;
-        nextState[channelId].subscriber_amount++;
+      if (nextState[channel_id]) {
+        nextState[channel_id].current_user_is_subscribed = true;
+        nextState[channel_id].subscriber_amount++;
       }
       
       return nextState;
@@ -31,11 +31,11 @@ const channelsReducer = (currentState = {}, action) => {
 
     case REMOVE_SUBSCRIPTION: {
       let nextState = merge({}, currentState);
-      const { channel_id: channelId } = action.subscription;
+      const { channel_id } = action.subscription;
 
-      if (nextState[channelId]) {
-        nextState[channelId].current_user_is_subscribed = false;
-        nextState[channelId].subscriber_amount--;
+      if (nextState[channel_id]) {
+        nextState[channel_id].current_user_is_subscribed = false;
+        nextState[channel_id].subscriber_amount--;
       }
 
       return nextState;

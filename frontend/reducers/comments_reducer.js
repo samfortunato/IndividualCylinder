@@ -1,12 +1,7 @@
 import merge from 'lodash/merge';
 
 import { RECEIVE_VIDEO } from '../actions/videos_actions';
-
-import {
-  RECEIVE_COMMENT,
-  REMOVE_COMMENT
-} from '../actions/comments_actions';
-
+import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comments_actions';
 import { RECEIVE_LIKE } from '../actions/likes_actions';
 
 const commentsReducer = (currentState = {}, action) => {
