@@ -43,11 +43,11 @@ The video player can also be controlled by keyboard shortcuts -- just like real 
 
 **Keyboard Shortcuts**
 
-* `k` or `spacebar` - play/pause
-* `m` - mute/unmute
-* `j` - go back 10 seconds
-* `l` - go forward 10 seconds
-* `f` - fullscreen toggle
+* `K` or `spacebar` - play/pause
+* `M` - mute/unmute
+* `J` - go back 10 seconds
+* `L` - go forward 10 seconds
+* `F` - fullscreen toggle
 
 ## Possible Future Features
 
