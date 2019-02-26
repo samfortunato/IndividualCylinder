@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { toMMSSTimeString } from '../../../util/date_util';
+import { percentageToSeekVideoTo } from '../../../util/video_player_util';
 
 class VideoPlayer extends React.Component {
   constructor(props) {
@@ -141,13 +142,11 @@ class VideoPlayer extends React.Component {
     });
 
     progress.addEventListener('click', function(e) {
-      const position = (e.pageX - this.offsetLeft) / this.offsetWidth;
+      video.currentTime = (
+        (video.duration / 100) * percentageToSeekVideoTo(e.pageX, this)
+      );
 
-      video.currentTime = position * video.duration;
-
-      // if (video.ended) {
-      //   video.play();
-      // }
+      if (video.ended) video.play();
     });
 
     // -- --
@@ -242,11 +241,6 @@ class VideoPlayer extends React.Component {
           poster={video_thumbnail_url}
           preload="metadata"
           autoPlay>
-          
-          {/* <source
-              src={video_url}
-              type="video/mp4"
-            /> */}
 
           Your browser does not support video playback. Upgrade to a browser that supports video playback to view this video.
           </video>
