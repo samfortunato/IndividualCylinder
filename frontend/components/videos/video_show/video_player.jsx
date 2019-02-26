@@ -7,37 +7,60 @@ class VideoPlayer extends React.Component {
   constructor(props) {
     super(props);
 
-    this.initiateVideoInterface = this.initiateVideoInterface.bind(this);
+    this.state = {
+      volumeBeforeMute: 0
+    };
+
+    this.video = null;
+    
+    this.handleMute = this.handleMute.bind(this);
+    this.setUpVideoInterface = this.setUpVideoInterface.bind(this);
     this.handleKeyboardShortcuts = this.handleKeyboardShortcuts.bind(this);
   }
 
   handlePlayPause() {
-    if (video.paused || video.ended) video.play();
-    else video.pause();
+    if (this.video.paused || this.video.ended) this.video.play();
+    else this.video.pause();
   }
 
   handleMute() {
-    const video = document.querySelector('#video');
-    video.muted = !video.muted;
+    this.video.muted = !this.video.muted;
 
-    const muteIcon = document.querySelector('#mute i');
+    const muteButton = document.querySelector('#mute i');
 
-    if (video.muted) {
-      muteIcon.classList.replace('fa-volume-up', 'fa-volume-mute');
+    if (this.video.muted) {
+      this.setState({ volumeBeforeMute: this.video.volume });
+      this.video.volume = 0;
+
+      muteButton.classList.replace('fa-volume-up', 'fa-volume-mute');
     } else {
-      muteIcon.classList.replace('fa-volume-mute', 'fa-volume-up');
+      this.video.volume = this.state.volumeBeforeMute;
+      
+      muteButton.classList.replace('fa-volume-mute', 'fa-volume-up');
     }
   }
 
-  alterVolume(video, action) {
-    const currentVolume = (Math.floor(video.volume * 10) / 10);
-
-    switch (action) {
-      case '+':
-        if (currentVolume < 1) video.volume += 0.1;
+  incrementalSeek(direction) {
+    switch (direction) {
+      case 'forward':
+        if (this.video.currentTime >= 10) {
+          this.video.currentTime -= 10;
+        } else {
+          this.video.currentTime = 0;
+        }
+      
         break;
-      case '-':
-        if (currentVolume > 0) video.volume -= 0.1;
+        
+      case 'backward':
+        if (this.video.currentTime < this.video.duration) {
+          this.video.currentTime += 10;
+        } else {
+          this.video.currentTime = this.video.duration;
+        }
+      
+        break;
+
+      default:
         break;
     }
   }
@@ -63,13 +86,13 @@ class VideoPlayer extends React.Component {
   }
 
   handleKeyboardShortcuts(e) {
-    const elementsToDisableShortcuts = [
+    const disabledShortcutElements = [
       document.querySelector('#search-bar'),
       document.querySelector('input#body'),
       document.querySelector('input#comment-body')
     ];
     
-    if (elementsToDisableShortcuts.includes(document.activeElement)) {
+    if (disabledShortcutElements.includes(document.activeElement)) {
       return;
     }
     
@@ -78,7 +101,7 @@ class VideoPlayer extends React.Component {
         this.handlePlayPause();
         break;
 
-      case '':
+      case ' ':
         this.handlePlayPause();
         break;
 
@@ -87,21 +110,11 @@ class VideoPlayer extends React.Component {
         break;
 
       case 'j':
-        if (video.currentTime >= 10) {
-          video.currentTime -= 10;
-        } else {
-          video.currentTime = 0;
-        }
-
+        this.incrementalSeek('forward');
         break;
 
       case 'l':
-        if (video.currentTime < video.duration) {
-          video.currentTime += 10;
-        } else {
-          video.currentTIme = video.duration;
-        }
-
+        this.incrementalSeek('backward');
         break;
 
       case 'f':
@@ -113,109 +126,91 @@ class VideoPlayer extends React.Component {
     }
   }
 
-  initiateVideoInterface() {
-    const video = document.querySelector('#video');
-
-    // Video controls
-    const progress = document.querySelector('#video-progress');
-    const playPause = document.querySelector('#play-pause');
-    const mute = document.querySelector('#mute');
+  setUpVideoInterface() {
+    const progressBar = document.querySelector('#video-progress');
+    const playPauseButton = document.querySelector('#play-pause');
+    const muteButton = document.querySelector('#mute');
     const volumeSlider = document.querySelector('#volume-slider');
-    const currentVideoTime = document.querySelector('.current-video-time');
-    const videoDuration = document.querySelector('.video-duration');
-    const fullScreen = document.querySelector('#full-screen');
+    const currentVideoTimeText = document.querySelector('.current-video-time');
+    const videoDurationText = document.querySelector('.video-duration');
+    const fullScreenButton = document.querySelector('#full-screen');
 
     // Disable right click on video
-    video.addEventListener('contextmenu', (e) => {
+    this.video.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
 
-    // -- Video player/button functionality
-    // -- -- Progress bar
-
-    video.addEventListener('loadedmetadata', () => {
-      progress.setAttribute('max', video.duration);
+    this.video.addEventListener('loadedmetadata', () => {
+      progressBar.setAttribute('max', this.video.duration);
     });
 
-    video.addEventListener('timeupdate', () => {
-      progress.value = video.currentTime;
+    this.video.addEventListener('timeupdate', () => {
+      progressBar.value = this.video.currentTime;
     });
 
-    progress.addEventListener('click', function(e) {
-      video.currentTime = (
-        (video.duration / 100) * percentageToSeekVideoTo(e.pageX, this)
+    progressBar.addEventListener('click', (e) => {
+      this.video.currentTime = (
+        (this.video.duration / 100) * percentageToSeekVideoTo(e.pageX, e.currentTarget)
       );
 
-      if (video.ended) video.play();
+      if (this.video.ended) this.video.play();
     });
 
-    // -- --
-
-    video.addEventListener('click', () => {
+    this.video.addEventListener('click', () => {
       this.handlePlayPause();
     });
 
-    playPause.addEventListener('click', () => {
+    playPauseButton.addEventListener('click', () => {
       this.handlePlayPause();
     });
 
-    mute.addEventListener('click', this.handleMute);
+    muteButton.addEventListener('click', this.handleMute);
 
-    // -- -- Volume slider
-
-    video.addEventListener('volumechange', () => {
-      volumeSlider.value = video.volume;
+    this.video.addEventListener('volumechange', () => {
+      volumeSlider.value = this.video.volume;
     });
 
     volumeSlider.addEventListener('input', (e) => {
-      video.volume = e.target.value;
+      if (this.video.muted) this.handleMute();
+      
+      this.video.volume = e.target.value;
     });
 
-    // -- --
-
-    // -- -- Display video time and duration
-
-    video.addEventListener('loadedmetadata', () => {
-      videoDuration.textContent = toMMSSTimeString(video.duration);
+    this.video.addEventListener('loadedmetadata', () => {
+      videoDurationText.textContent = toMMSSTimeString(this.video.duration);
     });
 
-    video.addEventListener('timeupdate', () => {
-      currentVideoTime.textContent = toMMSSTimeString(video.currentTime);
+    this.video.addEventListener('timeupdate', () => {
+      currentVideoTimeText.textContent = toMMSSTimeString(this.video.currentTime);
     });
 
-    // -- --
-
-    fullScreen.addEventListener('click', this.handleFullScreen.bind(this));
-
-    video.addEventListener('dblclick', this.handleFullScreen.bind(this));
-
-    // --
-
-    // Keyboard shortcuts
+    fullScreenButton.addEventListener('click', this.handleFullScreen.bind(this));
+    this.video.addEventListener('dblclick', this.handleFullScreen.bind(this));
 
     document.addEventListener('keydown', this.handleKeyboardShortcuts);
   }
 
-  enablePlayPauseIconUpdate() {
-    const video = document.querySelector('#video');
-    const playPauseIcon = document.querySelector('#play-pause i');
+  enableVideoPlayerIconUpdate() {
+    const playPauseButton = document.querySelector('#play-pause i');
 
-    video.addEventListener('play', () => {
-      if (playPauseIcon.classList.contains('fa-play')) {
-        playPauseIcon.classList.replace('fa-play', 'fa-pause');
+    this.video.addEventListener('play', () => {
+      if (playPauseButton.classList.contains('fa-play')) {
+        playPauseButton.classList.replace('fa-play', 'fa-pause');
       }
     });
 
-    video.addEventListener('pause', () => {
-      if (playPauseIcon.classList.contains('fa-pause')) {
-        playPauseIcon.classList.replace('fa-pause', 'fa-play');
+    this.video.addEventListener('pause', () => {
+      if (playPauseButton.classList.contains('fa-pause')) {
+        playPauseButton.classList.replace('fa-pause', 'fa-play');
       }
     });
   }
 
   componentDidMount() {
-    this.initiateVideoInterface();
-    this.enablePlayPauseIconUpdate();
+    this.video = document.querySelector('#video');
+    
+    this.setUpVideoInterface();
+    this.enableVideoPlayerIconUpdate();
   }
 
   componentWillUnmount() {
