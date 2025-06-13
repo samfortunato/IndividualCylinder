@@ -64,3 +64,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Compatibility issues with newer macOS versions and old Ruby versions?
+gem 'nio4r', '~> 2.5'

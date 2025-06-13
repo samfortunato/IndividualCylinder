@@ -33,7 +33,7 @@
     "webpack": "webpack --watch --mode=development"
   },
   "engines": {
-    "node": "10.13.0",
+    "node": "16.x",
     "npm": "6.4.1"
   },
   "repository": {
