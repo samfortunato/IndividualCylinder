@@ -10,8 +10,8 @@
 #
 
 class Channel < ApplicationRecord
-  after_commit :ensure_default_banner
-  
+  after_create_commit :ensure_default_banner
+
   belongs_to :owner,
     class_name: 'User',
     foreign_key: :owner_id

@@ -12,14 +12,14 @@
 
 class User < ApplicationRecord
   before_validation :ensure_session_token
-  after_commit :ensure_profile_picture
-  
+  after_create_commit :ensure_profile_picture
+
   validates :first_name, :last_name, :email, :password_digest,
     presence: true
-    
+
   validates :email,
     uniqueness: true
-    
+
   validates :password,
     length: { minimum: 8 },
     allow_nil: true
@@ -28,13 +28,13 @@ class User < ApplicationRecord
     class_name: 'Video',
     foreign_key: :uploader_id,
     dependent: :destroy
-    
+
   has_many :comments,
     dependent: :destroy
-    
+
   has_many :likes,
     dependent: :destroy
-    
+
   has_one :channel,
     class_name: 'Channel',
     foreign_key: :owner_id,
@@ -65,7 +65,7 @@ class User < ApplicationRecord
     @password = password
     self.password_digest = BCrypt::Password.create(password)
   end
-  
+
   def is_password?(password)
     bcrypt_pass = BCrypt::Password.new(self.password_digest)
     bcrypt_pass.is_password?(password)
@@ -81,7 +81,7 @@ class User < ApplicationRecord
   end
 
   private
-  
+
   def ensure_session_token
     self.session_token ||= User.generate_session_token
   end

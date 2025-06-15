@@ -31,8 +31,12 @@ npm-debug.log
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Meta
+./samples
+./outreach
+
 # Misc.
 .DS_Store
-/.DS_Store
+./.DS_Store
 .DS_Store/
 bug-log.txt
