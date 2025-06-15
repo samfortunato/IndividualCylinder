@@ -12,6 +12,27 @@ IndividualCylinder is a clone of YouTube. This was created as Sam Fortunato's fu
 
 The site uses Ruby on Rails for the backend, and React/Redux for frontend display and state management. Amazon Web Services (AWS) is integrated for video, video thumbnail, and user avatar upload.
 
+## Setup
+
+### macOS
+
+Ruby 2.5.1 has issues on Apple Silicon, it seems? Please run this:
+
+```sh
+export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+rbenv install 2.5.1
+```
+
+then:
+
+```sh
+gem install bundler -v 1.17.3
+```
+
+and you should be good to go. Please contact me if not working otherwise.
+
 ## Overview
 
 * User sign up and sign in
