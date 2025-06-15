@@ -1,18 +1,18 @@
 class Api::VideosController < ApplicationController
   include ActionView::Helpers::DateHelper
-  
+
   def index
     @all_videos = Video.all
     render :index
   end
-  
+
   def show
     @video = Video.find_by(id: params[:id])
 
     if @video
       @video.views += 1
       @video.save
-      
+
       render :show
     else
       render json: ['Video not found'],
@@ -25,7 +25,7 @@ class Api::VideosController < ApplicationController
       video_params[:title],
       video_params[:description]
     ]
-    
+
     if video_info_params.any?(&:empty?) || video_params[:video_file].nil?
       render json: ['All fields must be filled out'],
         status: 422
@@ -53,15 +53,15 @@ class Api::VideosController < ApplicationController
       render json: ['Access denied'],
         status: 401
     end
-    
-    if @video.update_attributes(video_params)
+
+    if @video.update(video_params)
       render :show
     else
       render json: ['Invalid video parameters'],
         status: 422
     end
   end
-  
+
   def destroy
     @video = Video.find_by(id: params[:id])
 

@@ -5,7 +5,7 @@ class Api::CommentsController < ApplicationController
         status: 401
       return
     end
-    
+
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.reply_id = nil unless @comment.reply_id
@@ -16,24 +16,24 @@ class Api::CommentsController < ApplicationController
       render json: @comment.errors.full_messages
     end
   end
-  
+
   def show
     @comment = Comment.find_by(id: params[:id])
 
     render :show
   end
-  
+
   def update
     @comment = Comment.find_by(id: params[:comment][:id])
-    
-    if @comment.update_attributes(comment_params)
+
+    if @comment.update(comment_params)
       render :show
     else
       render json: @comment.errors.full_messages,
         status: 422
     end
   end
-  
+
   def destroy
     @comment = Comment.find_by(id: params[:id])
 

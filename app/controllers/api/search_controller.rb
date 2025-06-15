@@ -2,7 +2,8 @@ require 'uri'
 
 class Api::SearchController < ApplicationController
   def create
-    search_terms = URI.decode(params[:search][:search_terms])
+    search_terms = search_params[:search_terms]&.strip
+
     @search_results = Video.where('title ILIKE ?', "%#{search_terms}%")
 
     render :results
