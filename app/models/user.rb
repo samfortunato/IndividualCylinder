@@ -12,13 +12,15 @@
 
 class User < ApplicationRecord
   before_validation :ensure_session_token
+  after_create :ensure_channel
   after_create_commit :ensure_profile_picture
 
   validates :first_name, :last_name, :email, :password_digest,
     presence: true
 
   validates :email,
-    uniqueness: true
+    uniqueness: true,
+    format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validates :password,
     length: { minimum: 8 },
@@ -32,6 +34,8 @@ class User < ApplicationRecord
   has_many :comments,
     dependent: :destroy
 
+  # TODO: comments shouldn't be destroyed if the user gets destroyed
+  # preserve comment history?
   has_many :likes,
     dependent: :destroy
 
@@ -40,8 +44,10 @@ class User < ApplicationRecord
     foreign_key: :owner_id,
     dependent: :destroy
 
+  # TODO: destroy subscriptions upon user destruction?
   has_many :subscriptions
 
+  # TODO: might not be using! possibly delete?
   has_many :subscribed_channels,
     through: :subscriptions,
     source: :channel
@@ -54,11 +60,11 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
+  # TODO: Remove. Useless — can just use User.find_by(email: email, password: password) ?
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
-    return nil unless user
 
-    user && user.is_password?(password) ? user : nil
+    user&.is_password?(password) ? user : nil
   end
 
   def password=(password)
@@ -67,8 +73,9 @@ class User < ApplicationRecord
   end
 
   def is_password?(password)
-    bcrypt_pass = BCrypt::Password.new(self.password_digest)
-    bcrypt_pass.is_password?(password)
+    bcrypt_password = BCrypt::Password.new(self.password_digest)
+
+    bcrypt_password.is_password?(password)
   end
 
   def reset_session_token!
@@ -84,6 +91,10 @@ class User < ApplicationRecord
 
   def ensure_session_token
     self.session_token ||= User.generate_session_token
+  end
+
+  def ensure_channel
+    Channel.create!(owner_id: self.id)
   end
 
   def ensure_profile_picture

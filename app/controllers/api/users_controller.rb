@@ -3,11 +3,11 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      channel = Channel.new(owner_id: @user.id)
-      channel.save
-      
+      # channel = Channel.new(owner_id: @user.id)
+      # channel.save
+
       log_in(@user)
-      
+
       render 'api/users/show'
     else
       render json: @user.errors.full_messages,
