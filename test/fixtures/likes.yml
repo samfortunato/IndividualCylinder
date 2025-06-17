@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one:
+  likable: one (Video)
+  likable_type: Video
+  was_liked: <%= rand < 0.5 %>
+  user_id: 1
+
+two:
+  likable: two (Comment)
+  likable_type: Comment
+  was_liked: <%= rand < 0.5 %>
+  user_id: 2

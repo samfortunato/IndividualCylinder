@@ -15,6 +15,7 @@ class Like < ApplicationRecord
   validates :was_liked,
     inclusion: { in: [true, false] }
 
+  # TODO: set so `Like`s belong to a `User`
   belongs_to :likable,
     polymorphic: true
 end
