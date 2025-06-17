@@ -157,11 +157,13 @@ class UserTest < ActiveSupport::TestCase
     video_1 = user.videos.create!(
       title: SecureRandom.alphanumeric,
       description: SecureRandom.alphanumeric,
+      video_file: file_fixture_upload("video_file.mp4", "video/mp4"),
     )
 
     video_2 = user.videos.create!(
       title: SecureRandom.alphanumeric,
       description: SecureRandom.alphanumeric,
+      video_file: file_fixture_upload("video_file.mp4", "video/mp4"),
     )
 
     assert_includes user.videos, video_1
@@ -174,6 +176,7 @@ class UserTest < ActiveSupport::TestCase
     video = user.videos.create!(
       title: SecureRandom.alphanumeric,
       description: SecureRandom.alphanumeric,
+      video_file: file_fixture_upload("video_file.mp4", "video/mp4"),
     )
 
     assert_equal user.id, video.uploader_id
@@ -185,6 +188,7 @@ class UserTest < ActiveSupport::TestCase
     video = user.videos.create!(
       title: SecureRandom.alphanumeric,
       description: SecureRandom.alphanumeric,
+      video_file: file_fixture_upload("video_file.mp4", "video/file")
     )
 
     user.destroy!

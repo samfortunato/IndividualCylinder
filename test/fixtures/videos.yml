@@ -7,9 +7,9 @@
 one:
   title: <%= SecureRandom.alphanumeric %>
   description: <%= SecureRandom.alphanumeric %>
-  uploader_id: <%= rand(10) %>
+  user: one
 #
 two:
   title: <%= SecureRandom.alphanumeric %>
   description: <%= SecureRandom.alphanumeric %>
-  uploader_id: <%= rand(10) %>
+  user: two

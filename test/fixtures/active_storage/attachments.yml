@@ -1,0 +1,9 @@
+one_video_file_attachment:
+  name: video_file
+  record: one (Video)
+  blob: one_video_file_blob
+
+two_video_file_attachment:
+  name: video_file
+  record: two (Video)
+  blob: two_video_file_blob
