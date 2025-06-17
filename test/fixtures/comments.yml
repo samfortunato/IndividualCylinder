@@ -5,11 +5,11 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  user_id: <%= rand(10) %>
-  video_id: <%= rand(10) %>
+  user: one
+  video: one
   body: <%= SecureRandom.alphanumeric %>
 
 two:
-  user_id: <%= rand(10) %>
-  video_id: <%= rand(10) %>
+  user: one
+  video: one
   body: <%= SecureRandom.alphanumeric %>

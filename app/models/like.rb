@@ -14,7 +14,7 @@
 class Like < ApplicationRecord
   validates :was_liked,
     inclusion: { in: [true, false] }
-  
+
   belongs_to :likable,
     polymorphic: true
 end
