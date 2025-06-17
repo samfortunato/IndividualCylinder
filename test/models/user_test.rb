@@ -29,6 +29,17 @@ class UserTest < ActiveSupport::TestCase
     assert user.avatar.attached?
   end
 
+  test "after creation, ensures it has a channel" do
+    user = User.create!(
+      password_digest: SecureRandom.alphanumeric,
+      first_name: SecureRandom.alphanumeric,
+      last_name: SecureRandom.alphanumeric,
+      email: "#{SecureRandom.alphanumeric}@mail.com"
+    )
+
+    assert_not_nil user.channel
+  end
+
   test "validates first name exists" do
     user = User.new(
       password_digest: SecureRandom.alphanumeric,
@@ -96,6 +107,20 @@ class UserTest < ActiveSupport::TestCase
 
     assert_not user_with_taken_email.valid?
     assert_includes user_with_taken_email.errors[:email], "has already been taken"
+  end
+
+  test "validates email is a valid email" do
+    email = "bad"
+
+    user = User.new(
+      password_digest: SecureRandom.alphanumeric,
+      first_name: SecureRandom.alphanumeric,
+      last_name: SecureRandom.alphanumeric,
+      email: email,
+    )
+
+    assert_not user.valid?
+    assert_includes user.errors[:email], "is invalid"
   end
 
   test "validates password is 8 characters or more" do
@@ -240,7 +265,6 @@ class UserTest < ActiveSupport::TestCase
       last_name: SecureRandom.alphanumeric,
       email: "#{SecureRandom.alphanumeric}@mail.com",
     )
-    Channel.create!(owner_id: user.id)
 
     assert_not_nil user.channel
   end
@@ -252,7 +276,6 @@ class UserTest < ActiveSupport::TestCase
       last_name: SecureRandom.alphanumeric,
       email: "#{SecureRandom.alphanumeric}@mail.com",
     )
-    Channel.create!(owner_id: user.id)
 
     channel = user.channel
 
@@ -266,7 +289,6 @@ class UserTest < ActiveSupport::TestCase
       last_name: SecureRandom.alphanumeric,
       email: "#{SecureRandom.alphanumeric}@mail.com",
     )
-    Channel.create!(owner_id: user.id)
     channel = user.channel
 
     user.destroy!
@@ -409,7 +431,6 @@ class UserTest < ActiveSupport::TestCase
       last_name: SecureRandom.alphanumeric,
       email: "#{SecureRandom.alphanumeric}@mail.com",
     )
-    Channel.create!(owner_id: user.id)
 
     channel_id = user.channel_id
 
