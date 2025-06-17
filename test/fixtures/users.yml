@@ -5,15 +5,15 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  password_digest: "foo"
-  session_token: "bar1"
-  first_name: "baz"
-  last_name: "qux"
-  email: "quux1"
+  password_digest: <%= SecureRandom.alphanumeric %>
+  session_token: <%= SecureRandom.alphanumeric %>
+  first_name: <%= SecureRandom.alphanumeric %>
+  last_name: <%= SecureRandom.alphanumeric %>
+  email: <%= "#{SecureRandom.alphanumeric}@mail.com" %>
 
 two:
-  password_digest: "foo"
-  session_token: "bar2"
-  first_name: "baz"
-  last_name: "qux"
-  email: "quux2"
+  password_digest: <%= SecureRandom.alphanumeric %>
+  session_token: <%= SecureRandom.alphanumeric %>
+  first_name: <%= SecureRandom.alphanumeric %>
+  last_name: <%= SecureRandom.alphanumeric %>
+  email: <%= "#{SecureRandom.alphanumeric}@mail.com" %>
