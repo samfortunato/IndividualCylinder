@@ -11,5 +11,7 @@
 
 class Subscription < ApplicationRecord
   belongs_to :channel
+  # TODO: possibly add uniqueness constraint on here, so that a user can only subscribe to a channel once?
+  # i don't know if that would ever be relevant...
   belongs_to :user
 end
