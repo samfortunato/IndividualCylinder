@@ -7,3 +7,13 @@ two_video_file_attachment:
   name: video_file
   record: two (Video)
   blob: two_video_file_blob
+
+one_avatar_attachment:
+  name: avatar
+  record: one (User)
+  blob: one_default_avatar_blob
+
+two_avatar_attachment:
+  name: avatar
+  record: two (User)
+  blob: two_default_avatar_blob

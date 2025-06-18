@@ -3,9 +3,6 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      # channel = Channel.new(owner_id: @user.id)
-      # channel.save
-
       log_in(@user)
 
       render 'api/users/show'
@@ -29,6 +26,12 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :avatar)
+    params.require(:user).permit(
+      :first_name,
+      :last_name,
+      :email,
+      :password,
+      :avatar,
+    )
   end
 end
