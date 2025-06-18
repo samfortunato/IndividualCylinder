@@ -9,7 +9,7 @@ class VideoTest < ActiveSupport::TestCase
     video = user.videos.new(
       title: nil,
       description: SecureRandom.alphanumeric,
-      video_file: file_fixture_upload("video_file.mp4", "video/mp4")
+      video_file: file_fixture_upload("videos/video-file.mp4", "video/mp4")
     )
 
     assert_not video.valid?
@@ -22,7 +22,7 @@ class VideoTest < ActiveSupport::TestCase
     video = user.videos.new(
       title: SecureRandom.alphanumeric,
       description: nil,
-      video_file: file_fixture_upload("video_file.mp4", "video/mp4")
+      video_file: file_fixture_upload("videos/video-file.mp4", "video/mp4")
     )
 
     assert_not video.valid?
@@ -47,7 +47,7 @@ class VideoTest < ActiveSupport::TestCase
     video = user.videos.create!(
       title: SecureRandom.alphanumeric,
       description: SecureRandom.alphanumeric,
-      video_file: file_fixture_upload("video_file.mp4", "video/mp4")
+      video_file: file_fixture_upload("videos/video-file.mp4", "video/mp4")
     )
 
     assert_equal user.id, video.uploader_id
@@ -127,7 +127,7 @@ class VideoTest < ActiveSupport::TestCase
 
   test "has one video file" do
     video = videos(:one)
-    video_file = file_fixture_upload("video_file.mp4", "video/mp4")
+    video_file = file_fixture_upload("videos/video-file.mp4", "video/mp4")
 
     video.video_file.attach(video_file)
 
@@ -136,7 +136,7 @@ class VideoTest < ActiveSupport::TestCase
 
   test "has one video thumbnail" do
     video = videos(:one)
-    video_thumbnail = file_fixture_upload("video_thumbnail.png", "image/png")
+    video_thumbnail = file_fixture_upload("images/default-video-thumbnail.png", "image/png")
 
     video.video_thumbnail.attach(video_thumbnail)
 

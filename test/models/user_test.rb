@@ -157,13 +157,13 @@ class UserTest < ActiveSupport::TestCase
     video_1 = user.videos.create!(
       title: SecureRandom.alphanumeric,
       description: SecureRandom.alphanumeric,
-      video_file: file_fixture_upload("video_file.mp4", "video/mp4"),
+      video_file: file_fixture_upload("videos/video-file.mp4", "video/mp4"),
     )
 
     video_2 = user.videos.create!(
       title: SecureRandom.alphanumeric,
       description: SecureRandom.alphanumeric,
-      video_file: file_fixture_upload("video_file.mp4", "video/mp4"),
+      video_file: file_fixture_upload("videos/video-file.mp4", "video/mp4"),
     )
 
     assert_includes user.videos, video_1
@@ -176,7 +176,7 @@ class UserTest < ActiveSupport::TestCase
     video = user.videos.create!(
       title: SecureRandom.alphanumeric,
       description: SecureRandom.alphanumeric,
-      video_file: file_fixture_upload("video_file.mp4", "video/mp4"),
+      video_file: file_fixture_upload("videos/video-file.mp4", "video/mp4"),
     )
 
     assert_equal user.id, video.uploader_id
@@ -188,7 +188,7 @@ class UserTest < ActiveSupport::TestCase
     video = user.videos.create!(
       title: SecureRandom.alphanumeric,
       description: SecureRandom.alphanumeric,
-      video_file: file_fixture_upload("video_file.mp4", "video/file")
+      video_file: file_fixture_upload("videos/video-file.mp4", "video/file")
     )
 
     user.destroy!
@@ -326,7 +326,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "has one avatar" do
     user = users(:one)
-    avatar = file_fixture_upload("avatar.png", "image/png")
+    avatar = file_fixture_upload("images/default-avatar.png", "image/png")
 
     user.avatar.attach(avatar)
 

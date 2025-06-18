@@ -24,5 +24,8 @@ module IndividualCylinder
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.active_support.to_time_preserves_timezone = :zone
+
+    # Assets path
+    config.assets_path = Rails.root.join("app", "assets")
   end
 end

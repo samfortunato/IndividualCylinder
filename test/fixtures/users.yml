@@ -17,3 +17,10 @@ two:
   first_name: <%= SecureRandom.alphanumeric %>
   last_name: <%= SecureRandom.alphanumeric %>
   email: <%= "#{SecureRandom.alphanumeric}@mail.com" %>
+
+three:
+  password_digest: <%= SecureRandom.alphanumeric %>
+  session_token: <%= SecureRandom.alphanumeric %>
+  first_name: <%= SecureRandom.alphanumeric %>
+  last_name: <%= SecureRandom.alphanumeric %>
+  email: <%= "#{SecureRandom.alphanumeric}@mail.com" %>

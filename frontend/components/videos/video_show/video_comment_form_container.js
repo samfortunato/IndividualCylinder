@@ -13,8 +13,8 @@ const mapStateToProps = (state) => {
     currentUserAvatarURL = currentUser.avatar_url;
   }
 
-  const defaultAvatarURL = 'https://s3.amazonaws.com/individualcylinder-video-upload-dev/default-profile-picture.png';
-  
+  const defaultAvatarURL = 'https://s3.amazonaws.com/individualcylinder-video-upload-dev/default-avatar.png';
+
   return {
     currentUserId,
     currentUserAvatarURL: currentUserAvatarURL || defaultAvatarURL
