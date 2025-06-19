@@ -1,5 +1,5 @@
-one_video_file_blob: <%= ActiveStorage::FixtureSet.blob filename: "videos/video-file.mp4" %>
-two_video_file_blob: <%= ActiveStorage::FixtureSet.blob filename: "videos/video-file.mp4" %>
+one_video_file_blob: <%= ActiveStorage::FixtureSet.blob filename: "video-file.mp4" %>
+two_video_file_blob: <%= ActiveStorage::FixtureSet.blob filename: "video-file.mp4" %>
 
-one_avatar_blob: <%= ActiveStorage::FixtureSet.blob filename: "images/default-avatar.png" %>
-two_avatar_blob: <%= ActiveStorage::FixtureSet.blob filename: "images/default-avatar.png" %>
+one_avatar_blob: <%= ActiveStorage::FixtureSet.blob filename: "default-avatar.png" %>
+two_avatar_blob: <%= ActiveStorage::FixtureSet.blob filename: "default-avatar.png" %>

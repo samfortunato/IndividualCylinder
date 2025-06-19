@@ -27,13 +27,13 @@ class ChannelTest < ActiveSupport::TestCase
     video_1 = channel.owner.videos.create!(
       title: SecureRandom.alphanumeric,
       description: SecureRandom.alphanumeric,
-      video_file: file_fixture_upload("videos/video-file.mp4", "video/mp4"),
+      video_file: file_fixture_upload("video-file.mp4", "video/mp4"),
     )
 
     video_2 = channel.owner.videos.create!(
       title: SecureRandom.alphanumeric,
       description: SecureRandom.alphanumeric,
-      video_file: file_fixture_upload("videos/video-file.mp4", "video/mp4"),
+      video_file: file_fixture_upload("video-file.mp4", "video/mp4"),
     )
 
     assert_includes channel.videos, video_1
@@ -67,7 +67,7 @@ class ChannelTest < ActiveSupport::TestCase
   test "has one attached banner image" do
     channel = channels(:one)
 
-    channel.banner_image.attach(file_fixture_upload("images/default-banner-image.jpg", "image/jpeg"))
+    channel.banner_image.attach(file_fixture_upload("default-banner-image.jpg", "image/jpeg"))
 
     assert channel.banner_image.attached?
   end

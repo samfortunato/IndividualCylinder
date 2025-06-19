@@ -28,7 +28,7 @@ class Channel < ApplicationRecord
   def ensure_default_banner
     unless self.banner_image.attached?
       self.banner_image.attach(
-        io: File.open(Rails.application.config.assets_path.join('images', 'default-banner-image.jpg')),
+        io: File.open(Rails.root.join("app", "assets", 'images', 'default-banner-image.jpg')),
         filename: 'default-banner-image.jpg',
         content_type: 'image/jpeg'
       )

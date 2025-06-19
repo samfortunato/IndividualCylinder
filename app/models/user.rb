@@ -100,7 +100,7 @@ class User < ApplicationRecord
   def ensure_profile_picture
     unless self.avatar.attached?
       self.avatar.attach(
-        io: File.open(Rails.application.config.assets_path.join('images', 'default-avatar.png')),
+        io: File.open(Rails.root.join("app", "assets", 'images', 'default-avatar.png')),
         filename: 'default-avatar.png',
         content_type: 'image/png'
       )
