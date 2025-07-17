@@ -32,8 +32,9 @@ npm-debug.log
 /config/master.key
 
 # Meta
-./samples
-./outreach
+help/
+samples/
+outreach/
 
 # Misc.
 .DS_Store
