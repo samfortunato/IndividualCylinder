@@ -5,7 +5,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     user_params = {
       first_name: SecureRandom.alphanumeric,
       last_name: SecureRandom.alphanumeric,
-      email: "#{SecureRandom.alphanumeric}@#{SecureRandom.alphanumeric}.com",
+      email: "#{SecureRandom.alphanumeric}@#{SecureRandom.alphanumeric}.#{SecureRandom.alphanumeric}",
       password: SecureRandom.alphanumeric,
     }
 
@@ -21,7 +21,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     user_params = {
       first_name: SecureRandom.alphanumeric,
       last_name: SecureRandom.alphanumeric,
-      email: "#{SecureRandom.alphanumeric}@#{SecureRandom.alphanumeric}.com",
+      email: "#{SecureRandom.alphanumeric}@#{SecureRandom.alphanumeric}.#{SecureRandom.alphanumeric}",
       password: SecureRandom.alphanumeric,
     }
 
@@ -37,7 +37,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     user_params = {
       first_name: SecureRandom.alphanumeric,
       last_name: SecureRandom.alphanumeric,
-      email: "#{SecureRandom.alphanumeric}@#{SecureRandom.alphanumeric}.com",
+      email: "#{SecureRandom.alphanumeric}@#{SecureRandom.alphanumeric}.#{SecureRandom.alphanumeric}",
       password: SecureRandom.alphanumeric,
     }
 
@@ -98,10 +98,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_nil session[:session_token]
   end
 
+  test "on create, errors if a bad request" do
+    user_params = {
+      bad: "bad",
+    }
+
+    post api_users_path, params: { user: user_params }
+
+    assert_response :unprocessable_entity
+  end
+
   test "on show, shows the user's data" do
     user = users(:one)
-    # FIXME: manually attaching a fake avatar to the user currently because rails fixture file attachment is dumb?????
-    user.avatar.attach(io: StringIO.new("fake"), filename: "test.jpg")
 
     get api_user_path(user.id)
 
@@ -113,6 +121,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not_nil body["avatar_url"]
     assert_equal user.last_name, body["last_name"]
     assert_equal user.email, body["email"]
+    assert_nil body["password"]
+    assert_nil body["password_digest"]
   end
 
   test "on show, gives errors if no user" do
