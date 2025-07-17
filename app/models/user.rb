@@ -11,17 +11,17 @@
 #
 
 class User < ApplicationRecord
+  # include AssetLocatable
+
   before_validation :ensure_session_token
   after_create :ensure_channel
   after_create_commit :ensure_profile_picture
 
   validates :first_name, :last_name, :email, :password_digest,
     presence: true
-
   validates :email,
     uniqueness: true,
     format: { with: URI::MailTo::EMAIL_REGEXP }
-
   validates :password,
     length: { minimum: 8 },
     allow_nil: true
@@ -30,23 +30,18 @@ class User < ApplicationRecord
     class_name: 'Video',
     foreign_key: :uploader_id,
     dependent: :destroy
-
   has_many :comments,
     dependent: :destroy
-
   # TODO: comments shouldn't be destroyed if the user gets destroyed
   # preserve comment history?
   has_many :likes,
     dependent: :destroy
-
   has_one :channel,
     class_name: 'Channel',
     foreign_key: :owner_id,
     dependent: :destroy
-
   # TODO: destroy subscriptions upon user destruction?
   has_many :subscriptions
-
   # TODO: might not be using! possibly delete?
   has_many :subscribed_channels,
     through: :subscriptions,
@@ -100,6 +95,7 @@ class User < ApplicationRecord
   def ensure_profile_picture
     unless self.avatar.attached?
       self.avatar.attach(
+        # io: File.open(get_asset_path("images", "default-avatar.png")),
         io: File.open(Rails.root.join("app", "assets", 'images', 'default-avatar.png')),
         filename: 'default-avatar.png',
         content_type: 'image/png'

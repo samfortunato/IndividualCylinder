@@ -7,7 +7,16 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  # setup do
+  #   ActiveStorage::Current.url_options = { host: 'localhost', port: 3000 }
+  # end
 end
+
+# class ActionDispatch::IntegrationTest
+#   setup do
+#     ActiveStorage::Current.url_options = { host: 'localhost', port: 3000 }
+#   end
+# end
 
 # TODO: open up an issue for this. this was insane, lol? fucking file path sanitization...
 # i should be able to nest fixture files. wtf!!!!!
