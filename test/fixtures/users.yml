@@ -5,21 +5,21 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  password_digest: <%= SecureRandom.alphanumeric %>
+  password_digest: <%= BCrypt::Password::create("password") %>
   session_token: <%= SecureRandom.alphanumeric %>
   first_name: <%= SecureRandom.alphanumeric %>
   last_name: <%= SecureRandom.alphanumeric %>
   email: <%= "#{SecureRandom.alphanumeric}@mail.com" %>
 
 two:
-  password_digest: <%= SecureRandom.alphanumeric %>
+  password_digest: <%= BCrypt::Password::create("password") %>
   session_token: <%= SecureRandom.alphanumeric %>
   first_name: <%= SecureRandom.alphanumeric %>
   last_name: <%= SecureRandom.alphanumeric %>
   email: <%= "#{SecureRandom.alphanumeric}@mail.com" %>
 
 three:
-  password_digest: <%= SecureRandom.alphanumeric %>
+  password_digest: <%= BCrypt::Password::create("password") %>
   session_token: <%= SecureRandom.alphanumeric %>
   first_name: <%= SecureRandom.alphanumeric %>
   last_name: <%= SecureRandom.alphanumeric %>
