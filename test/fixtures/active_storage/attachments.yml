@@ -8,12 +8,22 @@ two_video_file_attachment:
   record: two (Video)
   blob: two_video_file_blob
 
+one_video_thumbnail_attachment:
+  name: video_thumbnail
+  record: one (Video)
+  blob: one_video_thumbnail_blob
+
+two_video_thumbnail_attachment:
+  name: video_thumbnail
+  record: two (Video)
+  blob: two_video_thumbnail_blob
+
 one_avatar_attachment:
   name: avatar
   record: one (User)
-  blob: one_default_avatar_blob
+  blob: one_avatar_blob
 
 two_avatar_attachment:
   name: avatar
   record: two (User)
-  blob: two_default_avatar_blob
+  blob: two_avatar_blob

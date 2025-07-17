@@ -35,7 +35,7 @@ class Api::VideosController < ApplicationController
 
       if !@video.video_thumbnail.attached?
         @video.video_thumbnail.attach(
-          io: File.open(Rails.root.join('app', 'assets', 'images', 'default-thumbnail.png')),
+          io: File.open(Rails.root.join('app', 'assets', 'images', 'default-video-thumbnail.png')),
           filename: 'default-thumbnail.png',
           content_type: 'image/png'
         )
@@ -47,11 +47,14 @@ class Api::VideosController < ApplicationController
   end
 
   def update
+    # FIXME: this needs to be `params[:id]`, to get it from the request path?
     @video = Video.find_by(id: params[:video][:id])
 
     if @video.uploader_id != current_user.id
       render json: ['Access denied'],
         status: 401
+
+      return
     end
 
     if @video.update(video_params)
